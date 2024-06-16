@@ -1,7 +1,16 @@
 import Theme from "@/styles/theme"
 import { Stack } from "expo-router"
-import { Text } from "react-native"
 import { ThemeProvider } from "styled-components/native"
+
+const screenOption: any = {
+  headerTitleAlign:'center',
+  headerStyle:{
+    backgroundColor:Theme.colors.neutral['50'],
+  },
+  headerShadowVisible:false,
+  statusBarColor:Theme.colors.neutral['50'],
+  statusBarStyle: 'dark',
+}
 
 function Layout() {
   return (
@@ -9,16 +18,11 @@ function Layout() {
         <Stack>
           <Stack.Screen 
             name="index" 
-              options={{
-              title:'Home',
-              headerTitleAlign:'center',
-              headerStyle:{
-                backgroundColor:Theme.colors.neutral['50'],
-              },
-              headerShadowVisible:false,
-              statusBarColor:Theme.colors.neutral['50'],
-              statusBarStyle: 'dark',
-            }}
+              options={screenOption}
+          />
+          <Stack.Screen 
+            name="register-task" 
+            options={screenOption}
           />
         </Stack>
     </ThemeProvider>

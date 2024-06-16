@@ -1,4 +1,4 @@
-import { CardColors } from './enum/CardColor'
+import { CardColors } from './enum/card-color'
 import * as S from './styles'
 
 export type Variant = {
@@ -6,7 +6,7 @@ export type Variant = {
 }
 
 export type CardProps = {
-  id?:string
+  id:string
   title: string
   description?: string
   checked: boolean

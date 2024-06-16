@@ -1,5 +1,6 @@
 import Card, { CardProps } from '@/components/Card'
 import * as S from './styles'
+import { FlatList } from 'react-native'
 
 type CardListProps  = {
   cards:CardProps[]
@@ -12,9 +13,9 @@ function CardList(props:CardListProps){
     >
       {
         cards.map(card => (
-          <S.CardWrapper>
-            <Card {...card} key={card.id} />
-          </S.CardWrapper>
+          <S.CardWrapper key={card.id}>
+              <Card {...card} />
+            </S.CardWrapper>
         ))
       }
       <S.MarginHelper/>
