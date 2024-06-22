@@ -5,6 +5,8 @@ import SwitchSelector from 'react-native-switch-selector'
 import Theme from '@/styles/theme';
 import InputEmoji from '@/components/InputEmoji';
 import { useCallback, useState } from 'react';
+import InputWeekDay, { Days } from '@/components/InputWeekDay';
+import InputColor from '@/components/InputColor';
 
 const options = [
   {
@@ -58,11 +60,33 @@ export default function TaskForm() {
           onPress={handleChangeFormType}
           />
       </S.SelectorWrapper>
-      <S.SelectorWrapper>
-        <Text>
-          {formType}
-        </Text>
-      </S.SelectorWrapper>
+  
+        {formType === 'event' ? (
+          <>
+            <S.InputWrapper>
+              <InputWeekDay
+                // onChange={(e:Days)=>console.log(e)}
+                label='Dias da semana'
+                name='weekdays'
+              />
+
+            </S.InputWrapper>
+
+            <S.InputWrapper>
+              <InputColor
+                label='Cor do card'
+              />
+            </S.InputWrapper>
+          </>
+          
+        ) :(
+          <S.InputWrapper>
+            <Text>
+              {formType}
+            </Text>
+          </S.InputWrapper>
+        )}
+
     </S.Container>
   );
 }

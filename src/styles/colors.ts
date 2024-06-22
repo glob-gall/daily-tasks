@@ -287,4 +287,5 @@ const Colors = {
   },
 }
 
+export type ColorNames = keyof typeof Colors
 export default Colors
