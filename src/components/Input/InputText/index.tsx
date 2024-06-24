@@ -6,7 +6,7 @@ import * as S from './styles'
 //   color?: CardColors
 // }
 
-export type InputProps = {
+export type InputTextProps = {
   name: string
   required?: boolean
   type?: InputType
@@ -14,7 +14,7 @@ export type InputProps = {
 
 
 
-function Input(props: InputProps) {
+function InputText(props: InputTextProps) {
   const {
     name,
     required
@@ -26,14 +26,14 @@ function Input(props: InputProps) {
         {required && <S.Required>*</S.Required>}
       </S.Label>
 
-      <S.InputWrapper>
-        <S.Input 
+      <S.InputTextWrapper>
+        <S.InputText 
         placeholderTextColor={Theme.colors.neutral['400']}
           placeholder={name}
         />
-      </S.InputWrapper>
+      </S.InputTextWrapper>
     </S.Container>
   )
 }
 
-export default Input
+export default InputText

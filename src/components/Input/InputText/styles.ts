@@ -19,7 +19,7 @@ export const Label = styled.Text`
   `}
 `
 
-export const Input = styled.TextInput`
+export const InputText = styled.TextInput`
   height: 44px;
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
@@ -27,7 +27,7 @@ export const Input = styled.TextInput`
   `}
 `
 
-export const InputWrapper = styled.View`
+export const InputTextWrapper = styled.View`
   border-radius:4px;
   ${props => css`
     background-color: ${props.theme.colors.neutral['200']};

@@ -26,7 +26,6 @@ function InputEmoji(props: InputEmojiProps) {
   },[])
 
   const handlePick = useCallback((e:EmojiType)=>{
-    console.log(e);
     setEmoji(e)
     
   },[])

@@ -1,13 +1,14 @@
 import { Text, TextInput } from 'react-native';
 import * as S from './styles'
-import Input from '@/components/Input';
+import InputText from '@/components/Input/InputText';
 import SwitchSelector from 'react-native-switch-selector'
 import Theme from '@/styles/theme';
-import InputEmoji from '@/components/InputEmoji';
+import InputEmoji from '@/components/Input/InputEmoji';
 import { useCallback, useState } from 'react';
-import InputWeekDay, { Days } from '@/components/InputWeekDay';
-import InputColor from '@/components/InputColor';
-
+import InputWeekDay, { Days } from '@/components/Input/InputWeekDay';
+import InputColor from '@/components/Input/InputColor';
+import InputDate from '@/components/Input/InputDate';
+import InputTime from '@/components/Input/InputTime';
 const options = [
   {
     label:'Evento diario',
@@ -33,14 +34,14 @@ export default function TaskForm() {
       />
 
       <S.InputWrapper>
-        <Input
+        <InputText
           required
           name='Nome'
         />
       </S.InputWrapper>
 
       <S.InputWrapper>
-        <Input
+        <InputText
           name='Descrição'
           />
       </S.InputWrapper>
@@ -65,25 +66,44 @@ export default function TaskForm() {
           <>
             <S.InputWrapper>
               <InputWeekDay
-                // onChange={(e:Days)=>console.log(e)}
                 label='Dias da semana'
                 name='weekdays'
               />
 
             </S.InputWrapper>
 
+            <S.InputWrapperGroup>
+              <InputTime 
+                name='date'
+                label='Horário'
+              />
+              <S.InputRowWrapper>
+                <InputColor
+                  label='Cor do card'
+                />
+              </S.InputRowWrapper>
+            </S.InputWrapperGroup>
+          </>
+          
+        ) :(
+          <S.InputWrapper>
+            <S.InputWrapperGroup>
+              <InputDate 
+                name='date'
+                label='Data'
+              />
+              <S.InputRowWrapper>
+                <InputTime 
+                  name='time'
+                  label='Horário'
+                />
+              </S.InputRowWrapper>
+            </S.InputWrapperGroup>
             <S.InputWrapper>
               <InputColor
                 label='Cor do card'
               />
             </S.InputWrapper>
-          </>
-          
-        ) :(
-          <S.InputWrapper>
-            <Text>
-              {formType}
-            </Text>
           </S.InputWrapper>
         )}
 

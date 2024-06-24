@@ -9,7 +9,7 @@ type ItemVariant = {
 }
 
 export const Container = styled.View`
-  
+  flex: 1;
   border-radius: 4px;
   ${props => css`
     /* background-color: ${props.theme.colors.neutral['200']}; */
@@ -50,6 +50,14 @@ export const ItemLabel = styled.Text`
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
     font-size: ${props.theme.font.default};
+    color: ${props.theme.colors.neutral['700']};
+  `}
+`
+
+export const ItemIcon = styled.View`
+  margin-left: auto;
+  ${props => css`
+    margin-right: ${props.theme.spacing.medium};
     color: ${props.theme.colors.neutral['700']};
   `}
 `

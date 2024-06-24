@@ -1,8 +1,9 @@
 import SelectDropdown from "react-native-select-dropdown";
-
+import { FontAwesome5 } from '@expo/vector-icons';
 import * as S from './styles'
 import { ColorNames } from "@/styles/colors";
 import { View } from "react-native";
+import Theme from "@/styles/theme";
 
 type InputColorProps = {
   label: string
@@ -71,7 +72,6 @@ function InputColor(props: InputColorProps){
       // defaultValue={colors[0]}
       data={colors}
       onSelect={(selectedItem, index) => {
-        console.log(selectedItem, index);
       }}
       renderButton={(selectedItem:Color, isOpened) => (
         <>
@@ -81,6 +81,13 @@ function InputColor(props: InputColorProps){
             />
             <S.ItemLabel>{selectedItem ? selectedItem.label: 'Selecione uma cor'}</S.ItemLabel>
             {/* <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} /> */}
+            <S.ItemIcon>
+              {isOpened?(
+                <FontAwesome5 name="angle-up" size={24} color={Theme.colors.neutral['400']} />
+              ):(
+                <FontAwesome5 name="angle-down" size={24} color={Theme.colors.neutral['400']} />
+              )}
+            </S.ItemIcon>
           </S.Item>
         </>
         )}
