@@ -1,13 +1,7 @@
 import Theme from '@/styles/theme';
 import * as S from './styles'
-import { ForwardRefRenderFunction, useCallback, useEffect, useRef, useState } from 'react';
-import { Modal, NativeSyntheticEvent, TextInput, TextInputChangeEventData, TouchableWithoutFeedback, View } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import { Margin } from '@/components/Spacing/Margin';
-
-// export type Variant = {
-//   color?: CardColors
-// }
+import { useCallback, useState } from 'react';
+import Modal from '@/components/Modal';
 
 export type InputDateProps = {
   name: string
@@ -54,50 +48,38 @@ function InputDate(props: InputDateProps) {
         <S.Separator>/</S.Separator>
         <S.InputYearWrapper>
         <S.Date>
-          {/* {selectedDate.split('/')[0]} */}
-          2024
+          {selectedDate.split('/')[0]}
         </S.Date>
         </S.InputYearWrapper>
       </S.InputGroupWrapper>
       
 
-        <S.CalendarModal
-          transparent
-          statusBarTranslucent
-          animationType="fade"
-          visible={modalOpen}
-          onRequestClose={handleCloseModal} 
+        <Modal
+          onClose={handleCloseModal}
+          open={modalOpen}
         >
-            <S.CalendarContainer>
-              <TouchableWithoutFeedback onPress={handleCloseModal}>
-                <S.CloseModal/>
-              </TouchableWithoutFeedback>
-                <S.DatePicker
-                  options={{
-                    mainColor:Theme.colors.neutral['700']
-                  }}
-                  current={selectedDate}
-                  selected={selectedDate}
-                  mode='calendar'
-                  onSelectedChange={date => setSelectedDate(date)}
-                />
-                <S.DateDialog>
-                  <S.OkButtonContainer>
-                    <S.OkButton 
-                      disabled={selectedDate === ''}
-                      onPress={handleCloseModal}
-                    >
-                      <S.OkButtonText>
-                        OK
-                      </S.OkButtonText>
-                    </S.OkButton>
-                  </S.OkButtonContainer>
-                </S.DateDialog>
-                <TouchableWithoutFeedback onPress={handleCloseModal}>
-                  <S.CloseModal/>
-                </TouchableWithoutFeedback>
-            </S.CalendarContainer>
-        </S.CalendarModal>
+          <S.DatePicker
+            options={{
+              mainColor:Theme.colors.neutral['700']
+            }}
+            current={selectedDate}
+            selected={selectedDate}
+            mode='calendar'
+            onSelectedChange={date => setSelectedDate(date)}
+          />
+          <S.DateDialog>
+            <S.OkButtonContainer>
+              <S.OkButton 
+                disabled={selectedDate === ''}
+                onPress={handleCloseModal}
+              >
+                <S.OkButtonText>
+                  OK
+                </S.OkButtonText>
+              </S.OkButton>
+            </S.OkButtonContainer>
+          </S.DateDialog>
+        </Modal>
     </S.Container>
   )
 }
