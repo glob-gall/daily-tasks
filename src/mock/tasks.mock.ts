@@ -1,6 +1,6 @@
-import { CardProps,Variant } from "@/components/Card";
+import { TaskDto } from "@/app/entity/Task/dto";
 
-export const TasksMock:CardProps[] = [
+export const TasksMock:TaskDto[] = [
   {
     id:'1',
     title:'Academia',
@@ -8,9 +8,7 @@ export const TasksMock:CardProps[] = [
     description:'braço e perna',
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'white'
-    }
+    color:'white'
   },
   {
     id:'2',
@@ -18,18 +16,14 @@ export const TasksMock:CardProps[] = [
     checked:false,
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'green'
-    }
+    color:'green'
   },
   {
     id:'3',
     title:'Ver o sol',
     checked:true,
     emoji:':)',
-    variant: {
-      color:'yellow'
-    }
+    color:'yellow'
   },
   {
     id:'4',
@@ -38,9 +32,7 @@ export const TasksMock:CardProps[] = [
     description:'braço e perna',
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'white'
-    }
+    color:'white'
   },
   {
     id:'5',
@@ -48,18 +40,14 @@ export const TasksMock:CardProps[] = [
     checked:false,
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'red'
-    }
+    color:'red'
   },
   {
     id:'6',
     title:'Ver o sol',
     checked:true,
     emoji:':)',
-    variant: {
-      color:'yellow'
-    }
+    color:'yellow'
   },
   {
     id:'7',
@@ -68,9 +56,7 @@ export const TasksMock:CardProps[] = [
     description:'braço e perna',
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'white'
-    }
+    color:'white'
   },
   {
     id:'8',
@@ -78,18 +64,14 @@ export const TasksMock:CardProps[] = [
     checked:false,
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'green'
-    }
+    color:'green'
   },
   {
     id:'9',
     title:'Ver o sol',
     checked:true,
     emoji:':)',
-    variant: {
-      color:'yellow'
-    }
+    color:'yellow'
   },
   {
     id:'10',
@@ -98,9 +80,7 @@ export const TasksMock:CardProps[] = [
     description:'braço e perna',
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'white'
-    }
+    color:'white'
   },
   {
     id:'11',
@@ -108,18 +88,14 @@ export const TasksMock:CardProps[] = [
     checked:false,
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'red'
-    }
+    color:'red'
   },
   {
     id:'12',
     title:'Ver o sol',
     checked:true,
     emoji:':)',
-    variant: {
-      color:'yellow'
-    }
+    color:'yellow'
   },
   {
     id:'13',
@@ -128,9 +104,7 @@ export const TasksMock:CardProps[] = [
     description:'braço e perna',
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'white'
-    }
+    color:'white'
   },
   {
     id:'14',
@@ -138,18 +112,14 @@ export const TasksMock:CardProps[] = [
     checked:false,
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'red'
-    }
+    color:'red'
   },
   {
     id:'15',
     title:'Ver o sol',
     checked:true,
     emoji:':)',
-    variant: {
-      color:'yellow'
-    }
+    color:'yellow'
   },
   {
     id:'16',
@@ -158,9 +128,7 @@ export const TasksMock:CardProps[] = [
     description:'braço e perna',
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'white'
-    }
+    color:'white'
   },
   {
     id:'17',
@@ -168,17 +136,13 @@ export const TasksMock:CardProps[] = [
     checked:false,
     emoji:':)',
     time:'12:00',
-    variant: {
-      color:'red'
-    }
+    color:'red'
   },
   {
     id:'18',
     title:'Ver o sol',
     checked:true,
     emoji:':)',
-    variant: {
-      color:'yellow'
-    }
+    color:'yellow'
   },
 ]

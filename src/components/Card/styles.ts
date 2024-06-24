@@ -1,5 +1,9 @@
+import { CardColors } from "@/app/entity/Task/dto";
 import styled, { css } from "styled-components/native";
-import { Variant } from ".";
+
+type Variant = {
+  color: CardColors
+}
 
 export const Container = styled.View<Variant>`
   display: flex;

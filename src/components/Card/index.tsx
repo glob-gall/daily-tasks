@@ -1,28 +1,17 @@
-import { CardColors } from './enum/card-color'
+import { TaskDto } from '@/app/entity/Task/dto'
 import * as S from './styles'
 
-export type Variant = {
-  color?: CardColors
+type CardProps = {
+  task: TaskDto
 }
-
-export type CardProps = {
-  id:string
-  title: string
-  description?: string
-  checked: boolean
-  emoji?: any
-  time?: string
-  variant?: Variant
-}
-
-
 
 function Card(props: CardProps) {
   const {
-    title,checked,time,description,emoji,variant
-  } = props
+    title,checked,time,description,emoji,color
+  } = props.task
+
   return (
-    <S.Container color={variant?.color}>
+    <S.Container color={color}>
       <S.Emoji>
         {emoji}
       </S.Emoji>
@@ -40,11 +29,11 @@ function Card(props: CardProps) {
         }
       </S.InfoContainer>
       
-      <S.Time color={variant?.color}>
+      <S.Time color={color}>
         {time}
       </S.Time>
       {
-        checked ? <S.Checked color={variant?.color}/> : <S.Unchecked color={variant?.color}/>
+        checked ? <S.Checked color={color}/> : <S.Unchecked color={color}/>
       }
     </S.Container>
   )

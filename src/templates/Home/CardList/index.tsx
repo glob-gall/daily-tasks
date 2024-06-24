@@ -1,20 +1,31 @@
-import Card, { CardProps } from '@/components/Card'
+import Card from '@/components/Card'
 import * as S from './styles'
-import { FlatList } from 'react-native'
+import { TaskDto } from '@/app/entity/Task/dto'
 
 type CardListProps  = {
-  cards:CardProps[]
+  tasks: TaskDto[]
 }
 function CardList(props:CardListProps){
-  const {cards} = props
+  const {tasks} = props
+
+  if (tasks.length === 0) {
+    return (
+      <S.EmptyList>
+        <S.EmptyListText>
+          Nenhuma Task cadastrada ainda
+        </S.EmptyListText>
+      </S.EmptyList>
+    )
+  }
+
   return (
     <S.Container 
       showsVerticalScrollIndicator={false}
     >
       {
-        cards.map(card => (
-          <S.CardWrapper key={card.id}>
-              <Card {...card} />
+        tasks.map(task => (
+          <S.CardWrapper key={task.id}>
+              <Card task={task} />
             </S.CardWrapper>
         ))
       }

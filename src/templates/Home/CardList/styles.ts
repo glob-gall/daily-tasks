@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 export const Container = styled.ScrollView`
   display: flex;
@@ -8,4 +8,18 @@ export const CardWrapper = styled.View`
 `
 export const MarginHelper = styled.View`
   height: 124px;
+`
+
+export const EmptyList = styled.View`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`
+
+export const EmptyListText = styled.Text`
+  ${props => css`
+    font-size: ${props.theme.font.title};
+    color: ${props.theme.colors.neutral['400']};
+  `}
 `

@@ -22,9 +22,12 @@ const options = [
 
 export default function TaskForm() {
   const [formType, setFormType] = useState<'event'|'especific'>('event')
+
   const handleChangeFormType = useCallback((value: 'event'|'especific') => {
     setFormType(value)
   }, [])
+
+
   
   return (
     <S.Container>
