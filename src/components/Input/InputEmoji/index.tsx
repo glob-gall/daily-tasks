@@ -3,46 +3,49 @@ import { InputType } from './enum/Input-type'
 import EmojiPicker, { EmojiType } from 'rn-emoji-keyboard'
 import * as S from './styles'
 import { useCallback, useState } from 'react'
+import { TextInputProps } from 'react-native'
 
 // export type Variant = {
 //   color?: CardColors
 // }
 
 export type InputEmojiProps = {
-  name: string
+  label: string
   required?: boolean
-  type?: InputType
+  onChange?: (e:string) => void
+  value:string
 }
 
-const defaultEmoji = {"emoji": "😎", "name": "smiling face with sunglasses", "slug": "smiling_face_with_sunglasses", "toneEnabled": false, "unicode_version": "1.0"}
+// const defaultEmoji = {"emoji": "😎", "name": "smiling face with sunglasses", "slug": "smiling_face_with_sunglasses", "toneEnabled": false, "unicode_version": "1.0"}
 
 function InputEmoji(props: InputEmojiProps) {
-  const { name, required } = props
+  const { label, required, value, onChange } = props
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [emoji, setEmoji] = useState<EmojiType>(defaultEmoji)
 
   const openEmojiKeyboard = useCallback(()=>{
     setIsOpen(true)
   },[])
 
   const handlePick = useCallback((e:EmojiType)=>{
-    setEmoji(e)
-    
-  },[])
+    if (onChange) {
+      onChange(e.emoji)
+    }
+  },[onChange])
 
   return (
     <S.Container>
       <S.Label>
-        {name}
+        {label}
         {required && <S.Required>*</S.Required>}
       </S.Label>
 
       <S.EmojiSelectorButton 
         onPress={openEmojiKeyboard}
       >
-        <S.EmojiSelectorButtonText>
-          {emoji.emoji}
-        </S.EmojiSelectorButtonText>
+        
+        <S.ShowEmoji>
+          {value}
+        </S.ShowEmoji>
       </S.EmojiSelectorButton>
         <EmojiPicker 
           onClose={() => setIsOpen(false)} 

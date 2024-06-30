@@ -1,19 +1,36 @@
 import Theme from '@/styles/theme';
 import * as S from './styles'
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 
 export type InputDateProps = {
-  name: string
   label: string
   required?: boolean
+  useToday?: boolean
+  onChange?: (e:string) => void
 }
 
 function InputDate(props: InputDateProps) {
-  const { name, label, required } = props
+  const { label, required , useToday, onChange } = props
 
   const [selectedDate, setSelectedDate] = useState('');
   const [modalOpen, setModalOpen] = useState(false)
+
+  useEffect(() => { 
+    if (useToday) {
+      const today = new Date()
+      const day = today.getDate()
+      const month = today.getMonth()+1
+      const year = today.getFullYear()
+      setSelectedDate(`${year}/${month}/${day}`)
+    } 
+  },[])
+
+  useEffect(() => { 
+    if (onChange) {
+      onChange(selectedDate)
+    } 
+  },[selectedDate])
 
   const handleCloseModal = useCallback(()=>{
     setModalOpen(false)
@@ -24,7 +41,7 @@ function InputDate(props: InputDateProps) {
   },[setModalOpen])
 
   return (
-    <S.Container key={name}>
+    <S.Container>
 
       <S.Label>
         {label}

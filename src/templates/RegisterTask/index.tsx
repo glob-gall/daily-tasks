@@ -1,33 +1,76 @@
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
+
 import Base from "../Base";
 import { Margin } from "@/components/Spacing/Margin";
 import * as S from './styles'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Theme from "@/styles/theme";
-import { useRouter } from "expo-router";
-import TaskForm from "./TaskForm";
 import useTaskStore from "@/store/task.store";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { TasksMock } from "@/mock/tasks.mock";
+import TaskForm from "./TaskForm";
+import { useForm } from "react-hook-form";
+import { TaskFormFields, defaultTaskFormValues } from "@/entity/Task/form.dto";
+import { Task } from "@/entity/Task/dto";
 
 export default function RegisterTask() {
   const {addTask} = useTaskStore()
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultTaskFormValues,
+  })
   
-  const handleSubmitForm = useCallback(()=>{
-    addTask(TasksMock[0])
+  const handleSubmitForm = useCallback((values: TaskFormFields)=>{
+    const task:Task = {
+      checked: false,
+      id: uuidv4(),
+      emoji: values.emoji,
+      name: values.name,
+      color: values.color.color,
+    }
+    if (values.description) task.description = values.description
+    
+    if (values.type === 'daily') {
+      if (values.days) task.days = values.days 
+      if (values.dailyTime && values.dailyTime !== ":") task.time = values.dailyTime 
+      if (values.dailyColor) task.color = values.dailyColor.color
+    }
+
+    if (values.type === 'event') {
+      if (values.date) task.date = values.date
+      if(values.time && values.time !== ":") task.time = values.time
+      if(values.color) task.color = values.color.color
+    }
+    console.log({task});
+    
+    addTask(task)    
   },[])
+  const handleClearForm = useCallback(()=>{
+    reset()
+  },[])
+
 
   return (
     <Base>
       <Margin>
 
-          <TaskForm />
+          <TaskForm 
+            errors={errors}
+            control={control}
+          />
 
           <S.ButtonContainer>
-            <S.ButtonCancel>
+            <S.ButtonCancel onPress={handleClearForm}>
               <FontAwesome5 name="times" size={28} color={Theme.colors.neutral['50']} />
             </S.ButtonCancel>
 
-            <S.ButtonCreate onPress={handleSubmitForm}>
+            <S.ButtonCreate onPress={handleSubmit(handleSubmitForm)}>
               <FontAwesome5 name="check" size={24} color={Theme.colors.neutral['50']} />
             </S.ButtonCreate>
           </S.ButtonContainer>

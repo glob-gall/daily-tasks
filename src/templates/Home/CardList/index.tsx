@@ -1,9 +1,9 @@
 import Card from '@/components/Card'
 import * as S from './styles'
-import { TaskDto } from '@/app/entity/Task/dto'
+import { Task } from '@/entity/Task/dto'
 
 type CardListProps  = {
-  tasks: TaskDto[]
+  tasks: Task[]
 }
 function CardList(props:CardListProps){
   const {tasks} = props

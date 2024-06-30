@@ -8,7 +8,7 @@ import DayButton from './DayButton'
 
 export type InputWeekDayProps = {
   label: string
-  name: string
+  value: Days
   onChange?: (e:Days) => void
   required?: boolean
 }
@@ -23,35 +23,24 @@ export type Days = {
   friday: boolean
   saturday: boolean
 }
-export type DayNames = 'monday'|'tuesday'|'wednesday'|'thursday'|'friday'|'saturday'|'sunday'
+export type DayNames = keyof Days
 
 function InputWeekDay(props: InputWeekDayProps) {
   const {
     label,
-    name,
     required,
+    value,
     onChange = ()=>{}  
   } = props
-  const [days, setDays] = useState<Days>({
-    monday:false,
-    tuesday:false,
-    wednesday:false,
-    thursday:false,
-    friday:false,
-    saturday:false,
-    sunday:false,
-  })
-
-  useEffect(()=>{
-    onChange(days)
-  },[days])
 
   const handleSetDay = useCallback((name:DayNames) => {
-    setDays(s => ({...s, [name]: !s[name]}))
+    const days:Days = value
+    days[name] = !days[name] 
+    onChange(days)
   }, [])
 
   return (
-    <S.Container key={name}>
+    <S.Container>
       <S.Label>
         {label}
         {required && <S.Required>*</S.Required>}
@@ -61,49 +50,49 @@ function InputWeekDay(props: InputWeekDayProps) {
         <DayButton
           onChange={handleSetDay}
           name='monday'
-          active={days.monday}
+          active={value.monday}
           label='Segunda'
           text='S'
         />
         <DayButton
           onChange={handleSetDay}
           name='tuesday'
-          active={days.tuesday}
+          active={value.tuesday}
           label='Terça'
           text='T'
         />
         <DayButton
           onChange={handleSetDay}
           name='wednesday'
-          active={days.wednesday}
+          active={value.wednesday}
           label='Quarta'
           text='Q'
         />
         <DayButton
           onChange={handleSetDay}
           name='thursday'
-          active={days.thursday}
+          active={value.thursday}
           label='Quinta'
           text='Q'
         />
         <DayButton
           onChange={handleSetDay}
           name='friday'
-          active={days.friday}
+          active={value.friday}
           label='Sexta'
           text='S'
         />
         <DayButton
           onChange={handleSetDay}
           name='saturday'
-          active={days.saturday}
+          active={value.saturday}
           label='Sabado'
           text='S'
         />
         <DayButton
           onChange={handleSetDay}
           name='sunday'
-          active={days.sunday}
+          active={value.sunday}
           label='Domingo'
           text='D'
         />

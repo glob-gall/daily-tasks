@@ -31,6 +31,13 @@ export const Label = styled.Text`
   `}
 `
 
+export const Required = styled.Text`
+  ${props => css`
+    color: ${props.theme.colors.red['500']};
+    font-weight: bold;
+  `}
+`
+
 export const Item = styled.View<ItemVariant>`
   display: flex;
   flex-direction: row;

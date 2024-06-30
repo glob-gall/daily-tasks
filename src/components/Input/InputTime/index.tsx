@@ -9,17 +9,22 @@ import { Entypo } from '@expo/vector-icons';
 // }
 
 export type InputTimeProps = {
-  name: string
   label?: string
   required?: boolean
+  onChange: (e:string) => void
 }
 
 function InputTime(props: InputTimeProps) {
-  const { name, label, required } = props
+  const { label, required, onChange } = props
   const minutesRef = useRef<TextInput>(null);
 
   const [hours, setHours] = useState('')
   const [minutes, setMinutes] = useState('')
+  
+  useEffect(()=>{
+    onChange(`${hours}:${minutes}`)
+  },[hours, minutes])
+
 
   const handleSetHour = useCallback((
     e: NativeSyntheticEvent<TextInputChangeEventData>
@@ -60,7 +65,7 @@ function InputTime(props: InputTimeProps) {
   }, [hours, minutes])
 
   return (
-    <S.Container key={name}>
+    <S.Container>
 
       <S.Label>
         {label}

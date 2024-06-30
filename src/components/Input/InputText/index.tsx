@@ -1,37 +1,50 @@
 import Theme from '@/styles/theme'
 import { InputType } from './enum/Input-type'
 import * as S from './styles'
+import { TextInputProps } from 'react-native'
+import { FieldError } from 'react-hook-form'
+import { useEffect } from 'react'
 
 // export type Variant = {
 //   color?: CardColors
 // }
 
-export type InputTextProps = {
-  name: string
+export type InputTextProps = TextInputProps &  {
+  // name: TaskFormField
+  label: string
   required?: boolean
   type?: InputType
+  error?: FieldError
 }
+
 
 
 
 function InputText(props: InputTextProps) {
   const {
-    name,
-    required
+    label,
+    required,
+    error
   } = props
+  
   return (
     <S.Container>
       <S.Label>
-        {name}
+        {label}
         {required && <S.Required>*</S.Required>}
       </S.Label>
 
-      <S.InputTextWrapper>
+      <S.InputTextWrapper error={!!error?.message}>
         <S.InputText 
-        placeholderTextColor={Theme.colors.neutral['400']}
-          placeholder={name}
+          {...props}
+          placeholderTextColor={Theme.colors.neutral['400']}
         />
       </S.InputTextWrapper>
+      {error?.message && (
+        <S.ErrorMsg>
+          {error.message}
+        </S.ErrorMsg>
+      )}
     </S.Container>
   )
 }

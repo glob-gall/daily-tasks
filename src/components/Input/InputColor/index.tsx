@@ -1,20 +1,16 @@
 import SelectDropdown from "react-native-select-dropdown";
 import { FontAwesome5 } from '@expo/vector-icons';
 import * as S from './styles'
-import { ColorNames } from "@/styles/colors";
-import { View } from "react-native";
 import Theme from "@/styles/theme";
+import { Color } from "@/entity/Task/dto";
 
 type InputColorProps = {
   label: string
-  name?:string
-}
-type Color = {
-  label:string
-  color: ColorNames | 'white'
+  required?: boolean
+  onChange?: (e: Color) => void
 }
 
-const colors: Color[] = [
+export const colorOptions: Color[] = [
   {
     label: 'Branco',
     color: 'white'
@@ -61,17 +57,25 @@ const colors: Color[] = [
   },
 ]
 
+
+
 function InputColor(props: InputColorProps){
-  const {label} = props
+  const {label, onChange, required} = props
  return (
   <S.Container>
-    <S.Label>{label}</S.Label>
+    <S.Label>
+      {label}
+      {required && <S.Required>*</S.Required>}
+    </S.Label>
     <S.InputWrapper>
       
     <SelectDropdown
       // defaultValue={colors[0]}
-      data={colors}
-      onSelect={(selectedItem, index) => {
+      data={colorOptions}
+      onSelect={(selectedItem, index) => {        
+        if (onChange) {
+          onChange(selectedItem)
+        }
       }}
       renderButton={(selectedItem:Color, isOpened) => (
         <>

@@ -1,4 +1,4 @@
-import { TaskDto } from "@/app/entity/Task/dto";
+import { TaskDto } from "@/entity/Task/dto";
 
 export const TasksMock:TaskDto[] = [
   {

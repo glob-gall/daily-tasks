@@ -1,13 +1,14 @@
-import { TaskDto } from '@/app/entity/Task/dto'
+import { Task } from '@/entity/Task/dto'
 import * as S from './styles'
+import { useEffect } from 'react'
 
 type CardProps = {
-  task: TaskDto
+  task: Task
 }
 
 function Card(props: CardProps) {
   const {
-    title,checked,time,description,emoji,color
+    name,time,description,emoji,color, checked
   } = props.task
 
   return (
@@ -18,7 +19,7 @@ function Card(props: CardProps) {
 
       <S.InfoContainer>
         <S.title>
-          {title}
+          {name}
         </S.title>
         {
           description && (

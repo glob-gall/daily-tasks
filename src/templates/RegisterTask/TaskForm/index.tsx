@@ -1,14 +1,16 @@
-import { Text, TextInput } from 'react-native';
 import * as S from './styles'
 import InputText from '@/components/Input/InputText';
-import SwitchSelector from 'react-native-switch-selector'
-import Theme from '@/styles/theme';
 import InputEmoji from '@/components/Input/InputEmoji';
 import { useCallback, useState } from 'react';
-import InputWeekDay, { Days } from '@/components/Input/InputWeekDay';
+import InputWeekDay from '@/components/Input/InputWeekDay';
 import InputColor from '@/components/Input/InputColor';
 import InputDate from '@/components/Input/InputDate';
 import InputTime from '@/components/Input/InputTime';
+import { Control, Controller, FieldErrors } from 'react-hook-form';
+
+import InputSwitch from '@/components/Input/InputSwitch';
+import { TaskFormFields } from '@/entity/Task/dto';
+
 const options = [
   {
     label:'Evento diario',
@@ -20,47 +22,77 @@ const options = [
   }
 ]
 
-export default function TaskForm() {
+type TaskFormProps = {
+  control: Control<TaskFormFields, any>
+  errors: FieldErrors<TaskFormFields>
+}
+
+export default function TaskForm(props: TaskFormProps) {
+  const { control, errors } = props
   const [formType, setFormType] = useState<'event'|'especific'>('event')
 
   const handleChangeFormType = useCallback((value: 'event'|'especific') => {
     setFormType(value)
   }, [])
-
-
   
   return (
     <S.Container>
-      <InputEmoji
-        name='Escolher Emoji'
-        required
-      />
+      <Controller
+          control={control}
+          rules={{ required: false }}
+          name="emoji"
+          render={({ field: { onChange, value } }) => (
+            <InputEmoji
+              required
+              label='Escolher Emoji'
+              onChange={onChange}
+              value={value}
+            />
+          )}
+        />
 
       <S.InputWrapper>
-        <InputText
-          required
-          name='Nome'
+        <Controller
+          control={control}
+          rules={{ required: {
+            message:'Campo obrigatório',
+            value: true
+          } }}
+          name="name"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputText
+              error={errors.name}
+              required
+              label='Nome'
+
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
         />
       </S.InputWrapper>
 
       <S.InputWrapper>
-        <InputText
-          name='Descrição'
-          />
+      <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputText
+              error={errors.description}
+              label='Descrição'
+
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
       </S.InputWrapper>
 
       <S.SelectorWrapper>
-        <SwitchSelector
-          selectedColor="#fff"
-          buttonColor={Theme.colors.green['500']}
-          textColor={Theme.colors.neutral['500']}
-          backgroundColor={Theme.colors.neutral['200']}
-          borderColor="red"
-          borderRadius={4}
-          height={44}
-          bold
+        <InputSwitch
           options={options}
-          initial={0}
           onPress={handleChangeFormType}
           />
       </S.SelectorWrapper>
@@ -68,46 +100,98 @@ export default function TaskForm() {
         {formType === 'event' ? (
           <>
             <S.InputWrapper>
-              <InputWeekDay
-                label='Dias da semana'
-                name='weekdays'
+              <Controller
+                control={control}
+                rules={{ required: {
+                  message:'Campo obrigatório',
+                  value: true
+                } }}
+                name="days"
+                render={({ field: { onChange, value } }) => (
+                  <InputWeekDay
+                    required
+                    label='Dias da semana'
+                    onChange={onChange} 
+                    value={value}
+                  />
+                )}
               />
 
             </S.InputWrapper>
 
             <S.InputWrapperGroup>
-              <InputTime 
-                name='date'
-                label='Horário'
+              <Controller
+                control={control}
+                name="dailyTime"
+                render={({ field: { onChange } }) => (
+                  <InputTime
+                    label='Horário'
+                    onChange={onChange} 
+                  />
+                )}
               />
               <S.InputRowWrapper>
-                <InputColor
-                  label='Cor do card'
-                />
+              <Controller
+                control={control}
+                name="dailyColor"
+                render={({ field: { onChange } }) => (
+                  <InputColor
+                    required
+                    onChange={onChange}
+                    label='Cor do card'
+                  />
+                )}
+              />
               </S.InputRowWrapper>
             </S.InputWrapperGroup>
           </>
           
         ) :(
-          <S.InputWrapper>
+          <>
             <S.InputWrapperGroup>
-              <InputDate 
-                name='date'
-                label='Data'
-              />
+            <Controller
+                  control={control}
+                  name="date"
+                  render={({ field: { onChange } }) => (
+                    <InputDate
+                      required 
+                      useToday
+                      onChange={onChange}
+                      label='Data'
+                    />
+                  )}
+                />
               <S.InputRowWrapper>
-                <InputTime 
-                  name='time'
-                  label='Horário'
+                <Controller
+                  control={control}
+                  name="time"
+                  render={({ field: { onChange } }) => (
+                    <InputTime
+                      label='Horário'
+                      onChange={onChange} 
+                    />
+                  )}
                 />
               </S.InputRowWrapper>
             </S.InputWrapperGroup>
             <S.InputWrapper>
-              <InputColor
-                label='Cor do card'
+              <Controller
+                control={control}
+                name="color"
+                render={({ field: { onChange } }) => (
+                  <InputColor
+                    required
+                    onChange={(e:any)=> {
+                      console.log({color:e});
+                      
+                      onChange(e)
+                    }}
+                    label='Cor do card'
+                  />
+                )}
               />
             </S.InputWrapper>
-          </S.InputWrapper>
+            </>
         )}
 
     </S.Container>

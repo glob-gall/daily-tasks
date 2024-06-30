@@ -38,10 +38,13 @@ export const EmojiSelectorButton = styled.TouchableOpacity`
   `}
 `
 
-export const EmojiSelectorButtonText = styled.Text`
+export const HiddenInput = styled.TextInput`
+  display: none;
+`
+export const ShowEmoji = styled.Text`
   font-size: 82px;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['200']};
+    /* background-color: ${props.theme.colors.neutral['200']}; */
   `}
 `
   

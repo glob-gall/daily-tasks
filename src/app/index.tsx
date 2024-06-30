@@ -3,6 +3,7 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { useEffect } from 'react';
 import Home from '@/templates/Home';
 import Header from '@/components/Header';
+import Test from '@/templates/Test';
 
 export default function HomePage() {
   const navigation = useNavigation();
@@ -15,5 +16,6 @@ export default function HomePage() {
     });
   }, [navigation]);
 
+  // return (<Test/>);
   return (<Home/>);
 }

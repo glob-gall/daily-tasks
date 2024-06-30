@@ -23,7 +23,7 @@ export const Label = styled.Text`
   `}
 `
 
-export const InputText = styled.TextInput`
+export const InputSwitch = styled.TextInput`
   height: 42px;
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
@@ -31,7 +31,7 @@ export const InputText = styled.TextInput`
   `}
 `
 
-export const InputTextWrapper = styled.View<Variant>`
+export const InputSwitchWrapper = styled.View<Variant>`
   border-radius:4px;
   ${props => css`
     background-color: ${props.theme.colors.neutral['200']};
