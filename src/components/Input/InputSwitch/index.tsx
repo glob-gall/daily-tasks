@@ -5,6 +5,8 @@ import { TextInputProps } from 'react-native'
 import { FieldError } from 'react-hook-form'
 import { useEffect } from 'react'
 import SwitchSelector from 'react-native-switch-selector'
+import { TaskType } from '@/entity/Task/dto'
+import { Option } from '@/templates/RegisterTask/TaskForm'
 
 // export type Variant = {
 //   color?: CardColors
@@ -13,8 +15,8 @@ import SwitchSelector from 'react-native-switch-selector'
 export type InputSwitchProps =  {
   // name: TaskFormField
   label?: string
-  options:any[],
-  onPress: (value: 'event'|'especific') => void
+  options: Option[],
+  onPress: (value: TaskType) => void
 }
 
 

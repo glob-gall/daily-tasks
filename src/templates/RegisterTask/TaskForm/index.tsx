@@ -9,16 +9,21 @@ import InputTime from '@/components/Input/InputTime';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import InputSwitch from '@/components/Input/InputSwitch';
-import { TaskFormFields } from '@/entity/Task/dto';
+import { TaskFormFields, TaskType } from '@/entity/Task/dto';
 
-const options = [
+export type Option = {
+  label: string,
+  value: TaskType
+}
+
+const options:Option[] = [
   {
     label:'Evento diario',
-    value:'event',
+    value:'daily',
   },
   {
     label:'Data expecifica',
-    value:'especific',
+    value:'event',
   }
 ]
 
@@ -29,9 +34,9 @@ type TaskFormProps = {
 
 export default function TaskForm(props: TaskFormProps) {
   const { control, errors } = props
-  const [formType, setFormType] = useState<'event'|'especific'>('event')
+  const [formType, setFormType] = useState<TaskType>('daily')
 
-  const handleChangeFormType = useCallback((value: 'event'|'especific') => {
+  const handleChangeFormType = useCallback((value: TaskType) => {
     setFormType(value)
   }, [])
   
@@ -91,13 +96,27 @@ export default function TaskForm(props: TaskFormProps) {
       </S.InputWrapper>
 
       <S.SelectorWrapper>
-        <InputSwitch
-          options={options}
-          onPress={handleChangeFormType}
-          />
+        <Controller
+          control={control}
+          rules={{ required: {
+            message:'Campo obrigatório',
+            value: true
+          } }}
+          name="type"
+          render={({ field: { onChange } }) => (
+            <InputSwitch
+              options={options}
+              onPress={(v) => {
+                handleChangeFormType(v)
+                onChange(v)
+              }}
+            />
+          
+          )}
+        />
       </S.SelectorWrapper>
   
-        {formType === 'event' ? (
+        {formType === 'daily' ? (
           <>
             <S.InputWrapper>
               <Controller
@@ -123,7 +142,7 @@ export default function TaskForm(props: TaskFormProps) {
               <Controller
                 control={control}
                 name="dailyTime"
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                   <InputTime
                     label='Horário'
                     onChange={onChange} 
@@ -165,9 +184,10 @@ export default function TaskForm(props: TaskFormProps) {
                 <Controller
                   control={control}
                   name="time"
-                  render={({ field: { onChange } }) => (
+                  render={({ field: { onChange, value } }) => (
                     <InputTime
                       label='Horário'
+                      value={value}
                       onChange={onChange} 
                     />
                   )}

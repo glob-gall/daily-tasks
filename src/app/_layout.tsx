@@ -17,7 +17,7 @@ function Layout() {
     <ThemeProvider theme={Theme}>
         <Stack>
           <Stack.Screen 
-            name="index" 
+              name="index" 
               options={screenOption}
           />
           <Stack.Screen 

@@ -1,6 +1,6 @@
 import Theme from '@/styles/theme';
 import * as S from './styles'
-import { ForwardRefRenderFunction, useCallback, useEffect, useRef, useState } from 'react';
+import { ForwardRefRenderFunction, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { NativeSyntheticEvent, TextInput, TextInputChangeEventData } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
@@ -10,12 +10,13 @@ import { Entypo } from '@expo/vector-icons';
 
 export type InputTimeProps = {
   label?: string
+  value?: string
   required?: boolean
   onChange: (e:string) => void
 }
 
 function InputTime(props: InputTimeProps) {
-  const { label, required, onChange } = props
+  const { label, required, value, onChange } = props
   const minutesRef = useRef<TextInput>(null);
 
   const [hours, setHours] = useState('')

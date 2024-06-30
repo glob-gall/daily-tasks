@@ -26,7 +26,7 @@ export type TaskFormFields = {
 export const defaultTaskFormValues: TaskFormFields = {
   name: "",
   description: "",
-  type:"event",
+  type:"daily",
   emoji: "😎",
   days:{
     monday:false,

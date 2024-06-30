@@ -14,9 +14,12 @@ import TaskForm from "./TaskForm";
 import { useForm } from "react-hook-form";
 import { TaskFormFields, defaultTaskFormValues } from "@/entity/Task/form.dto";
 import { Task } from "@/entity/Task/dto";
+import { useRouter } from 'expo-router';
 
 export default function RegisterTask() {
   const {addTask} = useTaskStore()
+  const {back, replace} = useRouter();
+
   const {
     control,
     handleSubmit,
@@ -27,6 +30,7 @@ export default function RegisterTask() {
   })
   
   const handleSubmitForm = useCallback((values: TaskFormFields)=>{
+
     const task:Task = {
       checked: false,
       id: uuidv4(),
@@ -47,26 +51,27 @@ export default function RegisterTask() {
       if(values.time && values.time !== ":") task.time = values.time
       if(values.color) task.color = values.color.color
     }
+    console.log({values});
     console.log({task});
     
-    addTask(task)    
+    addTask(task)
+    replace('/')
   },[])
-  const handleClearForm = useCallback(()=>{
-    reset()
+  const handleCancel = useCallback(()=>{
+    back()
   },[])
 
 
   return (
     <Base>
       <Margin>
-
           <TaskForm 
             errors={errors}
             control={control}
           />
 
           <S.ButtonContainer>
-            <S.ButtonCancel onPress={handleClearForm}>
+            <S.ButtonCancel onPress={handleCancel}>
               <FontAwesome5 name="times" size={28} color={Theme.colors.neutral['50']} />
             </S.ButtonCancel>
 
