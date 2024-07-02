@@ -24,6 +24,10 @@ function Layout() {
             name="register-task" 
             options={screenOption}
           />
+          <Stack.Screen 
+            name="update-task/[id]" 
+            options={screenOption}
+          />
         </Stack>
     </ThemeProvider>
   )

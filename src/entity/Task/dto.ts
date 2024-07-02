@@ -25,6 +25,24 @@ export type Task = {
   date?: string
 }
 
+export type UpdateTaskDto = {
+  name?: string
+  emoji?: string
+  color?: ColorNames,
+  description?: string
+  days?: {
+      monday: boolean
+      tuesday: boolean
+      wednesday: boolean
+      thursday: boolean
+      friday: boolean
+      saturday: boolean
+      sunday: boolean
+  }
+  time?: string,
+  date?: string
+}
+
 export type TaskType ='daily'|'event'
 
 export type TaskFormFields = {

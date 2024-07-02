@@ -3,6 +3,7 @@ import * as S from './styles'
 import { useCallback } from 'react'
 import useTaskStore from '@/store/task.store'
 import {Check} from 'lucide-react-native'
+import { Link } from 'expo-router'
 type CardProps = {
   task: Task
 }
@@ -20,22 +21,30 @@ function Card(props: CardProps) {
 
   return (
     <S.Container color={color}>
-      <S.Emoji>
-        {emoji}
-      </S.Emoji>
+      <S.GotoDetails
+        href={{
+          pathname: "/update-task/[id]",
+          params: { id }
+          }}
+      >
+        <S.Emoji>
+          {emoji}
+        </S.Emoji>
 
-      <S.InfoContainer>
-        <S.title check={checked}>
-          {name}
-        </S.title>
-        {
-          description && (
-            <S.Description>
-              {description}
-            </S.Description>
-          )
-        }
-      </S.InfoContainer>
+        <S.InfoContainer>
+          <S.title check={checked}>
+            {name}
+          </S.title>
+          {
+            description && (
+              <S.Description>
+                {description}
+              </S.Description>
+            )
+          }
+        </S.InfoContainer>
+      </S.GotoDetails>
+      
       
       <S.Time color={color}>
         {time}

@@ -12,12 +12,22 @@ import { useCallback, useEffect } from "react";
 import TaskForm from "./TaskForm";
 import { useForm } from "react-hook-form";
 import { TaskFormFields, defaultTaskFormValues } from "@/entity/Task/form.dto";
-import { Task } from "@/entity/Task/dto";
-import { useRouter } from 'expo-router';
+import { Task, UpdateTaskDto } from "@/entity/Task/dto";
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Alert } from 'react-native';
 
-export default function RegisterTask() {
-  const {addTask} = useTaskStore()
+export default function UpdateTask() {
+  const {updateTask,tasks} = useTaskStore()
   const {back, replace} = useRouter();
+
+  const {id} = useLocalSearchParams()  
+  const task = tasks.find(t => t.id === id)
+
+  if (!task) {
+    Alert.alert('Ocorreu um erro ao buscar essa meta.')
+    back()
+    return;
+  }
 
   const {
     control,
@@ -30,9 +40,7 @@ export default function RegisterTask() {
   
   const handleSubmitForm = useCallback((values: TaskFormFields)=>{
 
-    const task:Task = {
-      checked: false,
-      id: uuidv4(),
+    const task:UpdateTaskDto = {
       emoji: values.emoji,
       name: values.name,
       color: values.color.color,
@@ -53,7 +61,7 @@ export default function RegisterTask() {
     console.log({values});
     console.log({task});
     
-    addTask(task)
+    updateTask(id as string, task)
     replace('/')
   },[])
   const handleCancel = useCallback(()=>{
@@ -67,6 +75,7 @@ export default function RegisterTask() {
           <TaskForm 
             errors={errors}
             control={control}
+            task={task}
           />
 
           <S.ButtonContainer>

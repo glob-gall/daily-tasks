@@ -1,5 +1,6 @@
 import { ColorNames } from "@/styles/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Link } from "expo-router";
 import styled, { css } from "styled-components/native";
 
 type Variant = {
@@ -86,6 +87,12 @@ export const Container = styled.View<Variant>`
       background-color: ${props.theme.colors.zinc['50']};
     `}
   `}
+`
+
+export const GotoDetails = styled(Link)`
+  display: flex;
+  align-items: center;
+  flex: 1;
 `
 
 export const Emoji = styled.Text`
