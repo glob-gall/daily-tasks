@@ -1,8 +1,12 @@
 import { ColorNames } from "@/styles/colors";
+import { FontAwesome5 } from "@expo/vector-icons";
 import styled, { css } from "styled-components/native";
 
 type Variant = {
-  color: ColorNames | 'white'
+  color: ColorNames
+}
+type Check = {
+  check: boolean
 }
 
 export const Container = styled.View<Variant>`
@@ -97,10 +101,13 @@ export const InfoContainer = styled.View`
   `}
 `
 
-export const title = styled.Text`
+export const title = styled.Text<Check>`
   ${props => css`
     font-size: ${props.theme.font.default};
     color: ${props.theme.colors.neutral['700']};
+    ${props.check && css`
+      text-decoration: line-through;
+    `}
   `}
 `
 
@@ -183,11 +190,14 @@ export const Time = styled.Text<Variant>`
   `}
 `
 
+
+export const CheckButton = styled.TouchableOpacity`
+` 
+
 const BaseCheck = styled.View<Variant>`
-  width: 32px;
-  height: 32px;
-  border-radius: 18px;
-  
+  border-radius: 50px;
+  width: 34px;
+  height: 34px;
   ${props => css`
     border: 2px solid ${props.theme.colors.neutral['300']};
   
@@ -259,10 +269,17 @@ const BaseCheck = styled.View<Variant>`
 `
 
 export const Checked = styled(BaseCheck)`
+  align-items: center;
+  justify-content: center;
   ${props => css`
-    
-
+    border-color: ${props.theme.colors.green['500']};
+    background-color: ${props.theme.colors.green['500']};
   `}
 `
 
-export const Unchecked = styled(BaseCheck)``
+export const Unchecked = styled(BaseCheck)`
+ 
+  ${props => css`
+  `}
+
+`

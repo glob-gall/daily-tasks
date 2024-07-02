@@ -2,7 +2,7 @@ import { ColorNames } from "@/styles/colors"
 
 export type Color = {
   label:string
-  color: ColorNames | 'white'
+  color: ColorNames
 }
 
 export type Task = {
@@ -10,7 +10,7 @@ export type Task = {
   id: string
   name: string
   emoji: string
-  color: ColorNames | 'white',
+  color: ColorNames,
   description?: string
   days?: {
       monday: boolean

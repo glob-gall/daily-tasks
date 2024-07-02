@@ -13,7 +13,7 @@ type InputColorProps = {
 export const colorOptions: Color[] = [
   {
     label: 'Branco',
-    color: 'white'
+    color: 'neutral'
   },
   {
     label: 'Azul',

@@ -1,15 +1,22 @@
 import { Task } from '@/entity/Task/dto'
 import * as S from './styles'
-import { useEffect } from 'react'
-
+import { useCallback } from 'react'
+import useTaskStore from '@/store/task.store'
+import {Check} from 'lucide-react-native'
 type CardProps = {
   task: Task
 }
 
 function Card(props: CardProps) {
   const {
-    name,time,description,emoji,color, checked
+    name,time,description,emoji,color, checked, id
   } = props.task
+
+  const { setChecked } = useTaskStore()
+
+  const handleSetCheck = useCallback(()=>{
+    setChecked(id)
+  },[])
 
   return (
     <S.Container color={color}>
@@ -18,7 +25,7 @@ function Card(props: CardProps) {
       </S.Emoji>
 
       <S.InfoContainer>
-        <S.title>
+        <S.title check={checked}>
           {name}
         </S.title>
         {
@@ -33,9 +40,21 @@ function Card(props: CardProps) {
       <S.Time color={color}>
         {time}
       </S.Time>
-      {
-        checked ? <S.Checked color={color}/> : <S.Unchecked color={color}/>
-      }
+
+      <S.CheckButton onPress={handleSetCheck}>
+        { checked ? (
+          <S.Checked color={color}>
+            <Check size={24}
+              color="#fff"
+            />
+          </S.Checked>
+        ) : (
+          <S.Unchecked color={color}>
+          </S.Unchecked>
+
+          
+        )}
+      </S.CheckButton>
     </S.Container>
   )
 }
