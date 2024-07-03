@@ -39,7 +39,7 @@ export const defaultTaskFormValues: TaskFormFields = {
   },
   time: "",
   dailyTime: "",
-  dailyColor: {"color": "white", "label": "Branco"},
-  color: {"color": "white", "label": "Branco"},
+  dailyColor: {color: "neutral", "label": "Neutro"},
+  color: {color: "neutral", "label": "Neutro"},
   date:''
 }

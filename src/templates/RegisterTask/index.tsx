@@ -31,6 +31,7 @@ export default function RegisterTask() {
   const handleSubmitForm = useCallback((values: TaskFormFields)=>{
 
     const task:Task = {
+      type: 'daily',
       checked: false,
       id: uuidv4(),
       emoji: values.emoji,
@@ -46,12 +47,12 @@ export default function RegisterTask() {
     }
 
     if (values.type === 'event') {
-      if (values.date) task.date = values.date
+      task.type = 'event'
       if(values.time && values.time !== ":") task.time = values.time
       if(values.color) task.color = values.color.color
     }
-    console.log({values});
-    console.log({task});
+    // console.log({values});
+    // console.log({task});
     
     addTask(task)
     replace('/')
@@ -70,9 +71,9 @@ export default function RegisterTask() {
           />
 
           <S.ButtonContainer>
-            <S.ButtonCancel onPress={handleCancel}>
+            {/* <S.ButtonCancel onPress={handleCancel}>
               <FontAwesome5 name="times" size={28} color={Theme.colors.neutral['50']} />
-            </S.ButtonCancel>
+            </S.ButtonCancel> */}
 
             <S.ButtonCreate onPress={handleSubmit(handleSubmitForm)}>
               <FontAwesome5 name="check" size={24} color={Theme.colors.neutral['50']} />

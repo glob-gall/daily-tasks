@@ -3,7 +3,7 @@ import * as S from './styles'
 import { useCallback } from 'react'
 import useTaskStore from '@/store/task.store'
 import {Check} from 'lucide-react-native'
-import { Link } from 'expo-router'
+import { useRouter } from 'expo-router'
 type CardProps = {
   task: Task
 }
@@ -13,23 +13,31 @@ function Card(props: CardProps) {
     name,time,description,emoji,color, checked, id
   } = props.task
 
+  const {navigate} = useRouter();
+
+
   const { setChecked } = useTaskStore()
 
   const handleSetCheck = useCallback(()=>{
     setChecked(id)
   },[])
+  const gotoEditTaskPage = useCallback(()=>{
+    navigate({
+      pathname: "/update-task/[id]",
+      params: { id }
+      })
+  },[])
 
   return (
     <S.Container color={color}>
       <S.GotoDetails
-        href={{
-          pathname: "/update-task/[id]",
-          params: { id }
-          }}
+        onPress={gotoEditTaskPage}
       >
-        <S.Emoji>
-          {emoji}
-        </S.Emoji>
+        {/* <S.EmojiContainer> */}
+          <S.Emoji>
+            {emoji}
+          </S.Emoji>
+        {/* </S.EmojiContainer> */}
 
         <S.InfoContainer>
           <S.title check={checked}>
@@ -46,7 +54,7 @@ function Card(props: CardProps) {
       </S.GotoDetails>
       
       
-      <S.Time color={color}>
+      <S.Time color={color} check={checked}>
         {time}
       </S.Time>
 

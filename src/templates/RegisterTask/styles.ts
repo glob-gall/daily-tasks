@@ -25,6 +25,7 @@ export const Button = styled.TouchableOpacity`
     `}
 `
 export const ButtonCreate = styled(Button)`
+    margin-left: auto;
     ${props => css`
       background-color: ${props.theme.colors.green['500']};
       right: ${props.theme.spacing.small};

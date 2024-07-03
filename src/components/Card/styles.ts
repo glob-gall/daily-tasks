@@ -89,20 +89,29 @@ export const Container = styled.View<Variant>`
   `}
 `
 
-export const GotoDetails = styled(Link)`
+export const GotoDetails = styled.TouchableOpacity`
   display: flex;
+  flex-direction: row;
   align-items: center;
   flex: 1;
 `
 
+// export const EmojiContainer = styled.View`
+//   /* margin-left: 20px; */
+//   /* height: 40px; */
+//   width: 60px;
+//   /* background-color: blue; */
+//   display: flex;
+// `
+
 export const Emoji = styled.Text`
-  font-size: 40px;
+/* background-color: red; */
+  font-size: 38px;
 `
 
 export const InfoContainer = styled.View`
   display: flex;
   margin-right: auto;
-
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
   `}
@@ -125,9 +134,12 @@ export const Description = styled.Text`
   `}
 `
 
-export const Time = styled.Text<Variant>`
+export const Time = styled.Text<Variant & Check>`
   font-weight: bold;
   ${props => css`
+    ${props.check && css`
+      text-decoration: line-through;
+    `}
     margin-right: ${props.theme.spacing.medium};
     color: ${props.theme.colors.neutral['400']};
 

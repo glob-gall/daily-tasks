@@ -3,11 +3,13 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import * as S from './styles'
 import Theme from "@/styles/theme";
 import { Color } from "@/entity/Task/dto";
+import { ColorNames } from "@/styles/colors";
 
 type InputColorProps = {
   label: string
   required?: boolean
   onChange?: (e: Color) => void
+  initialValue?: Color
 }
 
 export const colorOptions: Color[] = [
@@ -60,7 +62,11 @@ export const colorOptions: Color[] = [
 
 
 function InputColor(props: InputColorProps){
-  const {label, onChange, required} = props
+  const {label, onChange, required, initialValue} = props
+
+  console.log({COLOR:initialValue});
+  
+
  return (
   <S.Container>
     <S.Label>
@@ -70,7 +76,7 @@ function InputColor(props: InputColorProps){
     <S.InputWrapper>
       
     <SelectDropdown
-      // defaultValue={colors[0]}
+      defaultValue={initialValue}
       data={colorOptions}
       onSelect={(selectedItem, index) => {        
         if (onChange) {
@@ -81,7 +87,7 @@ function InputColor(props: InputColorProps){
         <>
           <S.Item isSelected>
             <S.ColorPreview 
-              color={selectedItem ? selectedItem.color: 'white'}
+              color={selectedItem ? selectedItem.color: 'neutral'}
             />
             <S.ItemLabel>{selectedItem ? selectedItem.label: 'Selecione uma cor'}</S.ItemLabel>
             {/* <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} /> */}

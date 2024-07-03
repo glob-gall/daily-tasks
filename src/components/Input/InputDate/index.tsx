@@ -8,16 +8,21 @@ export type InputDateProps = {
   required?: boolean
   useToday?: boolean
   onChange?: (e:string) => void
+  initialValue?: string
 }
 
 function InputDate(props: InputDateProps) {
-  const { label, required , useToday, onChange } = props
+  const { label, required , useToday, onChange, initialValue } = props
 
   const [selectedDate, setSelectedDate] = useState('');
   const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => { 
-    if (useToday) {
+    console.log({DATE:initialValue});
+    
+    if (initialValue) {
+      setSelectedDate(initialValue)
+    }else if (useToday) {
       const today = new Date()
       const day = today.getDate()
       const month = today.getMonth()+1

@@ -15,6 +15,7 @@ import { TaskFormFields, defaultTaskFormValues } from "@/entity/Task/form.dto";
 import { Task, UpdateTaskDto } from "@/entity/Task/dto";
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Alert } from 'react-native';
+import { colorOptions } from '@/components/Input/InputColor';
 
 export default function UpdateTask() {
   const {updateTask,tasks} = useTaskStore()
@@ -22,12 +23,27 @@ export default function UpdateTask() {
 
   const {id} = useLocalSearchParams()  
   const task = tasks.find(t => t.id === id)
-
+  
   if (!task) {
     Alert.alert('Ocorreu um erro ao buscar essa meta.')
     back()
     return;
   }
+  console.log({task});
+  
+  const defaultValues:TaskFormFields = {
+    color: colorOptions.find(c => c.color === task.color) || defaultTaskFormValues.color,
+    dailyColor: colorOptions.find(c => c.color === task.color) || defaultTaskFormValues.dailyColor,
+    date: task.date || defaultTaskFormValues.date,
+    time: task.time || defaultTaskFormValues.time,
+    dailyTime: task.time || defaultTaskFormValues.dailyTime,
+    days: task.days || defaultTaskFormValues.days,
+    description: task.description || defaultTaskFormValues.description,
+    emoji: task.emoji,
+    name: task.name,
+    type: defaultTaskFormValues.type
+  }   
+  
 
   const {
     control,
@@ -35,33 +51,34 @@ export default function UpdateTask() {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues: defaultTaskFormValues,
+    defaultValues: defaultValues,
   })
   
   const handleSubmitForm = useCallback((values: TaskFormFields)=>{
 
-    const task:UpdateTaskDto = {
+    const dto:UpdateTaskDto = {
+      type: values.type,
       emoji: values.emoji,
       name: values.name,
       color: values.color.color,
     }
-    if (values.description) task.description = values.description
+    if (values.description) dto.description = values.description
     
     if (values.type === 'daily') {
-      if (values.days) task.days = values.days 
-      if (values.dailyTime && values.dailyTime !== ":") task.time = values.dailyTime 
-      if (values.dailyColor) task.color = values.dailyColor.color
+      if (values.days) dto.days = values.days 
+      if (values.dailyTime && values.dailyTime !== ":") dto.time = values.dailyTime 
+      if (values.dailyColor) dto.color = values.dailyColor.color
     }
 
     if (values.type === 'event') {
-      if (values.date) task.date = values.date
-      if(values.time && values.time !== ":") task.time = values.time
-      if(values.color) task.color = values.color.color
+      if (values.date) dto.date = values.date
+      if(values.time && values.time !== ":") dto.time = values.time
+      if(values.color) dto.color = values.color.color
     }
-    console.log({values});
-    console.log({task});
+    // console.log({values});
+    console.log({dto});
     
-    updateTask(id as string, task)
+    updateTask(id as string, dto)
     replace('/')
   },[])
   const handleCancel = useCallback(()=>{
@@ -72,7 +89,7 @@ export default function UpdateTask() {
   return (
     <Base>
       <Margin>
-          <TaskForm 
+          <TaskForm
             errors={errors}
             control={control}
             task={task}

@@ -13,15 +13,24 @@ export type InputTimeProps = {
   value?: string
   required?: boolean
   onChange: (e:string) => void
+  initialValue?: string
 }
 
 function InputTime(props: InputTimeProps) {
-  const { label, required, value, onChange } = props
+  const { label, required, initialValue, onChange } = props
   const minutesRef = useRef<TextInput>(null);
 
   const [hours, setHours] = useState('')
   const [minutes, setMinutes] = useState('')
   
+  useEffect(() => {
+    const initial = initialValue?.split(':')
+    if (initial && initial.length > 1) {
+      setHours(initial[0])
+      setMinutes(initial[1])
+    }      
+  } ,[initialValue])
+
   useEffect(()=>{
     onChange(`${hours}:${minutes}`)
   },[hours, minutes])
@@ -31,7 +40,7 @@ function InputTime(props: InputTimeProps) {
     e: NativeSyntheticEvent<TextInputChangeEventData>
   ) => {
     let value = e.nativeEvent.text
-    if (+value > 24) value = '24'
+    if (+value > 23) value = '23'
     setHours(value)
     
     if (value === '') setMinutes('')

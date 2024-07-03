@@ -31,6 +31,7 @@ const useTaskStore = create<State & Action>()(persist((set) => ({
     const updatedTasks = state.tasks.map(t => {
       if (t.id !== id) return t
       const updatedTask:Task = {
+        type: task.type,
         id: t.id,
         checked: t.checked,
         emoji: task.emoji || t.emoji,
@@ -41,6 +42,10 @@ const useTaskStore = create<State & Action>()(persist((set) => ({
         days: task.days || t.days,
         time: task.time || t.time,
       }  
+
+      if (task.type === 'daily') delete updatedTask.date
+      if (task.type === 'event') delete updatedTask.days
+
       return updatedTask
     })
     return ({

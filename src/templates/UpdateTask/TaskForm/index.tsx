@@ -30,12 +30,12 @@ const options:Option[] = [
 type TaskFormProps = {
   control: Control<TaskFormFields, any>
   errors: FieldErrors<TaskFormFields>
-  task?: Task
+  task: Task
 }
 
 export default function TaskForm(props: TaskFormProps) {
   const { control, errors, task } = props
-  const [formType, setFormType] = useState<TaskType>('daily')
+  const [formType, setFormType] = useState<TaskType>(task.type || 'daily')
 
   const handleChangeFormType = useCallback((value: TaskType) => {
     setFormType(value)
@@ -111,6 +111,7 @@ export default function TaskForm(props: TaskFormProps) {
                 handleChangeFormType(v)
                 onChange(v)
               }}
+              defaultValue={formType === 'daily' ? 0 : 1}
             />
           
           )}
@@ -147,6 +148,7 @@ export default function TaskForm(props: TaskFormProps) {
                   <InputTime
                     label='Horário'
                     onChange={onChange} 
+                    initialValue={value}
                   />
                 )}
               />
@@ -154,11 +156,12 @@ export default function TaskForm(props: TaskFormProps) {
               <Controller
                 control={control}
                 name="dailyColor"
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                   <InputColor
                     required
                     onChange={onChange}
                     label='Cor do card'
+                    initialValue={value}
                   />
                 )}
               />
@@ -176,6 +179,7 @@ export default function TaskForm(props: TaskFormProps) {
                     <InputDate
                       required 
                       useToday
+                      initialValue={task.date}
                       onChange={onChange}
                       label='Data'
                     />
@@ -188,8 +192,8 @@ export default function TaskForm(props: TaskFormProps) {
                   render={({ field: { onChange, value } }) => (
                     <InputTime
                       label='Horário'
-                      value={value}
-                      onChange={onChange} 
+                      onChange={onChange}
+                      initialValue={value} 
                     />
                   )}
                 />
@@ -199,15 +203,16 @@ export default function TaskForm(props: TaskFormProps) {
               <Controller
                 control={control}
                 name="color"
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                   <InputColor
                     required
                     onChange={(e:any)=> {
-                      console.log({color:e});
+                      // console.log({color:e});
                       
                       onChange(e)
                     }}
                     label='Cor do card'
+                    initialValue={value}
                   />
                 )}
               />

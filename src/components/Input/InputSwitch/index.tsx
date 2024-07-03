@@ -16,6 +16,7 @@ export type InputSwitchProps =  {
   // name: TaskFormField
   label?: string
   options: Option[],
+  defaultValue?: number,
   onPress: (value: TaskType) => void
 }
 
@@ -26,6 +27,7 @@ function InputSwitch(props: InputSwitchProps) {
   const {
     label,
     options,
+    defaultValue,
     onPress
   } = props
   
@@ -49,7 +51,7 @@ function InputSwitch(props: InputSwitchProps) {
         height={44}
         bold
         options={options}
-        initial={0}
+        initial={defaultValue || 0}
         onPress={onPress}
       />
     </S.Container>

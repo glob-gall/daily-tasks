@@ -10,6 +10,7 @@ export type Task = {
   id: string
   name: string
   emoji: string
+  type: TaskType,
   color: ColorNames,
   description?: string
   days?: {
@@ -26,6 +27,7 @@ export type Task = {
 }
 
 export type UpdateTaskDto = {
+  type: TaskType
   name?: string
   emoji?: string
   color?: ColorNames,
