@@ -18,7 +18,7 @@ import { Alert } from 'react-native';
 import { colorOptions } from '@/components/Input/InputColor';
 
 export default function UpdateTask() {
-  const {updateTask,tasks} = useTaskStore()
+  const {updateTask,tasks,removeTask} = useTaskStore()
   const {back, replace} = useRouter();
 
   const {id} = useLocalSearchParams()  
@@ -82,7 +82,19 @@ export default function UpdateTask() {
     replace('/')
   },[])
   const handleCancel = useCallback(()=>{
-    back()
+    function deleteTask() {
+      back()
+      removeTask(id as string)
+    }
+
+    Alert.alert(
+      'DELETAR META',
+      'Clique em OK para deletar sua meta.',
+      [
+        {text: 'Cancelar'},
+        {text: 'OK', onPress: deleteTask},
+      ],
+    )
   },[])
 
 

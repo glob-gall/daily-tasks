@@ -11,7 +11,7 @@ type State = {
 
 type Action = {
   addTask: (task: Task) => void
-  removeTask: (task: Task) => void
+  removeTask: (id:string) => void
   updateTask: (id:string, task: UpdateTaskDto) => void
   setChecked: (id: string) => void
 }
@@ -23,8 +23,8 @@ const useTaskStore = create<State & Action>()(persist((set) => ({
     tasks: [...state.tasks, task] 
   })),
 
-  removeTask: (task: Task) => set((state) => ({ 
-    tasks: state.tasks.filter(t => t !== task) 
+  removeTask: (id:string) => set((state) => ({ 
+    tasks: state.tasks.filter(t => t.id !== id) 
   })),
 
   updateTask: (id, task: UpdateTaskDto) => set((state) => {
