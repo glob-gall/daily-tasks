@@ -17,9 +17,7 @@ function InputDate(props: InputDateProps) {
   const [selectedDate, setSelectedDate] = useState('');
   const [modalOpen, setModalOpen] = useState(false)
 
-  useEffect(() => { 
-    console.log({DATE:initialValue});
-    
+  useEffect(() => {     
     if (initialValue) {
       setSelectedDate(initialValue)
     }else if (useToday) {

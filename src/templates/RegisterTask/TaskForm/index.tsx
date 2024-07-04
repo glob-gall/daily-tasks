@@ -98,12 +98,8 @@ export default function TaskForm(props: TaskFormProps) {
       <S.SelectorWrapper>
         <Controller
           control={control}
-          rules={{ required: {
-            message:'Campo obrigatório',
-            value: true
-          } }}
           name="type"
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange, value } }) => (
             <InputSwitch
               options={options}
               onPress={(v) => {
@@ -201,11 +197,7 @@ export default function TaskForm(props: TaskFormProps) {
                 render={({ field: { onChange } }) => (
                   <InputColor
                     required
-                    onChange={(e:any)=> {
-                      console.log({color:e});
-                      
-                      onChange(e)
-                    }}
+                    onChange={onChange}
                     label='Cor do card'
                   />
                 )}

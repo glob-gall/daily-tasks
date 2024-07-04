@@ -51,8 +51,6 @@ export default function RegisterTask() {
       if(values.time && values.time !== ":") task.time = values.time
       if(values.color) task.color = values.color.color
     }
-    // console.log({values});
-    // console.log({task});
     
     addTask(task)
     replace('/')

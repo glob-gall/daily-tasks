@@ -1,7 +1,7 @@
 import * as S from './styles'
 import InputText from '@/components/Input/InputText';
 import InputEmoji from '@/components/Input/InputEmoji';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import InputWeekDay from '@/components/Input/InputWeekDay';
 import InputColor from '@/components/Input/InputColor';
 import InputDate from '@/components/Input/InputDate';
@@ -36,7 +36,7 @@ type TaskFormProps = {
 export default function TaskForm(props: TaskFormProps) {
   const { control, errors, task } = props
   const [formType, setFormType] = useState<TaskType>(task.type || 'daily')
-
+    
   const handleChangeFormType = useCallback((value: TaskType) => {
     setFormType(value)
   }, [])
@@ -106,13 +106,14 @@ export default function TaskForm(props: TaskFormProps) {
           name="type"
           render={({ field: { onChange } }) => (
             <InputSwitch
-              options={options}
-              onPress={(v) => {
-                handleChangeFormType(v)
-                onChange(v)
-              }}
-              defaultValue={formType === 'daily' ? 0 : 1}
-            />
+
+                options={options}
+                onPress={(v) => {                  
+                  handleChangeFormType(v)
+                  onChange(v)
+                }}
+                defaultValue={task.type}
+              />
           
           )}
         />
@@ -206,11 +207,7 @@ export default function TaskForm(props: TaskFormProps) {
                 render={({ field: { onChange, value } }) => (
                   <InputColor
                     required
-                    onChange={(e:any)=> {
-                      // console.log({color:e});
-                      
-                      onChange(e)
-                    }}
+                    onChange={onChange}
                     label='Cor do card'
                     initialValue={value}
                   />

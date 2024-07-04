@@ -62,10 +62,7 @@ export const colorOptions: Color[] = [
 
 
 function InputColor(props: InputColorProps){
-  const {label, onChange, required, initialValue} = props
-
-  console.log({COLOR:initialValue});
-  
+  const {label, onChange, required, initialValue} = props  
 
  return (
   <S.Container>

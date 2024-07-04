@@ -29,7 +29,6 @@ export default function UpdateTask() {
     back()
     return;
   }
-  console.log({task});
   
   const defaultValues:TaskFormFields = {
     color: colorOptions.find(c => c.color === task.color) || defaultTaskFormValues.color,
@@ -41,7 +40,7 @@ export default function UpdateTask() {
     description: task.description || defaultTaskFormValues.description,
     emoji: task.emoji,
     name: task.name,
-    type: defaultTaskFormValues.type
+    type: task.type
   }   
   
 
@@ -54,8 +53,7 @@ export default function UpdateTask() {
     defaultValues: defaultValues,
   })
   
-  const handleSubmitForm = useCallback((values: TaskFormFields)=>{
-
+  const handleSubmitForm = useCallback((values: TaskFormFields)=>{    
     const dto:UpdateTaskDto = {
       type: values.type,
       emoji: values.emoji,
@@ -75,8 +73,6 @@ export default function UpdateTask() {
       if(values.time && values.time !== ":") dto.time = values.time
       if(values.color) dto.color = values.color.color
     }
-    // console.log({values});
-    console.log({dto});
     
     updateTask(id as string, dto)
     replace('/')
