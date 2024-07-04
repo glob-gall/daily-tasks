@@ -1,8 +1,7 @@
 import Sidebar from "@/components/Sidebar"
 import Theme from "@/styles/theme"
 import { Stack } from "expo-router"
-import { Text } from "react-native"
-import { NativeStackNavigationOptions } from "react-native-screens/lib/typescript/native-stack/types"
+import { BadgePlus, BookOpenCheck, House } from "lucide-react-native"
 import { ThemeProvider } from "styled-components/native"
 
 const screenOption: any = {
@@ -17,12 +16,19 @@ const screenOption: any = {
     <Sidebar
       options={[
         {
+          icon: BadgePlus,
           label:'Register task',
           link:'register-task'
         },
         {
+          icon: House,
           label:'Home',
-          link:'index'
+          link:'/'
+        },
+        {
+          icon: BookOpenCheck,
+          label:'Lista de Metas',
+          link:'all-tasks'
         }
       ]}    
     />
@@ -44,6 +50,9 @@ function Layout() {
           />
           <Stack.Screen 
             name="update-task/[id]" 
+          />
+          <Stack.Screen 
+            name="all-tasks" 
           />
         </Stack>
     </ThemeProvider>

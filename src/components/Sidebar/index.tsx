@@ -1,12 +1,14 @@
-import { Menu } from 'lucide-react-native';
+import { LucideIcon, Menu } from 'lucide-react-native';
 import * as S from './styles'
 import { ReactNode, useCallback, useState } from 'react';
 import { Text, TouchableWithoutFeedback } from 'react-native';
 import Theme from '@/styles/theme';
+import { useRouter } from 'expo-router';
 
 type SidebarItem = {
   label:string
   link:string
+  icon: LucideIcon
 }
 
 export type SidebarProps = {
@@ -15,15 +17,19 @@ export type SidebarProps = {
 
 function Sidebar(props: SidebarProps) {
   const { options } = props
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const router = useRouter()
 
   const onClose = useCallback(() => {
     setIsOpen(false)
   }, [])
   const onOpen = useCallback(() => {
-    // console.log({open:true});
-    
     setIsOpen(true)
+  }, [])
+  const goTo = useCallback((to:string) => {
+    onClose()
+    router.push(to)
   }, [])
 
   return (
@@ -46,14 +52,21 @@ function Sidebar(props: SidebarProps) {
           </TouchableWithoutFeedback>
 
               <S.Sidebar>
-                {options.map( opt => (
-                  <S.SidebarOption key={opt.label}>
+                {options.map( ({icon: Icon,label,link}) => (
+                  <S.SidebarOption 
+                    key={label} 
+                    onPress={()=> goTo(link)}
+                  >
+                    <S.SidebarOptionIcon>
+                      <Icon color={Theme.colors.neutral['700']} size={24}/>
+                    </S.SidebarOptionIcon>
                     <S.SidebarOptionText>
-                      {opt.label}
+                      {label}
                     </S.SidebarOptionText>
                   </S.SidebarOption>
                 ))}
               </S.Sidebar>
+
         </S.SidebarContainer>
       </S.SidebarModal>
     </>

@@ -58,7 +58,10 @@ export const SidebarOption = styled.TouchableOpacity`
   background-color: #fff;
   border-radius: 4px;
   height: 40px;
-  justify-content: center;
+    align-items: center;
+  display: flex;
+  flex-direction: row;
+
   ${props => css`
     padding:${props.theme.spacing.small};
     margin-top:${props.theme.spacing.small};
@@ -71,5 +74,11 @@ export const SidebarOptionText = styled.Text`
   /* text-align: center; */
   ${props => css`
     font-size: ${props.theme.font.default};
+  `}
+`
+export const SidebarOptionIcon = styled.View`
+  /* text-align: center; */
+  ${props => css`
+    margin-right: ${props.theme.spacing.medium};
   `}
 `
