@@ -101,6 +101,7 @@ export default function TaskForm(props: TaskFormProps) {
           name="type"
           render={({ field: { onChange, value } }) => (
             <InputSwitch
+              defaultValue='daily'
               options={options}
               onPress={(v) => {
                 handleChangeFormType(v)

@@ -6,12 +6,14 @@ import {Check} from 'lucide-react-native'
 import { useRouter } from 'expo-router'
 type CardProps = {
   task: Task
+  hasCheck?:boolean
 }
 
 function Card(props: CardProps) {
+  const {hasCheck, task} = props
   const {
     name,time,description,emoji,color, checked, id
-  } = props.task
+  } = task
 
   const {navigate} = useRouter();
 
@@ -58,20 +60,22 @@ function Card(props: CardProps) {
         {time}
       </S.Time>
 
-      <S.CheckButton onPress={handleSetCheck}>
-        { checked ? (
-          <S.Checked color={color}>
-            <Check size={24}
-              color="#fff"
-            />
-          </S.Checked>
-        ) : (
-          <S.Unchecked color={color}>
-          </S.Unchecked>
+      {hasCheck && (
+        <S.CheckButton onPress={handleSetCheck}>
+          { checked ? (
+            <S.Checked color={color}>
+              <Check size={24}
+                color="#fff"
+              />
+            </S.Checked>
+          ) : (
+            <S.Unchecked color={color}>
+            </S.Unchecked>
 
-          
-        )}
-      </S.CheckButton>
+            
+          )}
+        </S.CheckButton>
+      ) }
     </S.Container>
   )
 }

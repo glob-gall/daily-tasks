@@ -25,7 +25,7 @@ function CardList(props:CardListProps){
       {
         tasks.map(task => (
           <S.CardWrapper key={task.id}>
-              <Card task={task} />
+              <Card task={task} hasCheck />
             </S.CardWrapper>
         ))
       }
