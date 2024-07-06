@@ -23,7 +23,6 @@ export default function UpdateTask() {
 
   const {id} = useLocalSearchParams()  
   const task = tasks.find(t => t.id === id)
-  console.log({task});
   
   if (!task) {
     Alert.alert('Ocorreu um erro ao buscar essa meta.')
