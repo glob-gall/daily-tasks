@@ -12,14 +12,14 @@ import { useCallback, useEffect } from "react";
 import TaskForm from "./TaskForm";
 import { useForm } from "react-hook-form";
 import { TaskFormFields, defaultTaskFormValues } from "@/entity/Task/form.dto";
-import { Task, UpdateTaskDto } from "@/entity/Task/dto";
+import { UpdateTaskDto } from "@/entity/Task/dto";
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Alert } from 'react-native';
 import { colorOptions } from '@/components/Input/InputColor';
 
 export default function UpdateTask() {
   const {updateTask,tasks,removeTask} = useTaskStore()
-  const {back, replace} = useRouter();
+  const { back } = useRouter();
 
   const {id} = useLocalSearchParams()  
   const task = tasks.find(t => t.id === id)
@@ -75,7 +75,7 @@ export default function UpdateTask() {
     }
     
     updateTask(id as string, dto)
-    replace('/')
+    back()
   },[])
   const handleCancel = useCallback(()=>{
     function deleteTask() {

@@ -2,30 +2,65 @@ import { Task, UpdateTaskDto } from '@/entity/Task/dto'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import compareDateToTaskDate from '@/utils/compareDateToTaskDate';
+import checkTaskAvailability from '@/utils/checkTaskAvailability';
 
 
+type TodayTasks = {
+  day?: Date
+  tasks: Task[]
+}
 
 type State = {
   tasks: Task[]
+  todayTasks: TodayTasks
 }
 
 type Action = {
   addTask: (task: Task) => void
   removeTask: (id:string) => void
   updateTask: (id:string, task: UpdateTaskDto) => void
-  setChecked: (id: string) => void
+  
+  attTodaysTasks: () => void
+  checkTodayTasks: (id:string) => void
 }
 
-const useTaskStore = create<State & Action>()(persist((set) => ({
+// function addTask(state:<State & Action){
+
+// }
+
+const useTaskStore = create<State & Action>()(persist((set, get) => ({
   tasks: [],
+  todayTasks: {
+    tasks: [],
+  },
 
-  addTask: (task: Task) => set((state) => ({ 
-    tasks: [...state.tasks, task] 
-  })),
+  addTask: (task: Task) => set((state) => {
+    const deepCopy:Task = JSON.parse((JSON.stringify(task)))
+    const todayTasks = state.todayTasks.tasks
 
-  removeTask: (id:string) => set((state) => ({ 
-    tasks: state.tasks.filter(t => t.id !== id) 
-  })),
+    if (checkTaskAvailability(deepCopy)) {
+      todayTasks.push(deepCopy)
+    }
+    return { 
+      tasks: [...state.tasks, task],
+      todayTasks:{
+        tasks: todayTasks
+      }
+    }
+  }),
+
+  removeTask: (id:string) => set((state) => {
+    
+    const filteredTasks = state.tasks.filter(t => t.id !== id)
+    const filteredTodayTasks = state.todayTasks.tasks.filter(t => t.id !== id)
+    return { 
+      tasks: filteredTasks, 
+      todayTasks:{
+        tasks: filteredTodayTasks
+      } 
+    }
+  }),
 
   updateTask: (id, task: UpdateTaskDto) => set((state) => {
     const updatedTasks = state.tasks.map(t => {
@@ -52,13 +87,37 @@ const useTaskStore = create<State & Action>()(persist((set) => ({
       tasks: updatedTasks
     })
   }),
-  setChecked: (id: string) => set((state) => {
-    const updatedTasks = state.tasks.map( t => {
-        if(t.id !== id) return t;
-        t.checked = !t.checked  
-        return t
-      })
-    return { tasks: updatedTasks }
+
+  attTodaysTasks: (day?: Date) => set((state) => {
+
+    const todayTasks = state.tasks.filter(task => {
+      const selectedDay = day || new Date()
+      if (task.date) {
+        return compareDateToTaskDate(selectedDay,task.date)
+      }
+      return checkTaskAvailability(task)
+    })
+
+    const deepCopy:Task[] = JSON.parse((JSON.stringify(todayTasks)))
+
+    return {
+      todayTasks: {
+        day: new Date(),
+        tasks: deepCopy
+      }
+    }
+  }),
+
+  checkTodayTasks: (id:string) => set((state) => {
+    const updatedTasks = state.todayTasks.tasks.map( t => {
+      if(t.id !== id) return t;
+      t.checked = !t.checked  
+      return t
+    })
+
+    return {
+      todayTasks:{ tasks: updatedTasks }
+    }
   }),
 
 }),{
@@ -67,3 +126,14 @@ const useTaskStore = create<State & Action>()(persist((set) => ({
 }))
 
 export default useTaskStore
+
+
+// setChecked: (id: string) => void
+// setChecked: (id: string) => set((state) => {
+//   const updatedTasks = state.tasks.map( t => {
+//       if(t.id !== id) return t;
+//       t.checked = !t.checked  
+//       return t
+//     })
+//   return { tasks: updatedTasks }
+// }),

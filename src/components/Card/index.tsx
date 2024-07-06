@@ -18,10 +18,10 @@ function Card(props: CardProps) {
   const {navigate} = useRouter();
 
 
-  const { setChecked } = useTaskStore()
+  const { checkTodayTasks } = useTaskStore()
 
   const handleSetCheck = useCallback(()=>{
-    setChecked(id)
+    checkTodayTasks(id)
   },[])
   const gotoEditTaskPage = useCallback(()=>{
     navigate({

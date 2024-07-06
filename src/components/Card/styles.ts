@@ -57,7 +57,8 @@ export const Container = styled.View<Variant>`
       background-color: ${props.theme.colors.lime['50']};
     `}
     ${props.color === 'neutral' && css`
-      background-color: ${props.theme.colors.neutral['50']};
+      background-color: #fff;
+      /* background-color: ${props.theme.colors.neutral['50']}; */
     `}
     ${props.color === 'orange' && css`
       background-color: ${props.theme.colors.orange['50']};

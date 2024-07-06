@@ -17,7 +17,7 @@ import { useRouter } from 'expo-router';
 
 export default function RegisterTask() {
   const {addTask} = useTaskStore()
-  const {back, replace} = useRouter();
+  const {back} = useRouter();
 
   const {
     control,
@@ -53,7 +53,7 @@ export default function RegisterTask() {
     }
     
     addTask(task)
-    replace('/')
+    back()
   },[])
   const handleCancel = useCallback(()=>{
     back()

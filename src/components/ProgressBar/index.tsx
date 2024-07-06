@@ -19,7 +19,7 @@ function ProgressBar(props:ProgressBarProps){
           />
         </S.ProgressBarContainer> 
       <S.Percent>
-        {progress}%
+        {progress.toFixed(0)}%
       </S.Percent>
     </S.Container>
   )
