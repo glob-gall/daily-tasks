@@ -16,7 +16,7 @@ import { Task } from "@/entity/Task/dto";
 import { useRouter } from 'expo-router';
 
 export default function RegisterTask() {
-  const {addTask} = useTaskStore()
+  const { addTask } = useTaskStore()
   const {back} = useRouter();
 
   const {

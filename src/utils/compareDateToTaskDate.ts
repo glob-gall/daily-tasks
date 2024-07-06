@@ -1,6 +1,6 @@
 function compareDateToTaskDate(date: Date, taskDate: string): boolean {
   const dateYear = date.getFullYear()
-  const dateMonth = date.getMonth()
+  const dateMonth = date.getMonth() + 1
   const dateDay = date.getDate()
   const dateString = `${dateYear}/${dateMonth}/${dateDay}`
 

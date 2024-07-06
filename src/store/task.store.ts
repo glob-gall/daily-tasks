@@ -39,7 +39,9 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
     const deepCopy:Task = JSON.parse((JSON.stringify(task)))
     const todayTasks = state.todayTasks.tasks
 
-    if (checkTaskAvailability(deepCopy)) {
+    if (checkTaskAvailability(deepCopy) ) {
+      todayTasks.push(deepCopy)
+    }else if (task.date &&  compareDateToTaskDate(new Date(), task.date)) {
       todayTasks.push(deepCopy)
     }
     return { 
