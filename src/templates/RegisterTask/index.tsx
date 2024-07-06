@@ -28,8 +28,7 @@ export default function RegisterTask() {
     defaultValues: defaultTaskFormValues,
   })
   
-  const handleSubmitForm = useCallback((values: TaskFormFields)=>{
-
+  const handleSubmitForm = useCallback((values: TaskFormFields)=>{    
     const task:Task = {
       type: 'daily',
       checked: false,
@@ -49,6 +48,7 @@ export default function RegisterTask() {
     if (values.type === 'event') {
       task.type = 'event'
       if(values.time && values.time !== ":") task.time = values.time
+      if(values.date) task.date = values.date
       if(values.color) task.color = values.color.color
     }
     

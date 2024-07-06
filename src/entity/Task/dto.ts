@@ -4,6 +4,15 @@ export type Color = {
   label:string
   color: ColorNames
 }
+export type TaskDay = {
+  monday: boolean
+  tuesday: boolean
+  wednesday: boolean
+  thursday: boolean
+  friday: boolean
+  saturday: boolean
+  sunday: boolean
+}
 
 export type Task = {
   checked: boolean,
@@ -13,15 +22,7 @@ export type Task = {
   type: TaskType,
   color: ColorNames,
   description?: string
-  days?: {
-      monday: boolean
-      tuesday: boolean
-      wednesday: boolean
-      thursday: boolean
-      friday: boolean
-      saturday: boolean
-      sunday: boolean
-  }
+  days?: TaskDay,
   time?: string,
   date?: string
 }

@@ -14,7 +14,7 @@ import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 export default function AllTasks() {
   const {tasks} = useTaskStore();
   const router = useRouter();
-  console.log({tasks});
+  // console.log({tasks});
   
   // const gotoRegisterCard = useCallback(()=>{
     //   router.push("register-task")

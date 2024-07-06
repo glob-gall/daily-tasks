@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import compareDateToTaskDate from '@/utils/compareDateToTaskDate';
-import checkTaskAvailability from '@/utils/checkTaskAvailability';
+import checkTaskAvailability, { checkTaskWeekDay } from '@/utils/checkTaskAvailability';
 
 
 type TodayTasks = {
@@ -63,6 +63,8 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
   }),
 
   updateTask: (id, task: UpdateTaskDto) => set((state) => {
+    let todayTasks = state.todayTasks.tasks
+
     const updatedTasks = state.tasks.map(t => {
       if (t.id !== id) return t
       const updatedTask:Task = {
@@ -80,11 +82,23 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
 
       if (task.type === 'daily') delete updatedTask.date
       if (task.type === 'event') delete updatedTask.days
-
       return updatedTask
     })
+
+    
+    const findedTodayTask = state.todayTasks.tasks.find(t => t.id === id)
+    
+    if (findedTodayTask) {
+      if (!checkTaskWeekDay(task.days)) {
+        todayTasks = todayTasks.filter( t => t.id !== findedTodayTask.id)
+      }
+    }
+
     return ({
-      tasks: updatedTasks
+      tasks: updatedTasks,
+      todayTasks: {
+        tasks: todayTasks
+      }
     })
   }),
 
