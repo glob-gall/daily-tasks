@@ -28,11 +28,11 @@ function updateTaskFields(task:Task, newData:UpdateTaskDto): Task {
     checked: task.checked,
     emoji: newData.emoji || task.emoji,
     name: newData.name || task.name,
-    description: newData.description || task.description,
+    description: newData.description,
     color: newData.color || task.color,
     date: newData.date || task.date,
     days: newData.days || task.days,
-    time: newData.time || task.time,
+    time: newData.time ,
   }
   if (newData.type === 'daily') delete updatedTask.date
   if (newData.type === 'event') delete updatedTask.days
