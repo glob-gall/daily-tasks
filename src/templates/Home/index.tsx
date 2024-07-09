@@ -20,13 +20,13 @@ export default function Home() {
 
   const concludeTaskPercentage = useMemo(() => {
     let countConcluded = 0;
-    todayTasks.tasks.forEach(t =>{
+    todayTasks.forEach(t =>{
       if (t.checked) countConcluded++
     }) 
     
-    if (!todayTasks.tasks.length) return 0
-    return (countConcluded/todayTasks.tasks.length)*100
-  },[todayTasks.tasks])  
+    if (!todayTasks.length) return 0
+    return (countConcluded/todayTasks.length)*100
+  },[todayTasks])  
 
   const gotoRegisterCard = useCallback(()=>{
     router.push("register-task")
@@ -40,7 +40,7 @@ export default function Home() {
           <ProgressBar progress={concludeTaskPercentage}/>
         </S.ProgressContainer>
 
-        <CardList tasks={todayTasks.tasks}/>
+        <CardList tasks={todayTasks}/>
         <S.CreateNewTask onPress={gotoRegisterCard}>
           <FontAwesome5 name="plus" size={24} color={Theme.colors.neutral['50']} />
         </S.CreateNewTask>

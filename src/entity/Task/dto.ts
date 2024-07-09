@@ -28,6 +28,7 @@ export type Task = {
 }
 
 export type UpdateTaskDto = {
+  id?:string
   type: TaskType
   name?: string
   emoji?: string
