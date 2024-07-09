@@ -22,8 +22,8 @@ function InputDate(props: InputDateProps) {
       setSelectedDate(initialValue)
     }else if (useToday) {
       const today = new Date()
-      const day = today.getDate()
-      const month = today.getMonth()+1
+      const day = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate()
+      const month = today.getMonth() < 9 ?`0${today.getMonth()+ 1}` : today.getMonth() + 1
       const year = today.getFullYear()
       setSelectedDate(`${year}/${month}/${day}`)
     } 
@@ -34,6 +34,12 @@ function InputDate(props: InputDateProps) {
       onChange(selectedDate)
     } 
   },[selectedDate])
+
+  const handleSetDate = useCallback((date:string)=>{
+    console.log({date});
+    
+    setSelectedDate(date)
+  },[])
 
   const handleCloseModal = useCallback(()=>{
     setModalOpen(false)
@@ -85,7 +91,7 @@ function InputDate(props: InputDateProps) {
             current={selectedDate}
             selected={selectedDate}
             mode='calendar'
-            onSelectedChange={date => setSelectedDate(date)}
+            onSelectedChange={handleSetDate}
           />
           <S.DateDialog>
             <S.OkButtonContainer>

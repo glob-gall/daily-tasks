@@ -34,8 +34,8 @@ function updateTaskFields(task:Task, newData:UpdateTaskDto): Task {
     days: newData.days || task.days,
     time: newData.time || task.time,
   }
-  if (task.type === 'daily') delete updatedTask.date
-  if (task.type === 'event') delete updatedTask.days
+  if (newData.type === 'daily') delete updatedTask.date
+  if (newData.type === 'event') delete updatedTask.days
   return updatedTask
 }
 
@@ -70,19 +70,15 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
   }),
 
   updateTask: (id, newData: UpdateTaskDto) => set((state) => {
-    //atualizar a task nas tasks gerais
     newData.id = id
     const updatedTasks = updateTaskArray(state.tasks, newData)    
     
-    //atualizar a task no array das tasks do dia
     let updatedTodayTasks = deepCopy(state.todayTasks)
     updatedTodayTasks = updateTaskArray(updatedTodayTasks, newData)
 
     
     let todayTask = updatedTodayTasks.find(t => t.id === id)
 
-    //se a task não está no array
-      // - verificar se esta no mesmo dia e adicionar no array de hoje
     const taskToToday = updatedTasks.find(t => t.id === id)
     if (!todayTask) {
       if (taskToToday && checkTaskAvailability(taskToToday)) {

@@ -17,15 +17,15 @@ export function checkTaskWeekDay(taskDay:TaskDay|undefined): boolean {
 
 export function compareDateToTaskDate(date: Date, taskDate: string): boolean {
   const dateYear = date.getFullYear()
-  const dateMonth = date.getMonth() + 1
-  const dateDay = date.getDate()
+  const dateMonth = date.getMonth() < 9 ?`0${date.getMonth()+ 1}` : date.getMonth() + 1
+  const dateDay = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
   const dateString = `${dateYear}/${dateMonth}/${dateDay}`
   
   return taskDate.localeCompare(dateString) === 0
 }
 
 function checkTaskAvailability(task:Task): boolean {
-  if (task.date) {
+  if (task.type === 'event' && task.date) {
     return compareDateToTaskDate(new Date(),task.date)
   } 
   return checkTaskWeekDay(task.days)
