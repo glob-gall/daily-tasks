@@ -6,6 +6,7 @@ import compareDateToTaskDate from '@/utils/compareDateToTaskDate';
 import checkTaskAvailability, { checkTaskWeekDay } from '@/utils/checkTaskAvailability';
 import deepCopy from '@/utils/deepCopy';
 import areSameDay from '@/utils/areSameDay';
+import { taskTimeToNumber } from '@/utils/taskTimeToNumber';
 
 
 type State = {
@@ -55,6 +56,8 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
     const todayTasks = deepCopy(state.todayTasks)
     let attTodaysTask = isAvailable ? [...todayTasks, task] : todayTasks
     
+    attTodaysTask = attTodaysTask.sort((a,b) => taskTimeToNumber(a.time) < taskTimeToNumber(b.time)?-1: 1)
+
     return { 
       tasks: [...state.tasks, task],
       todayTasks: attTodaysTask
@@ -89,7 +92,8 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
     }else if(todayTask && !checkTaskAvailability(todayTask)) {
       updatedTodayTasks = updatedTodayTasks.filter( t => t.id !== id)
     }
-    
+    updatedTodayTasks = updatedTodayTasks.sort((a,b) => taskTimeToNumber(a.time) < taskTimeToNumber(b.time)?-1: 1)
+
     return {
       tasks: updatedTasks,
       todayTasks: updatedTodayTasks
@@ -117,6 +121,7 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
     if (attCheck) {
       deepCopy = deepCopy.map(t => ({...t, checked:false}))
     }
+    deepCopy = deepCopy.sort((a,b) => taskTimeToNumber(a.time) < taskTimeToNumber(b.time)?-1: 1)
     return {
       todayTasks: deepCopy
     }
