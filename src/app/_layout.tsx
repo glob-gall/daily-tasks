@@ -1,7 +1,7 @@
 import Sidebar from "@/components/Sidebar"
 import Theme from "@/styles/theme"
 import { Stack } from "expo-router"
-import { BadgePlus, BookOpenCheck, House } from "lucide-react-native"
+import { BadgePlus, BookOpenCheck, House, Heart, Info } from "lucide-react-native"
 import { ThemeProvider } from "styled-components/native"
 
 const screenOption: any = {
@@ -17,7 +17,7 @@ const screenOption: any = {
       options={[
         {
           icon: BadgePlus,
-          label:'Register task',
+          label:'Registrar Meta',
           link:'register-task'
         },
         {
@@ -29,7 +29,17 @@ const screenOption: any = {
           icon: BookOpenCheck,
           label:'Lista de Metas',
           link:'all-tasks'
-        }
+        },
+        {
+          icon: Info,
+          label:'Sobre nós',
+          link:'about'
+        },
+        {
+          icon: Heart,
+          label:'Donate',
+          link:'donate'
+        },
       ]}    
     />
   )

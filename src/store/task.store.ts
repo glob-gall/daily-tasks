@@ -5,11 +5,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import compareDateToTaskDate from '@/utils/compareDateToTaskDate';
 import checkTaskAvailability, { checkTaskWeekDay } from '@/utils/checkTaskAvailability';
 import deepCopy from '@/utils/deepCopy';
+import areSameDay from '@/utils/areSameDay';
 
 
 type State = {
   tasks: Task[]
   todayTasks: Task[]
+  currentDay?:Date
 }
 
 type Action = {
@@ -39,7 +41,6 @@ function updateTaskFields(task:Task, newData:UpdateTaskDto): Task {
   return updatedTask
 }
 
-
 function updateTaskArray(tasks:Task[],newData:UpdateTaskDto): Task[] {
   return tasks.map(t => t.id !== newData.id ? t : updateTaskFields(t,newData))
 }
@@ -47,6 +48,7 @@ function updateTaskArray(tasks:Task[],newData:UpdateTaskDto): Task[] {
 const useTaskStore = create<State & Action>()(persist((set, get) => ({
   tasks: [],
   todayTasks: [],
+  currentDay: undefined,
 
   addTask: (task: Task) => set((state) => {
     const isAvailable  = checkTaskAvailability(task)
@@ -96,17 +98,25 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
   }),
 
   attTodaysTasks: (day?: Date) => set((state) => {
+    const today = day || new Date()
+    let attCheck = true
+    if (state.currentDay) {
+      attCheck = !areSameDay(state.currentDay,today)
+    }
 
     const todayTasks = state.tasks.filter(task => {
-      const selectedDay = day || new Date()
+        
       if (task.date) {
-        return compareDateToTaskDate(selectedDay,task.date)
+        return compareDateToTaskDate(today,task.date)
       }
       return checkTaskAvailability(task)
     })
 
-    const deepCopy:Task[] = JSON.parse((JSON.stringify(todayTasks)))
+    let deepCopy:Task[] = JSON.parse((JSON.stringify(todayTasks)))
 
+    if (attCheck) {
+      deepCopy = deepCopy.map(t => ({...t, checked:false}))
+    }
     return {
       todayTasks: deepCopy
     }
