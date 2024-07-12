@@ -15,6 +15,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(()=>{
+    console.log({update:'update tasks'});
+    
     attTodaysTasks()
   },[])
 

@@ -11,10 +11,10 @@ export const Container = styled.View`
 export const PixContainer = styled.View`
     display: flex;
     border-radius: 4px;
-    height: 400px;
+    height: 450px;
     background-color: #fff;
     ${props => css`
-      padding: ${props.theme.spacing.default};
+      padding: ${props.theme.spacing.default} 0 ${props.theme.spacing.large} 0;
       margin: ${props.theme.spacing.large} 0;
     `}
 `

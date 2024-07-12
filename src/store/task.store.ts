@@ -104,26 +104,30 @@ const useTaskStore = create<State & Action>()(persist((set, get) => ({
   attTodaysTasks: (day?: Date) => set((state) => {
     const today = day || new Date()
     let attCheck = true
+    
     if (state.currentDay) {
       attCheck = !areSameDay(state.currentDay,today)
     }
 
     const todayTasks = state.tasks.filter(task => {
-        
       if (task.date) {
         return compareDateToTaskDate(today,task.date)
       }
       return checkTaskAvailability(task)
     })
 
-    let deepCopy:Task[] = JSON.parse((JSON.stringify(todayTasks)))
+    let copy:Task[] = deepCopy(todayTasks)
 
     if (attCheck) {
-      deepCopy = deepCopy.map(t => ({...t, checked:false}))
+      copy = copy.map(t => ({...t, checked:false}))
     }
-    deepCopy = deepCopy.sort((a,b) => taskTimeToNumber(a.time) < taskTimeToNumber(b.time)?-1: 1)
+
+    copy = copy.sort(
+      (a,b) => taskTimeToNumber(a.time) < taskTimeToNumber(b.time)?-1: 1
+    )
     return {
-      todayTasks: deepCopy
+      currentDay: today,
+      todayTasks: copy
     }
   }),
 

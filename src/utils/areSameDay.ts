@@ -18,6 +18,9 @@ function areSameDay(date1: Date | string, date2: Date | string): boolean {
     firstDate.getMonth() === secoundDate.getMonth() &&
     firstDate.getDate() === secoundDate.getDate()
   )
+
+  console.log({firstDate,secoundDate,isEqual});
+  
   return isEqual;
 }
 
