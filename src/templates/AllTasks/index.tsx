@@ -1,29 +1,51 @@
 import Base from "../Base";
 import { Margin } from "@/components/Spacing/Margin";
 import * as S from './styles'
-import { FontAwesome5 } from '@expo/vector-icons';
-import Theme from "@/styles/theme";
 import CardList from "./CardList";
 import { useRouter } from "expo-router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useTaskStore from "@/store/task.store";
 import InputText from "@/components/Input/InputText";
-import { Search } from "lucide-react-native";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
+import InputWeekDay, { Days } from "@/components/Input/InputWeekDay";
+import { filterTasksByDays, filterTasksByName } from "@/utils/filterTasks";
 
 export default function AllTasks() {
   const {tasks} = useTaskStore();
   const router = useRouter();
   
-  // const gotoRegisterCard = useCallback(()=>{
-    //   router.push("register-task")
-    // },[])
-    const [filter,setFilter] = useState('')
+  const [filter,setFilter] = useState('')
 
-    const filteredTasks = useMemo(
-      ()=> tasks.filter(task => task.name.toLocaleLowerCase().startsWith(filter.toLowerCase())) ,
-    [tasks,filter])
-  
+  const [dayFilter,setDayFilter] = useState<Days>({
+    monday: true,
+    thursday: true,
+    wednesday: true,
+    tuesday: true,
+    friday: true,
+    saturday: true,
+    sunday: true,
+  })
+
+  const handleChangeFilterDay = (days:Days) => {    
+    setDayFilter({
+      monday: days.monday,
+      thursday: days.thursday,
+      wednesday: days.wednesday,
+      tuesday: days.tuesday,
+      friday: days.friday,
+      saturday: days.saturday,
+      sunday: days.sunday,
+    })
+  }
+
+  const filteredTasks = useMemo(
+    ()=> {
+      const filteredByName = filterTasksByName(tasks, filter)
+      const filteredByDay = filterTasksByDays(filteredByName, dayFilter)
+      return filteredByDay
+    },
+  [tasks,filter, dayFilter])
+
   const handleInputChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
     const text = event.nativeEvent.text;
     setFilter(text);
@@ -33,19 +55,20 @@ export default function AllTasks() {
     <Base>
       <Margin>
         <S.Search>
-          {/* <S.SearchIcon>
-            <Search color={Theme.colors.neutral['700']} />
-          </S.SearchIcon> */}
+
           <InputText
             value={filter}
             onChange={handleInputChange}
             label="filtar por titulo" 
           />
+          <InputWeekDay
+            label=""
+            value={dayFilter}
+            onChange={handleChangeFilterDay}
+          />
+
         </S.Search>
         <CardList tasks={filteredTasks}/>
-        {/* <S.CreateNewTask onPress={gotoRegisterCard}>
-          <FontAwesome5 name="plus" size={24} color={Theme.colors.neutral['50']} />
-        </S.CreateNewTask> */}
 
       </Margin>
     </Base>

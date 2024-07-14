@@ -13,7 +13,6 @@ function CardList(props:CardListProps){
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
-    console.log(refreshing);
     
     setRefreshing(true);
     attTodaysTasks()

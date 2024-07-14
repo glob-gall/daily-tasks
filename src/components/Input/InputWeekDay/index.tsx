@@ -1,10 +1,6 @@
-import Theme from '@/styles/theme'
 import * as S from './styles'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import DayButton from './DayButton'
-// export type Variant = {
-//   color?: CardColors
-// }
 
 export type InputWeekDayProps = {
   label: string
@@ -12,7 +8,6 @@ export type InputWeekDayProps = {
   onChange?: (e:Days) => void
   required?: boolean
 }
-
 
 export type Days = {
   sunday: boolean
@@ -30,14 +25,15 @@ function InputWeekDay(props: InputWeekDayProps) {
     label,
     required,
     value,
-    onChange = ()=>{}  
+    onChange 
   } = props
 
   const handleSetDay = useCallback((name:DayNames) => {
     const days:Days = value
     days[name] = !days[name] 
-    onChange(days)
-  }, [])
+    
+    if (!!onChange) onChange(days)
+  }, [onChange,value])
 
   return (
     <S.Container>
