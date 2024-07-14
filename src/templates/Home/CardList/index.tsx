@@ -1,14 +1,28 @@
 import Card from '@/components/Card'
 import * as S from './styles'
 import { Task } from '@/entity/Task/dto'
+import useTaskStore from '@/store/task.store';
+import { RefreshControl } from 'react-native';
+import { useCallback, useState } from 'react';
 
 type CardListProps  = {
-  tasks: Task[]
+
 }
 function CardList(props:CardListProps){
-  const {tasks} = props
+  const { todayTasks, attTodaysTasks } = useTaskStore();  
+  const [refreshing, setRefreshing] = useState(false);
 
-  if (tasks.length === 0) {
+  const onRefresh = useCallback(() => {
+    console.log(refreshing);
+    
+    setRefreshing(true);
+    attTodaysTasks()
+    setRefreshing(false);
+  }, [attTodaysTasks, setRefreshing]);
+
+
+
+  if (todayTasks.length === 0) {
     return (
       <S.EmptyList>
         <S.EmptyListText>
@@ -21,9 +35,12 @@ function CardList(props:CardListProps){
   return (
     <S.Container 
       showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
     >
       {
-        tasks.map(task => (
+        todayTasks.map(task => (
           <S.CardWrapper key={task.id}>
               <Card task={task} hasCheck />
             </S.CardWrapper>

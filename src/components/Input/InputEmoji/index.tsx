@@ -1,13 +1,7 @@
-import Theme from '@/styles/theme'
-import { InputType } from './enum/Input-type'
 import EmojiPicker, { EmojiType } from 'rn-emoji-keyboard'
 import * as S from './styles'
 import { useCallback, useState } from 'react'
-import { TextInputProps } from 'react-native'
 
-// export type Variant = {
-//   color?: CardColors
-// }
 
 export type InputEmojiProps = {
   label: string
@@ -15,8 +9,6 @@ export type InputEmojiProps = {
   onChange?: (e:string) => void
   value:string
 }
-
-// const defaultEmoji = {"emoji": "😎", "name": "smiling face with sunglasses", "slug": "smiling_face_with_sunglasses", "toneEnabled": false, "unicode_version": "1.0"}
 
 function InputEmoji(props: InputEmojiProps) {
   const { label, required, value, onChange } = props
@@ -27,7 +19,7 @@ function InputEmoji(props: InputEmojiProps) {
   },[])
 
   const handlePick = useCallback((e:EmojiType)=>{
-    if (onChange) {
+    if (onChange) {   
       onChange(e.emoji)
     }
   },[onChange])
@@ -51,6 +43,7 @@ function InputEmoji(props: InputEmojiProps) {
           onClose={() => setIsOpen(false)} 
           onEmojiSelected={handlePick} 
           open={isOpen} 
+          enableSearchBar
         />
     </S.Container>
   )

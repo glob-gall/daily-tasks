@@ -35,9 +35,7 @@ function InputDate(props: InputDateProps) {
     } 
   },[selectedDate])
 
-  const handleSetDate = useCallback((date:string)=>{
-    console.log({date});
-    
+  const handleSetDate = useCallback((date:string)=>{    
     setSelectedDate(date)
   },[])
 

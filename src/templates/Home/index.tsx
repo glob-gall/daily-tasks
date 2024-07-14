@@ -4,21 +4,28 @@ import * as S from './styles'
 import { FontAwesome5 } from '@expo/vector-icons';
 import Theme from "@/styles/theme";
 import CardList from "./CardList";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useEffect, useMemo } from "react";
 import useTaskStore from "@/store/task.store";
 import ProgressBar from "@/components/ProgressBar";
 import areSameDay from "@/utils/areSameDay";
 
 export default function Home() {
-  const { todayTasks, attTodaysTasks} = useTaskStore();  
+  const { todayTasks, attTodaysTasks, currentDay } = useTaskStore();  
   const router = useRouter();
-
-  useEffect(()=>{
-    console.log({update:'update tasks'});
-    
+  
+  const loadTasks = useCallback(() => {
     attTodaysTasks()
-  },[])
+  }, [currentDay,todayTasks,attTodaysTasks])
+  useFocusEffect(() => {
+    const today = new Date()
+    if (
+      !currentDay
+      ||(currentDay && !areSameDay(currentDay,today)
+    )) {
+      loadTasks()
+    }
+  });
 
   const concludeTaskPercentage = useMemo(() => {
     let countConcluded = 0;
@@ -42,7 +49,7 @@ export default function Home() {
           <ProgressBar progress={concludeTaskPercentage}/>
         </S.ProgressContainer>
 
-        <CardList tasks={todayTasks}/>
+        <CardList/>
         <S.CreateNewTask onPress={gotoRegisterCard}>
           <FontAwesome5 name="plus" size={24} color={Theme.colors.neutral['50']} />
         </S.CreateNewTask>

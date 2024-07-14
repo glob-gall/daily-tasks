@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { TaskFormFields, defaultTaskFormValues } from "@/entity/Task/form.dto";
 import { Task } from "@/entity/Task/dto";
 import { useRouter } from 'expo-router';
+import randomEmoji from '@/utils/randomEmoji';
 
 export default function RegisterTask() {
   const { addTask } = useTaskStore()
@@ -24,9 +25,14 @@ export default function RegisterTask() {
     handleSubmit,
     reset,
     formState: { errors },
+    setValue
   } = useForm({
     defaultValues: defaultTaskFormValues,
   })
+
+  useEffect(() => {
+    setValue('emoji',randomEmoji())    
+  }, [])
   
   const handleSubmitForm = useCallback((values: TaskFormFields)=>{    
     const task:Task = {
