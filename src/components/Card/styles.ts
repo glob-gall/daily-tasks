@@ -13,14 +13,13 @@ type Check = {
 export const Container = styled.View<Variant>`
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   flex-direction: row;
   height: 66px;
 
-  border-radius: 4px;
-  background-color: #fff;
-
+  
   ${props => css`
+  border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.background.wh};
     padding: ${props.theme.spacing.small} ${props.theme.spacing.default};
     
     ${props.color === 'red' && css`
@@ -57,8 +56,8 @@ export const Container = styled.View<Variant>`
       background-color: ${props.theme.colors.lime['50']};
     `}
     ${props.color === 'neutral' && css`
-      background-color: #fff;
-      /* background-color: ${props.theme.colors.neutral['50']}; */
+      background-color: ${props.theme.background.wh};
+      /* background-color: ${props.theme.background.base}; */
     `}
     ${props.color === 'orange' && css`
       background-color: ${props.theme.colors.orange['50']};
@@ -97,17 +96,10 @@ export const GotoDetails = styled.TouchableOpacity`
   flex: 1;
 `
 
-// export const EmojiContainer = styled.View`
-//   /* margin-left: 20px; */
-//   /* height: 40px; */
-//   width: 60px;
-//   /* background-color: blue; */
-//   display: flex;
-// `
-
 export const Emoji = styled.Text`
-/* background-color: red; */
-  font-size: 38px;
+  ${props => css`
+    font-size: ${props.theme.font.xlarge};
+  `}
 `
 
 export const InfoContainer = styled.View`
@@ -121,7 +113,7 @@ export const InfoContainer = styled.View`
 export const title = styled.Text<Check>`
   ${props => css`
     font-size: ${props.theme.font.default};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
     ${props.check && css`
       text-decoration: line-through;
     `}
@@ -131,7 +123,7 @@ export const title = styled.Text<Check>`
 export const Description = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.small};
-    color: ${props.theme.colors.neutral['600']};
+    color: ${props.theme.text.sc};
   `}
 `
 
@@ -142,13 +134,12 @@ export const Time = styled.Text<Variant & Check>`
       text-decoration: line-through;
     `}
     margin-right: ${props.theme.spacing.medium};
-    color: ${props.theme.colors.neutral['400']};
 
     ${props.color === 'red' && css`
-      color: ${props.theme.colors.red['500']};
+      color: ${props.theme.feedback.error};
     `}
     ${props.color === 'green' && css`
-      color: ${props.theme.colors.green['500']};
+      color: ${props.theme.feedback.success};
     `}
     ${props.color === 'yellow' && css`
       color: ${props.theme.colors.yellow['500']};
@@ -178,7 +169,7 @@ export const Time = styled.Text<Variant & Check>`
       color: ${props.theme.colors.lime['500']};
     `}
     ${props.color === 'neutral' && css`
-      color: ${props.theme.colors.neutral['500']};
+      color: ${props.theme.text.sc};
     `}
     ${props.color === 'orange' && css`
       color: ${props.theme.colors.orange['500']};
@@ -219,7 +210,7 @@ const BaseCheck = styled.View<Variant>`
   width: 34px;
   height: 34px;
   ${props => css`
-    border: 2px solid ${props.theme.colors.neutral['300']};
+    border: 2px solid ${props.theme.background.th};
   
     ${props.color === 'red' && css`
       border-color: ${props.theme.colors.red['300']};
@@ -255,7 +246,7 @@ const BaseCheck = styled.View<Variant>`
       border-color: ${props.theme.colors.lime['300']};
     `}
     ${props.color === 'neutral' && css`
-      border-color: ${props.theme.colors.neutral['300']};
+      border-color: ${props.theme.background.th};
     `}
     ${props.color === 'orange' && css`
       border-color: ${props.theme.colors.orange['300']};
@@ -292,8 +283,8 @@ export const Checked = styled(BaseCheck)`
   align-items: center;
   justify-content: center;
   ${props => css`
-    border-color: ${props.theme.colors.green['500']};
-    background-color: ${props.theme.colors.green['500']};
+    border-color: ${props.theme.feedback.success};
+    background-color: ${props.theme.feedback.success};
   `}
 `
 

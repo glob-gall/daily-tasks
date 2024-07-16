@@ -8,12 +8,12 @@ export const Container = styled.View`
 export const Title = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.title};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 export const Subtitle = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.small};
-    color: ${props.theme.colors.neutral['600']};
+    color: ${props.theme.text.sc};
   `}
 `

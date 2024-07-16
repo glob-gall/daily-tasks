@@ -11,8 +11,8 @@ export const CardInfo = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
     /* justify-content: center; */
-    background-color: #fff;
     ${props => css`
+      background-color: ${props.theme.background.wh};
       padding: ${props.theme.spacing.default};
       margin-bottom: ${props.theme.spacing.medium};
 

@@ -84,7 +84,7 @@ function InputDate(props: InputDateProps) {
         >
           <S.DatePicker
             options={{
-              mainColor:Theme.colors.neutral['700']
+              mainColor:Theme.text.pr
             }}
             current={selectedDate}
             selected={selectedDate}

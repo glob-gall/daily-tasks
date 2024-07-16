@@ -58,7 +58,7 @@ function Sidebar(props: SidebarProps) {
                     onPress={()=> goTo(link)}
                   >
                     <S.SidebarOptionIcon>
-                      <Icon color={Theme.colors.neutral['700']} size={24}/>
+                      <Icon color={Theme.text.pr} size={24}/>
                     </S.SidebarOptionIcon>
                     <S.SidebarOptionText>
                       {label}

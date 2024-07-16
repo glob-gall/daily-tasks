@@ -51,7 +51,7 @@ export default function Home() {
 
         <CardList/>
         <S.CreateNewTask onPress={gotoRegisterCard}>
-          <FontAwesome5 name="plus" size={24} color={Theme.colors.neutral['50']} />
+          <FontAwesome5 name="plus" size={24} color={Theme.background.base} />
         </S.CreateNewTask>
 
       </Margin>

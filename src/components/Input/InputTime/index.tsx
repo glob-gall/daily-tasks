@@ -90,7 +90,7 @@ function InputTime(props: InputTimeProps) {
             onBlur={handleBlurHours}
             maxLength={2}
             keyboardType='numeric' 
-            placeholderTextColor={Theme.colors.neutral['400']}
+            placeholderTextColor={Theme.text.placeholder}
             placeholder='00'
             onSubmitEditing={submitHours}
           />
@@ -108,7 +108,7 @@ function InputTime(props: InputTimeProps) {
             onBlur={handleBlurMinutes}
             maxLength={2}
             keyboardType='numeric' 
-            placeholderTextColor={Theme.colors.neutral['400']}
+            placeholderTextColor={Theme.text.placeholder}
             placeholder='00'
           />
         </S.InputWrapper>

@@ -10,7 +10,7 @@ export const Container = styled.View`
 `
 export const Required = styled.Text`
   ${props => css`
-    color: ${props.theme.colors.red['500']};
+    color: ${props.theme.feedback.error};
     font-weight: bold;
   `}
 `
@@ -18,7 +18,7 @@ export const Required = styled.Text`
 export const Label = styled.Text`
   font-weight: bold;
   ${props => css`
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
     margin-left: ${props.theme.spacing.small};
   `}
 `
@@ -27,20 +27,20 @@ export const InputText = styled.TextInput`
   height: 42px;
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 
 export const InputTextWrapper = styled.View<Variant>`
-  border-radius:4px;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['200']};
-    border: 2px solid ${props.theme.colors.neutral['200']};
+    border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.background.sc};
+    border: 2px solid ${props.theme.background.sc};
   
   
     ${props.error && css`
-      background-color: ${props.theme.colors.red['200']};
-      border-color: ${props.theme.colors.red['500']};
+      background-color: ${props.theme.background.error};
+      border-color: ${props.theme.feedback.error};
     `}
   `}
 `
@@ -48,7 +48,7 @@ export const InputTextWrapper = styled.View<Variant>`
   export const ErrorMsg = styled.Text`
   font-weight: bold;
   ${props => css`
-    color: ${props.theme.colors.red['500']};
+    color: ${props.theme.feedback.error};
     margin-left: ${props.theme.spacing.small};
   `}
 `

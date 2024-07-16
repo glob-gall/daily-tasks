@@ -29,7 +29,7 @@ export default function About() {
           
           <S.CardInfo onPress={openSite}>
             <S.CardIcon>
-              <Globe color={Theme.colors.neutral['700']}/>
+              <Globe color={Theme.text.pr}/>
             </S.CardIcon>
             <S.CardText>
               Site
@@ -38,7 +38,7 @@ export default function About() {
           
           <S.CardInfo onPress={openInstagram}>
             <S.CardIcon>
-              <Instagram color={Theme.colors.neutral['700']}/>
+              <Instagram color={Theme.text.pr}/>
             </S.CardIcon>
             <S.CardText>
               Instagram
@@ -47,7 +47,7 @@ export default function About() {
           
           <S.CardInfo onPress={openEmail}>
             <S.CardIcon>
-              <Mail color={Theme.colors.neutral['700']}/>
+              <Mail color={Theme.text.pr}/>
             </S.CardIcon>
             <S.CardText>
               luisfelipegalleguillos@hotmail.com

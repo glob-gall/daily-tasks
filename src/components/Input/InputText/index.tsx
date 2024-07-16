@@ -37,7 +37,7 @@ function InputText(props: InputTextProps) {
       <S.InputTextWrapper error={!!error?.message}>
         <S.InputText 
           {...props}
-          placeholderTextColor={Theme.colors.neutral['400']}
+          placeholderTextColor={Theme.text.placeholder}
         />
       </S.InputTextWrapper>
       {error?.message && (

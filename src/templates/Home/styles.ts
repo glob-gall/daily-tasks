@@ -9,7 +9,7 @@ export const CreateNewTask = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     ${props => css`
-      background-color: ${props.theme.colors.green['500']};
+      background-color: ${props.theme.feedback.success};
       position: absolute;
       bottom: ${props.theme.spacing.default};
       right: ${props.theme.spacing.small};

@@ -13,8 +13,8 @@ function ProgressBar(props:ProgressBarProps){
             progress={progress/100}
             width={null}
             borderColor="transparent"
-            color={Theme.colors.green['500']}
-            unfilledColor={Theme.colors.neutral['200']}
+            color={Theme.feedback.success}
+            unfilledColor={Theme.background.sc}
             height={8}
           />
         </S.ProgressBarContainer> 

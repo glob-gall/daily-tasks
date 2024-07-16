@@ -21,34 +21,28 @@ export const DayButton = styled.TouchableOpacity<Variant>`
     align-items: center;
     justify-content: center;
     ${props => props.active ? css`
-      background-color: ${props.theme.colors.green['500']};
-      /* bottom: ${props.theme.spacing.default}; */
+      background-color: ${props.theme.feedback.success};
     `: css`
-      background-color: ${props.theme.colors.neutral['200']};
-      /* bottom: ${props.theme.spacing.default}; */
+      background-color: ${props.theme.background.sc};
     `}
 `
 
 export const DayButtonText = styled.Text<Variant>`
-  /* width: 56px; */
   text-align: center;
-  /* font-weight: bold; */
 
   ${props => css`
     font-size: ${props.theme.font.title};
   `}
 
   ${props => props.active ? css`
-    color: #fff;
-    /* bottom: ${props.theme.spacing.default}; */
+    color: ${props.theme.text.inverted};
   `: css`
-    color: ${props.theme.colors.neutral['500']};
-    /* bottom: ${props.theme.spacing.default}; */
+    color: ${props.theme.text.sc};
   `}
 `
 export const DayButtonLabel = styled.Text`
   font-weight: bold;
   ${props => css`
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `

@@ -105,11 +105,11 @@ export default function UpdateTask() {
 
           <S.ButtonContainer>
             <S.ButtonCancel onPress={handleCancel}>
-              <FontAwesome5 name="times" size={28} color={Theme.colors.neutral['50']} />
+              <FontAwesome5 name="times" size={28} color={Theme.background.base} />
             </S.ButtonCancel>
 
             <S.ButtonCreate onPress={handleSubmit(handleSubmitForm)}>
-              <FontAwesome5 name="check" size={24} color={Theme.colors.neutral['50']} />
+              <FontAwesome5 name="check" size={24} color={Theme.background.base} />
             </S.ButtonCreate>
           </S.ButtonContainer>
       </Margin>

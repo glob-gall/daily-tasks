@@ -20,6 +20,6 @@ export const EmptyList = styled.View`
 export const EmptyListText = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.title};
-    color: ${props.theme.colors.neutral['400']};
+    color: ${props.theme.text.placeholder};
   `}
 `

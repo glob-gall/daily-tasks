@@ -10,30 +10,29 @@ type ItemVariant = {
 
 export const Container = styled.View`
   flex: 1;
-  border-radius: 4px;
   ${props => css`
-    /* background-color: ${props.theme.colors.neutral['200']}; */
+  border-radius: ${props.theme.border.radius};
   `}
 `
 export const InputWrapper = styled.View`
   height: 44px;
-  border-radius: 4px;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['200']};
+  border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.background.sc};
   `}
 `
 
 export const Label = styled.Text`
   font-weight: bold;
   ${props => css`
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
     margin-left: ${props.theme.spacing.small};
   `}
 `
 
 export const Required = styled.Text`
   ${props => css`
-    color: ${props.theme.colors.red['500']};
+    color: ${props.theme.feedback.error};
     font-weight: bold;
   `}
 `
@@ -42,14 +41,14 @@ export const Item = styled.View<ItemVariant>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 4px;
   height: 44px;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['50']};
+  border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.background.base};
   `}
   
   ${props => props.isSelected && css`
-  background-color: ${props.theme.colors.neutral['200']};
+  background-color: ${props.theme.background.sc};
   `}
 `
 
@@ -57,7 +56,7 @@ export const ItemLabel = styled.Text`
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
     font-size: ${props.theme.font.default};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 
@@ -65,7 +64,7 @@ export const ItemIcon = styled.View`
   margin-left: auto;
   ${props => css`
     margin-right: ${props.theme.spacing.medium};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 
@@ -74,14 +73,14 @@ export const ColorPreview = styled.Text<Variant>`
   height: 36px;
   border-radius: 18px;
   text-align: center;
-  background-color: #fff;
-
+  
   ${props => css`
+    background-color: ${props.theme.background.wh};
     margin-left: ${props.theme.spacing.medium};
   `}
 
   ${props => props.color === 'red' && css`
-    background-color: ${props.theme.colors.red['200']};
+    background-color: ${props.theme.background.error};
     `}
   ${props => props.color === 'green' && css`
     background-color: ${props.theme.colors.green['200']};

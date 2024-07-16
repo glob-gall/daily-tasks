@@ -4,6 +4,8 @@ import { useCallback } from 'react'
 import useTaskStore from '@/store/task.store'
 import {Check} from 'lucide-react-native'
 import { useRouter } from 'expo-router'
+import Theme from '@/styles/theme'
+
 type CardProps = {
   task: Task
   hasCheck?:boolean
@@ -42,7 +44,7 @@ function Card(props: CardProps) {
         {/* </S.EmojiContainer> */}
 
         <S.InfoContainer>
-          <S.title check={checked}>
+          <S.title check={hasCheck ? checked : false}>
             {name}
           </S.title>
           {
@@ -56,7 +58,7 @@ function Card(props: CardProps) {
       </S.GotoDetails>
       
       
-      <S.Time color={color} check={checked}>
+      <S.Time color={color} check={hasCheck ? checked : false}>
         {time}
       </S.Time>
 
@@ -65,7 +67,7 @@ function Card(props: CardProps) {
           { checked ? (
             <S.Checked color={color}>
               <Check size={24}
-                color="#fff"
+                color={Theme.text.inverted}
               />
             </S.Checked>
           ) : (

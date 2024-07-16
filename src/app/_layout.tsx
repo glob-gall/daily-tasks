@@ -7,10 +7,10 @@ import { ThemeProvider } from "styled-components/native"
 const screenOption: any = {
   headerTitleAlign:'center',
   headerStyle:{
-    backgroundColor:Theme.colors.neutral['50'],
+    backgroundColor:Theme.background.base,
   },
   headerShadowVisible:false,
-  statusBarColor:Theme.colors.neutral['50'],
+  statusBarColor:Theme.background.base,
   statusBarStyle: 'dark',
   headerRight: ()=>(
     <Sidebar

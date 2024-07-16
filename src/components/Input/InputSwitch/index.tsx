@@ -43,10 +43,10 @@ function InputSwitch(props: InputSwitchProps) {
       }
 
       <SwitchSelector
-        selectedColor="#fff"
-        buttonColor={Theme.colors.green['500']}
-        textColor={Theme.colors.neutral['500']}
-        backgroundColor={Theme.colors.neutral['200']}
+        selectedColor={Theme.text.inverted}
+        buttonColor={Theme.feedback.success}
+        textColor={Theme.text.sc}
+        backgroundColor={Theme.background.sc}
         borderRadius={4}
         height={44}
         bold

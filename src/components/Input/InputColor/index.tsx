@@ -90,9 +90,9 @@ function InputColor(props: InputColorProps){
             {/* <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} /> */}
             <S.ItemIcon>
               {isOpened?(
-                <FontAwesome5 name="angle-up" size={24} color={Theme.colors.neutral['400']} />
+                <FontAwesome5 name="angle-up" size={24} color={Theme.text.placeholder} />
               ):(
-                <FontAwesome5 name="angle-down" size={24} color={Theme.colors.neutral['400']} />
+                <FontAwesome5 name="angle-down" size={24} color={Theme.text.placeholder} />
               )}
             </S.ItemIcon>
           </S.Item>

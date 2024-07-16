@@ -6,7 +6,7 @@ export const Container = styled.View`
 `
 export const Required = styled.Text`
   ${props => css`
-    color: ${props.theme.colors.red['500']};
+    color: ${props.theme.feedback.error};
     font-weight: bold;
   `}
 `
@@ -14,7 +14,7 @@ export const Required = styled.Text`
 export const Label = styled.Text`
   font-weight: bold;
   ${props => css`
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
     margin-left: ${props.theme.spacing.small};
   `}
 `
@@ -23,18 +23,18 @@ export const Input = styled.TextInput`
   height: 44px;
   ${props => css`
     margin-left: ${props.theme.spacing.medium};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 
 export const EmojiSelectorButton = styled.TouchableOpacity`
-  border-radius:4px;
   height: 124px;
   display: flex;
   align-items: center;
   justify-content: center;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['200']};
+    border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.background.sc};
   `}
 `
 
@@ -44,7 +44,7 @@ export const HiddenInput = styled.TextInput`
 export const ShowEmoji = styled.Text`
   font-size: 82px;
   ${props => css`
-    /* background-color: ${props.theme.colors.neutral['200']}; */
+    /* background-color: ${props.theme.background.sc}; */
   `}
 `
   

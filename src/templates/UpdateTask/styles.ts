@@ -26,13 +26,13 @@ export const Button = styled.TouchableOpacity`
 `
 export const ButtonCreate = styled(Button)`
     ${props => css`
-      background-color: ${props.theme.colors.green['500']};
+      background-color: ${props.theme.feedback.success};
       right: ${props.theme.spacing.small};
     `}
 `
 export const ButtonCancel = styled(Button)`
     ${props => css`
-      background-color: ${props.theme.colors.red['500']};
+      background-color: ${props.theme.feedback.error};
       left: ${props.theme.spacing.small};
     `}
 `

@@ -9,7 +9,7 @@ export const Container = styled.View`
 `
 export const Required = styled.Text`
   ${props => css`
-    color: ${props.theme.colors.red['500']};
+    color: ${props.theme.feedback.error};
     font-weight: bold;
   `}
 `
@@ -17,7 +17,7 @@ export const Required = styled.Text`
 export const Label = styled.Text`
   font-weight: bold;
   ${props => css`
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
     margin-left: ${props.theme.spacing.small};
   `}
 `
@@ -25,7 +25,7 @@ export const Label = styled.Text`
 export const Date = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.medium};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 
@@ -33,20 +33,19 @@ export const Date = styled.Text`
 export const InputGroupWrapper = styled.TouchableOpacity`
   align-items: center;
   flex-direction: row;
-  border-radius:4px;
   ${props => css`
-    /* background-color: ${props.theme.colors.neutral['200']}; */
+    border-radius: ${props.theme.border.radius};
   `}
 `
 
 export const InputWrapper = styled.View`
   height: 44px;
   width: 44px;
-  border-radius:4px;
   align-items: center;
   justify-content: center;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['200']};
+    border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.background.sc};
   `}
 `
 export const InputYearWrapper = styled(InputWrapper)`
@@ -58,26 +57,25 @@ export const InputYearWrapper = styled(InputWrapper)`
 export const Separator = styled.Text`
   margin: 0 2px;
   font-weight: bold;
-  font-size: 24px;
   ${props => css`
-  color: ${props.theme.colors.neutral['500']};
+    font-size: ${props.theme.font.large};
+    color: ${props.theme.text.sc};
   `}
 `
 
   export const CalendarModal = styled.Modal`
-    border-radius:4px;
     ${props => css`
-    /* background-color: ${props.theme.colors.neutral['200']}; */
+      border-radius: ${props.theme.border.radius};
     `}
     `
   export const CalendarContainer = styled.View`
-    background-color: #0005;
-    border-radius:4px;
     flex: 1;
     align-items: center;
     justify-content: center;
     
     ${props => css`
+      background-color: ${props.theme.background.shadow};
+      border-radius: ${props.theme.border.radius};
       padding: ${props.theme.spacing.small} ${props.theme.spacing.default};
     `}
   `
@@ -93,21 +91,20 @@ export const DateDialog = styled.View`
 
 export const OkButtonContainer = styled.View`
   width: 100%;
-  background-color: #fff;
   ${props => css`
+    background-color: ${props.theme.background.wh};
     padding-right: ${props.theme.spacing.default} ;
     padding-bottom: ${props.theme.spacing.default} ;
-      /* background-color: ${props.theme.colors.neutral['200']}; */
   `}
 `
 export const OkButton = styled.TouchableOpacity`
   margin-left: auto;
-  border-radius: 4px;
   ${props => css`
-    background-color: ${props.theme.colors.neutral['700']};
+  border-radius: ${props.theme.border.radius};
+    background-color: ${props.theme.text.pr};
     padding: ${props.theme.spacing.medium} ${props.theme.spacing.default};
     ${props.disabled && css`
-      background-color: ${props.theme.colors.neutral['200']};
+      background-color: ${props.theme.background.sc};
       padding: ${props.theme.spacing.medium} ${props.theme.spacing.default};
     `}
   `}
@@ -115,7 +112,7 @@ export const OkButton = styled.TouchableOpacity`
 export const OkButtonText = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.default};
-    color: ${props.theme.colors.neutral['100']};
+    color: ${props.theme.background.pr};
   `}
 `
 
@@ -123,6 +120,6 @@ export const CloseModal = styled.View`
   width: 100%;
   flex: 1;
   ${props => css`
-      /* background-color: ${props.theme.colors.neutral['200']}; */
+      /* background-color: ${props.theme.background.sc}; */
   `}
 `

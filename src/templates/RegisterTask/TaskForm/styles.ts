@@ -31,7 +31,7 @@ export const SelectorWrapper = styled.View`
   `}
 `
 export const InputRowWrapper = styled.View`
-flex: 1;
+  flex: 1;
   ${props => css`
     margin-left: ${props.theme.spacing.large};
   `}

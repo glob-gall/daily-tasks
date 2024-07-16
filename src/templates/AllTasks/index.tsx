@@ -26,7 +26,7 @@ export default function AllTasks() {
     sunday: true,
   })
 
-  const handleChangeFilterDay = (days:Days) => {    
+  const handleChangeFilterDay = (days:Days) => {   
     setDayFilter({
       monday: days.monday,
       thursday: days.thursday,

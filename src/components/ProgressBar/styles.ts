@@ -7,7 +7,9 @@ export const Container = styled.View`
     justify-content: center;
     flex-direction: row;
   width: 100%;
-  border-radius: 4px;
+  ${props => css`
+  border-radius: ${props.theme.border.radius};
+  `}
 `
 export const ProgressBarContainer = styled.View`
   display: flex;
@@ -17,13 +19,13 @@ export const ProgressBarContainer = styled.View`
 export const Title = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.title};
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `
 export const Subtitle = styled.Text`
   ${props => css`
     font-size: ${props.theme.font.small};
-    color: ${props.theme.colors.neutral['600']};
+    color: ${props.theme.text.sc};
   `}
 `
 
@@ -37,6 +39,6 @@ export const Percent = styled.Text`
   /* background-color: red; */
   ${props => css`
     /* margin-left: ${props.theme.spacing.medium}; */
-    color: ${props.theme.colors.neutral['700']};
+    color: ${props.theme.text.pr};
   `}
 `

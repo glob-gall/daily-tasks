@@ -37,7 +37,7 @@ export default function Donate() {
               </S.PixCopiColaText>
             </S.TextsContainer>
             <S.CopyPasteIcon>
-              <Copy color={Theme.colors.neutral['700']} />
+              <Copy color={Theme.text.pr} />
             </S.CopyPasteIcon>
           </S.PixCopiCola>
         </S.Container>
