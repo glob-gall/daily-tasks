@@ -1,6 +1,6 @@
 import Theme from '@/styles/theme';
 import * as S from './styles'
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Modal from '@/components/Modal';
 
 export type InputDateProps = {
@@ -16,6 +16,11 @@ function InputDate(props: InputDateProps) {
 
   const [selectedDate, setSelectedDate] = useState('');
   const [modalOpen, setModalOpen] = useState(false)
+
+  const [year,month,day] = useMemo(() => {
+    return selectedDate.split('/')
+    
+  },[selectedDate])
 
   useEffect(() => {     
     if (initialValue) {
@@ -60,19 +65,19 @@ function InputDate(props: InputDateProps) {
       >
         <S.InputWrapper>
           <S.Date>
-            {selectedDate.split('/')[2]}
+            {day}
           </S.Date>
         </S.InputWrapper>
         <S.Separator>/</S.Separator>
         <S.InputWrapper>
         <S.Date>
-        {selectedDate.split('/')[1]}
+        {month}
         </S.Date>
         </S.InputWrapper>
         <S.Separator>/</S.Separator>
         <S.InputYearWrapper>
         <S.Date>
-          {selectedDate.split('/')[0]}
+          {year}
         </S.Date>
         </S.InputYearWrapper>
       </S.InputGroupWrapper>

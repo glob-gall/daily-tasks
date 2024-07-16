@@ -1,6 +1,6 @@
 import { Task } from '@/entity/Task/dto'
 import * as S from './styles'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import useTaskStore from '@/store/task.store'
 import {Check} from 'lucide-react-native'
 import { useRouter } from 'expo-router'
@@ -14,8 +14,14 @@ type CardProps = {
 function Card(props: CardProps) {
   const {hasCheck, task} = props
   const {
-    name,time,description,emoji,color, checked, id
+    name,time,description,emoji,color, checked, id, date
   } = task
+
+  const formatedDate = useMemo(() => {
+    if (!date) return null
+    const [year,month,day] = date.split('/')
+    return `${day}/${month}/${year}`
+  }, [])
 
   const {navigate} = useRouter();
 
@@ -55,12 +61,12 @@ function Card(props: CardProps) {
             )
           }
         </S.InfoContainer>
+      <S.Time color={color} check={hasCheck ? checked : false}>
+      {date && `${formatedDate}`}{date && time &&' '}{time} 
+      </S.Time>
       </S.GotoDetails>
       
       
-      <S.Time color={color} check={hasCheck ? checked : false}>
-        {time}
-      </S.Time>
 
       {hasCheck && (
         <S.CheckButton onPress={handleSetCheck}>

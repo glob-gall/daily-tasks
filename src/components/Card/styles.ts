@@ -18,7 +18,7 @@ export const Container = styled.View<Variant>`
 
   
   ${props => css`
-  border-radius: ${props.theme.border.radius};
+    border-radius: ${props.theme.border.radius};
     background-color: ${props.theme.background.wh};
     padding: ${props.theme.spacing.small} ${props.theme.spacing.default};
     
@@ -129,11 +129,12 @@ export const Description = styled.Text`
 
 export const Time = styled.Text<Variant & Check>`
   font-weight: bold;
+
   ${props => css`
+    font-size: ${props.theme.font.small};
     ${props.check && css`
       text-decoration: line-through;
     `}
-    margin-right: ${props.theme.spacing.medium};
 
     ${props.color === 'red' && css`
       color: ${props.theme.feedback.error};
@@ -203,6 +204,9 @@ export const Time = styled.Text<Variant & Check>`
 
 
 export const CheckButton = styled.TouchableOpacity`
+  ${props => css`
+        margin-left: ${props.theme.spacing.medium};
+  `}
 ` 
 
 const BaseCheck = styled.View<Variant>`
