@@ -1,9 +1,8 @@
 import Base from "../Base";
 import { Margin } from "@/components/Spacing/Margin";
-import * as S from './styles'
+import * as S from "./styles";
 import CardList from "./CardList";
-import { useRouter } from "expo-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import useTaskStore from "@/store/task.store";
 import InputText from "@/components/Input/InputText";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
@@ -11,12 +10,11 @@ import InputWeekDay, { Days } from "@/components/Input/InputWeekDay";
 import { filterTasksByDays, filterTasksByName } from "@/utils/filterTasks";
 
 export default function AllTasks() {
-  const {tasks} = useTaskStore();
-  const router = useRouter();
-  
-  const [filter,setFilter] = useState('')
+  const { tasks } = useTaskStore();
 
-  const [dayFilter,setDayFilter] = useState<Days>({
+  const [filter, setFilter] = useState("");
+
+  const [dayFilter, setDayFilter] = useState<Days>({
     monday: true,
     thursday: true,
     wednesday: true,
@@ -24,9 +22,9 @@ export default function AllTasks() {
     friday: true,
     saturday: true,
     sunday: true,
-  })
+  });
 
-  const handleChangeFilterDay = (days:Days) => {   
+  const handleChangeFilterDay = (days: Days) => {
     setDayFilter({
       monday: days.monday,
       thursday: days.thursday,
@@ -35,18 +33,18 @@ export default function AllTasks() {
       friday: days.friday,
       saturday: days.saturday,
       sunday: days.sunday,
-    })
-  }
+    });
+  };
 
-  const filteredTasks = useMemo(
-    ()=> {
-      const filteredByName = filterTasksByName(tasks, filter)
-      const filteredByDay = filterTasksByDays(filteredByName, dayFilter)
-      return filteredByDay
-    },
-  [tasks,filter, dayFilter])
+  const filteredTasks = useMemo(() => {
+    const filteredByName = filterTasksByName(tasks, filter);
+    const filteredByDay = filterTasksByDays(filteredByName, dayFilter);
+    return filteredByDay;
+  }, [tasks, filter, dayFilter]);
 
-  const handleInputChange = (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+  const handleInputChange = (
+    event: NativeSyntheticEvent<TextInputChangeEventData>,
+  ) => {
     const text = event.nativeEvent.text;
     setFilter(text);
   };
@@ -55,21 +53,18 @@ export default function AllTasks() {
     <Base>
       <Margin>
         <S.Search>
-
           <InputText
             value={filter}
             onChange={handleInputChange}
-            label="filtar por titulo" 
+            label="filtar por titulo"
           />
           <InputWeekDay
             label=""
             value={dayFilter}
             onChange={handleChangeFilterDay}
           />
-
         </S.Search>
-        <CardList tasks={filteredTasks}/>
-
+        <CardList tasks={filteredTasks} />
       </Margin>
     </Base>
   );

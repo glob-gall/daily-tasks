@@ -4,20 +4,19 @@ function isDate(value: any): value is Date {
 
 function areSameDay(date1: Date | string, date2: Date | string): boolean {
   let firstDate = date1;
-  if (!isDate(firstDate)){
+  if (!isDate(firstDate)) {
     firstDate = new Date(Date.parse(firstDate));
   }
   let secoundDate = date2;
-  if (!isDate(secoundDate)){
+  if (!isDate(secoundDate)) {
     secoundDate = new Date(Date.parse(secoundDate));
   }
-  
-  const isEqual = (
+
+  const isEqual =
     firstDate.getFullYear() === secoundDate.getFullYear() &&
     firstDate.getMonth() === secoundDate.getMonth() &&
-    firstDate.getDate() === secoundDate.getDate()
-  )
+    firstDate.getDate() === secoundDate.getDate();
   return isEqual;
 }
 
-export default areSameDay
+export default areSameDay;

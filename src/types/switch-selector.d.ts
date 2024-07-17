@@ -1,6 +1,5 @@
 declare module "react-native-switch-selector" {
   import { Component } from "react";
-  import { ImageStyle, RegisteredStyle, TextStyle, ViewStyle } from "react-native";
 
   export interface ISwitchSelectorOption {
     label: string;
@@ -38,5 +37,8 @@ declare module "react-native-switch-selector" {
     };
   }
 
-  export default class SwitchSelector extends Component<ISwitchSelectorProps, any> {}
+  export default class SwitchSelector extends Component<
+    ISwitchSelectorProps,
+    any
+  > {}
 }

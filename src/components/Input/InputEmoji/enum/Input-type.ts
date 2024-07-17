@@ -1,1 +1,1 @@
-export type InputType = 'text' | 'emoji'
+export type InputType = "text" | "emoji";

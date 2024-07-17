@@ -1,82 +1,86 @@
-import Theme from '@/styles/theme';
-import * as S from './styles'
-import { ForwardRefRenderFunction, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
-import { NativeSyntheticEvent, TextInput, TextInputChangeEventData } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import Theme from "@/styles/theme";
+import * as S from "./styles";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputChangeEventData,
+} from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
 // export type Variant = {
 //   color?: CardColors
 // }
 
 export type InputTimeProps = {
-  label?: string
-  value?: string
-  required?: boolean
-  onChange: (e:string) => void
-  initialValue?: string
-}
+  label?: string;
+  value?: string;
+  required?: boolean;
+  onChange: (e: string) => void;
+  initialValue?: string;
+};
 
 function InputTime(props: InputTimeProps) {
-  const { label, required, initialValue, onChange } = props
+  const { label, required, initialValue, onChange } = props;
   const minutesRef = useRef<TextInput>(null);
 
-  const [hours, setHours] = useState('')
-  const [minutes, setMinutes] = useState('')
-  
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+
   useEffect(() => {
-    const initial = initialValue?.split(':')
+    const initial = initialValue?.split(":");
     if (initial && initial.length > 1) {
-      setHours(initial[0])
-      setMinutes(initial[1])
-    }      
-  } ,[initialValue])
+      setHours(initial[0]);
+      setMinutes(initial[1]);
+    }
+  }, [initialValue]);
 
-  useEffect(()=>{
-    onChange(`${hours}:${minutes}`)
-  },[hours, minutes])
+  useEffect(() => {
+    onChange(`${hours}:${minutes}`);
+  }, [hours, minutes, onChange]);
 
+  const handleSetHour = useCallback(
+    (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+      let value = e.nativeEvent.text;
+      if (+value > 23) value = "23";
+      setHours(value);
 
-  const handleSetHour = useCallback((
-    e: NativeSyntheticEvent<TextInputChangeEventData>
-  ) => {
-    let value = e.nativeEvent.text
-    if (+value > 23) value = '23'
-    setHours(value)
-    
-    if (value === '') setMinutes('')
-    else if (value !== '' && minutes === '') setMinutes('00')
-  }, [minutes])
+      if (value === "") setMinutes("");
+      else if (value !== "" && minutes === "") setMinutes("00");
+    },
+    [minutes],
+  );
 
-  const handleSetMinutes = useCallback((
-    e: NativeSyntheticEvent<TextInputChangeEventData>
-  ) => {    
-    let value = e.nativeEvent.text
-    if (+value > 59) value = '59'
-    setMinutes(value)
-  }, [])
+  const handleSetMinutes = useCallback(
+    (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+      let value = e.nativeEvent.text;
+      if (+value > 59) value = "59";
+      setMinutes(value);
+    },
+    [],
+  );
 
-  const submitHours = useCallback(() => {    
+  const submitHours = useCallback(() => {
     if (minutesRef.current) {
-      minutesRef.current.focus()
+      minutesRef.current.focus();
     }
-  }, [])
+  }, []);
 
-  const handleBlurHours = useCallback(() => {    
-  if (hours.length === 1 && hours !== ''){
-    setHours(s => '0'+s)
-  }
-  }, [hours])
-  const handleBlurMinutes = useCallback(() => { 
-    if (minutes === '' && hours !== '') {
-      setMinutes('00')
-    } else if (minutes.length === 1 && minutes !== ''){
-      setMinutes(s => '0'+s)
+  const handleBlurHours = useCallback(() => {
+    if (hours.length === 1 && hours !== "") {
+      setHours((s) => "0" + s);
     }
-  }, [hours, minutes])
+  }, [hours]);
+  const handleBlurMinutes = useCallback(() => {
+    if (minutes === "" && hours !== "") {
+      setMinutes("00");
+    } else if (minutes.length === 1 && minutes !== "") {
+      setMinutes((s) => "0" + s);
+    }
+  }, [hours, minutes]);
 
   return (
     <S.Container>
-
       <S.Label>
         {label}
         {required && <S.Required>*</S.Required>}
@@ -89,9 +93,9 @@ function InputTime(props: InputTimeProps) {
             onChange={handleSetHour}
             onBlur={handleBlurHours}
             maxLength={2}
-            keyboardType='numeric' 
+            keyboardType="numeric"
             placeholderTextColor={Theme.text.placeholder}
-            placeholder='00'
+            placeholder="00"
             onSubmitEditing={submitHours}
           />
         </S.InputWrapper>
@@ -107,15 +111,14 @@ function InputTime(props: InputTimeProps) {
             onChange={handleSetMinutes}
             onBlur={handleBlurMinutes}
             maxLength={2}
-            keyboardType='numeric' 
+            keyboardType="numeric"
             placeholderTextColor={Theme.text.placeholder}
-            placeholder='00'
+            placeholder="00"
           />
         </S.InputWrapper>
       </S.InputHourWrapper>
-
     </S.Container>
-  )
+  );
 }
 
-export default InputTime
+export default InputTime;

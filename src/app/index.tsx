@@ -1,21 +1,21 @@
-import { Stack, useNavigation } from 'expo-router';
-import { SafeAreaView, StatusBar, Text, View } from 'react-native';
-import { useEffect } from 'react';
-import Home from '@/templates/Home';
-import Header from '@/components/Header';
-import getWeekDay from '@/utils/getWeekDay';
-import Test from '@/templates/Test';
+import { useNavigation } from "expo-router";
+import { useEffect } from "react";
+import Home from "@/templates/Home";
+import Header from "@/components/Header";
+import getWeekDay from "@/utils/getWeekDay";
 
 export default function HomePage() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.setOptions({ 
+    navigation.setOptions({
       headerShown: true,
-      headerTitle: () => <Header title='Metas de hoje' subtitle={getWeekDay()}/>, 
+      headerTitle: () => (
+        <Header title="Metas de hoje" subtitle={getWeekDay()} />
+      ),
     });
   }, [navigation]);
 
   // return (<Test/>);
-  return (<Home/>);
+  return <Home />;
 }

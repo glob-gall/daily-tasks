@@ -1,5 +1,5 @@
-import { Text, View, TextInput, Button } from "react-native"
-import { useForm, Controller } from "react-hook-form"
+import { Text, View, TextInput, Button } from "react-native";
+import { useForm, Controller } from "react-hook-form";
 import InputText from "@/components/Input/InputText";
 
 export default function Test() {
@@ -12,9 +12,8 @@ export default function Test() {
       firstName: "",
       lastName: "",
     },
-  })
-  const onSubmit = (data:any) => console.log(data)
-
+  });
+  const onSubmit = (data: any) => console.log(data);
 
   return (
     <View>
@@ -35,7 +34,6 @@ export default function Test() {
       />
       {errors.firstName && <Text>This is required.</Text>}
 
-
       <Controller
         control={control}
         rules={{
@@ -52,8 +50,7 @@ export default function Test() {
         name="lastName"
       />
 
-
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
     </View>
-  )
+  );
 }

@@ -1,39 +1,37 @@
-import * as S from './styles'
-import { useCallback, useEffect } from 'react'
-import DayButton from './DayButton'
+import * as S from "./styles";
+import { useCallback } from "react";
+import DayButton from "./DayButton";
 
 export type InputWeekDayProps = {
-  label: string
-  value: Days
-  onChange?: (e:Days) => void
-  required?: boolean
-}
+  label: string;
+  value: Days;
+  onChange?: (e: Days) => void;
+  required?: boolean;
+};
 
 export type Days = {
-  sunday: boolean
-  monday: boolean
-  tuesday: boolean
-  wednesday: boolean
-  thursday: boolean
-  friday: boolean
-  saturday: boolean
-}
-export type DayNames = keyof Days
+  sunday: boolean;
+  monday: boolean;
+  tuesday: boolean;
+  wednesday: boolean;
+  thursday: boolean;
+  friday: boolean;
+  saturday: boolean;
+};
+export type DayNames = keyof Days;
 
 function InputWeekDay(props: InputWeekDayProps) {
-  const {
-    label,
-    required,
-    value,
-    onChange 
-  } = props
+  const { label, required, value, onChange } = props;
 
-  const handleSetDay = useCallback((name:DayNames) => {
-    const days:Days = value
-    days[name] = !days[name] 
-    
-    if (!!onChange) onChange(days)
-  }, [onChange,value])
+  const handleSetDay = useCallback(
+    (name: DayNames) => {
+      const days: Days = value;
+      days[name] = !days[name];
+
+      if (!!onChange) onChange(days);
+    },
+    [onChange, value],
+  );
 
   return (
     <S.Container>
@@ -45,56 +43,56 @@ function InputWeekDay(props: InputWeekDayProps) {
       <S.InputWrapper>
         <DayButton
           onChange={handleSetDay}
-          name='monday'
+          name="monday"
           active={value.monday}
-          label='Segunda'
-          text='S'
+          label="Segunda"
+          text="S"
         />
         <DayButton
           onChange={handleSetDay}
-          name='tuesday'
+          name="tuesday"
           active={value.tuesday}
-          label='Terça'
-          text='T'
+          label="Terça"
+          text="T"
         />
         <DayButton
           onChange={handleSetDay}
-          name='wednesday'
+          name="wednesday"
           active={value.wednesday}
-          label='Quarta'
-          text='Q'
+          label="Quarta"
+          text="Q"
         />
         <DayButton
           onChange={handleSetDay}
-          name='thursday'
+          name="thursday"
           active={value.thursday}
-          label='Quinta'
-          text='Q'
+          label="Quinta"
+          text="Q"
         />
         <DayButton
           onChange={handleSetDay}
-          name='friday'
+          name="friday"
           active={value.friday}
-          label='Sexta'
-          text='S'
+          label="Sexta"
+          text="S"
         />
         <DayButton
           onChange={handleSetDay}
-          name='saturday'
+          name="saturday"
           active={value.saturday}
-          label='Sabado'
-          text='S'
+          label="Sabado"
+          text="S"
         />
         <DayButton
           onChange={handleSetDay}
-          name='sunday'
+          name="sunday"
           active={value.sunday}
-          label='Domingo'
-          text='D'
+          label="Domingo"
+          text="D"
         />
       </S.InputWrapper>
     </S.Container>
-  )
+  );
 }
 
-export default InputWeekDay
+export default InputWeekDay;

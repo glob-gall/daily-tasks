@@ -1,10 +1,9 @@
 // styled.d.ts
 
-import { ThemeType } from '@/styles/theme';
-import 'styled-components';
+import "styled-components";
 
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
-    colors: any
+    colors: any;
   }
 }

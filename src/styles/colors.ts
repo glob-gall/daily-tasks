@@ -285,7 +285,7 @@ const Colors = {
     900: "#881337",
     950: "#4c0519",
   },
-}
+};
 
-export type ColorNames = keyof typeof Colors
-export default Colors
+export type ColorNames = keyof typeof Colors;
+export default Colors;

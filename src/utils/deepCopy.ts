@@ -1,4 +1,4 @@
-function deepCopy<T>(a:T): T {
-  return JSON.parse(JSON.stringify(a)) as T
+function deepCopy<T>(a: T): T {
+  return JSON.parse(JSON.stringify(a)) as T;
 }
-export default deepCopy
+export default deepCopy;

@@ -1,19 +1,20 @@
-import { Text } from 'react-native'
-import * as S from './styles'
+import * as S from "./styles";
 type HeaderProps = {
-  title:string
-  subtitle?:string
-}
+  title: string;
+  subtitle?: string;
+};
 
-function Header(props:HeaderProps){
-  const {title,subtitle} = props
+function Header(props: HeaderProps) {
+  const { title, subtitle } = props;
   return (
     <S.Container>
-      <S.Title style={{ fontSize: 18, fontWeight: 'bold' }}>{title}</S.Title>
+      <S.Title style={{ fontSize: 18, fontWeight: "bold" }}>{title}</S.Title>
       {subtitle && (
-        <S.Subtitle style={{ fontSize: 12, color: 'gray' }}>{subtitle}</S.Subtitle>
+        <S.Subtitle style={{ fontSize: 12, color: "gray" }}>
+          {subtitle}
+        </S.Subtitle>
       )}
     </S.Container>
-  )
+  );
 }
-export default Header
+export default Header;
