@@ -146,9 +146,7 @@ export const Description = styled.Text`
   `}
 `;
 
-export const Time = styled.Text<Variant & Check>`
-  font-weight: bold;
-
+const DateTimeBase = styled.Text<Variant & Check>`
   ${(props) => css`
     font-size: ${props.theme.font.small};
     ${props.check &&
@@ -241,6 +239,16 @@ export const Time = styled.Text<Variant & Check>`
       color: ${props.theme.colors.zinc["500"]};
     `}
   `}
+`;
+
+export const DateTime = styled.View`
+  display: flex;
+  align-items: flex-end;
+`;
+export const Date = styled(DateTimeBase)``;
+
+export const Time = styled(DateTimeBase)`
+  font-weight: bold;
 `;
 
 export const CheckButton = styled.TouchableOpacity`

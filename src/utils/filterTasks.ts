@@ -3,6 +3,8 @@ import { Task } from "@/entity/Task/dto";
 
 export function filterTasksByDays(tasks: Task[], days: Days) {
   const filteredByDay = tasks.filter((t) => {
+    if (t.type === "event") return true;
+
     if (!t.days) return false;
     if (t.days.monday && days.monday) {
       return true;
@@ -23,6 +25,7 @@ export function filterTasksByDays(tasks: Task[], days: Days) {
 
   return filteredByDay;
 }
+
 export function filterTasksByName(tasks: Task[], filter: string) {
   return tasks.filter((task) =>
     task.name.toLocaleLowerCase().startsWith(filter.toLowerCase()),

@@ -38,19 +38,24 @@ function Card(props: CardProps) {
   return (
     <S.Container color={color}>
       <S.GotoDetails onPress={gotoEditTaskPage}>
-        {/* <S.EmojiContainer> */}
         <S.Emoji>{emoji}</S.Emoji>
-        {/* </S.EmojiContainer> */}
 
         <S.InfoContainer>
           <S.title check={hasCheck ? checked : false}>{name}</S.title>
           {description && <S.Description>{description}</S.Description>}
         </S.InfoContainer>
-        <S.Time color={color} check={hasCheck ? checked : false}>
-          {date && `${formatedDate}`}
-          {date && time && " "}
-          {time}
-        </S.Time>
+        <S.DateTime>
+          {date && (
+            <S.Date color={color} check={hasCheck ? checked : false}>
+              {date && `${formatedDate}`}
+            </S.Date>
+          )}
+          {time && (
+            <S.Time color={color} check={hasCheck ? checked : false}>
+              {time}
+            </S.Time>
+          )}
+        </S.DateTime>
       </S.GotoDetails>
 
       {hasCheck && (
