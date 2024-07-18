@@ -26,10 +26,12 @@ export const Input = styled.TextInput`
   `}
 `;
 
-export const InputWrapper = styled.View`
+export const InputWrapper = styled.ScrollView`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  width: auto;
+
+  /* justify-content: space-between; */
 `;
 
 export const DayButton = styled.TouchableOpacity`

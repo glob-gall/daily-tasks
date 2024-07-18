@@ -40,7 +40,7 @@ function InputWeekDay(props: InputWeekDayProps) {
         {required && <S.Required>*</S.Required>}
       </S.Label>
 
-      <S.InputWrapper>
+      <S.InputWrapper horizontal showsHorizontalScrollIndicator={false}>
         <DayButton
           onChange={handleSetDay}
           name="monday"

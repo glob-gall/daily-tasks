@@ -9,6 +9,7 @@ export const Container = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 4px;
   ${(_props) => css``}
 `;
 
