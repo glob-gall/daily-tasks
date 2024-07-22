@@ -35,7 +35,18 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "icon": "./local/assets/images/notification-icon.png",
+          "color": "#e5e5e5",
+          "defaultChannel": "default",
+          "sounds": [
+            "./local/assets/notification.mp3"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

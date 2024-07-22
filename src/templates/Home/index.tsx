@@ -9,6 +9,7 @@ import { useCallback, useMemo } from "react";
 import useTaskStore from "@/store/task.store";
 import ProgressBar from "@/components/ProgressBar";
 import areSameDay from "@/utils/areSameDay";
+import { sendNotification } from "@/core/notificatinos/handler";
 
 export default function Home() {
   const { todayTasks, attTodaysTasks, currentDay } = useTaskStore();
@@ -36,6 +37,7 @@ export default function Home() {
 
   const gotoRegisterCard = useCallback(() => {
     router.push("register-task");
+    sendNotification("notification", "body");
   }, [router]);
 
   return (
