@@ -6,7 +6,7 @@ import compareDateToTaskDate from "@/utils/compareDateToTaskDate";
 import checkTaskAvailability from "@/utils/checkTaskAvailability";
 import deepCopy from "@/utils/deepCopy";
 import areSameDay from "@/utils/areSameDay";
-import { taskTimeToNumber } from "@/utils/taskTimeToNumber";
+import { compareTask } from "@/utils/taskTimeToNumber";
 
 type State = {
   tasks: Task[];
@@ -60,9 +60,7 @@ const useTaskStore = create<State & Action>()(
           const todayTasks = deepCopy(state.todayTasks);
           let attTodaysTask = isAvailable ? [...todayTasks, task] : todayTasks;
 
-          attTodaysTask = attTodaysTask.sort((a, b) =>
-            taskTimeToNumber(a.time) < taskTimeToNumber(b.time) ? -1 : 1,
-          );
+          attTodaysTask = attTodaysTask.sort((a, b) => compareTask(a, b));
 
           return {
             tasks: [...state.tasks, task],
@@ -101,7 +99,7 @@ const useTaskStore = create<State & Action>()(
             updatedTodayTasks = updatedTodayTasks.filter((t) => t.id !== id);
           }
           updatedTodayTasks = updatedTodayTasks.sort((a, b) =>
-            taskTimeToNumber(a.time) < taskTimeToNumber(b.time) ? -1 : 1,
+            compareTask(a, b),
           );
 
           return {
@@ -136,9 +134,7 @@ const useTaskStore = create<State & Action>()(
             return t;
           });
 
-          copy = copy.sort((a, b) =>
-            taskTimeToNumber(a.time) < taskTimeToNumber(b.time) ? -1 : 1,
-          );
+          copy = copy.sort((a, b) => compareTask(a, b));
 
           if (attCheck) {
             copy = copy.map((t) => ({ ...t, checked: false }));

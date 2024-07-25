@@ -31,3 +31,18 @@ export function filterTasksByName(tasks: Task[], filter: string) {
     task.name.toLocaleLowerCase().startsWith(filter.toLowerCase()),
   );
 }
+
+export function filterTasksWithNoDay(tasks: Task[]) {
+  return tasks.filter((task) => {
+    return (
+      task.days &&
+      !task.days.monday &&
+      !task.days.tuesday &&
+      !task.days.wednesday &&
+      !task.days.thursday &&
+      !task.days.friday &&
+      !task.days.saturday &&
+      !task.days.sunday
+    );
+  });
+}

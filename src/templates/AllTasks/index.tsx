@@ -7,7 +7,11 @@ import useTaskStore from "@/store/task.store";
 import InputText from "@/components/Input/InputText";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 import InputWeekDay, { Days } from "@/components/Input/InputWeekDay";
-import { filterTasksByDays, filterTasksByName } from "@/utils/filterTasks";
+import {
+  filterTasksByDays,
+  filterTasksByName,
+  filterTasksWithNoDay,
+} from "@/utils/filterTasks";
 
 export default function AllTasks() {
   const { tasks } = useTaskStore();
@@ -39,7 +43,9 @@ export default function AllTasks() {
   const filteredTasks = useMemo(() => {
     const filteredByName = filterTasksByName(tasks, filter);
     const filteredByDay = filterTasksByDays(filteredByName, dayFilter);
-    return filteredByDay;
+
+    const withoutDays = filterTasksWithNoDay(tasks);
+    return [...filteredByDay, ...withoutDays];
   }, [tasks, filter, dayFilter]);
 
   const handleInputChange = (

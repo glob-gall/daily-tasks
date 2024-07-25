@@ -1,14 +1,14 @@
 {
   "expo": {
     "name": "Daily Tasks",
-    "owner": "Luís Felipe Galleguillos Campos",
     "description": "Organize sua rotina em minutos!",
     "slug": "daily-tasks",
     "version": "1.0.0",
     "orientation": "portrait",
     "platforms": [
       "ios",
-      "android"
+      "android",
+      "web"
     ],
     "icon": "./assets/images/icon.png",
     "scheme": "daily-tasks",
