@@ -14,7 +14,7 @@ export const ButtonContainer = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-  border-radius: 24px;
+  border-radius: 12px;
   width: 64px;
   height: 64px;
 

@@ -108,7 +108,7 @@ export const OkButton = styled.TouchableOpacity`
 export const OkButtonText = styled.Text`
   ${(props) => css`
     font-size: ${props.theme.font.default};
-    color: ${props.theme.background.pr};
+    color: ${props.theme.text.inverted};
   `}
 `;
 

@@ -12,7 +12,7 @@ export const Container = styled.View<Variant>`
   display: flex;
   align-items: center;
   flex-direction: row;
-  height: 66px;
+  height: 72px;
 
   ${(props) => css`
     border-radius: ${props.theme.border.radius};
@@ -21,47 +21,59 @@ export const Container = styled.View<Variant>`
 
     ${props.color === "red" &&
     css`
-      background-color: ${props.theme.colors.red["50"]};
+      background-color: ${props.theme.colors.red[props.theme.intensity.light]};
     `}
     ${props.color === "green" &&
     css`
-      background-color: ${props.theme.colors.green["50"]};
+      background-color: ${props.theme.colors.green[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "yellow" &&
     css`
-      background-color: ${props.theme.colors.yellow["50"]};
+      background-color: ${props.theme.colors.yellow[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "amber" &&
     css`
-      background-color: ${props.theme.colors.amber["50"]};
+      background-color: ${props.theme.colors.amber[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "blue" &&
     css`
-      background-color: ${props.theme.colors.blue["50"]};
+      background-color: ${props.theme.colors.blue[props.theme.intensity.light]};
     `}
     ${props.color === "cyan" &&
     css`
-      background-color: ${props.theme.colors.cyan["50"]};
+      background-color: ${props.theme.colors.cyan[props.theme.intensity.light]};
     `}
     ${props.color === "emerald" &&
     css`
-      background-color: ${props.theme.colors.emerald["50"]};
+      background-color: ${props.theme.colors.emerald[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "fuchsia" &&
     css`
-      background-color: ${props.theme.colors.fuchsia["50"]};
+      background-color: ${props.theme.colors.fuchsia[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "gray" &&
     css`
-      background-color: ${props.theme.colors.gray["50"]};
+      background-color: ${props.theme.colors.gray[props.theme.intensity.light]};
     `}
     ${props.color === "indigo" &&
     css`
-      background-color: ${props.theme.colors.indigo["50"]};
+      background-color: ${props.theme.colors.indigo[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "lime" &&
     css`
-      background-color: ${props.theme.colors.lime["50"]};
+      background-color: ${props.theme.colors.lime[props.theme.intensity.light]};
     `}
     ${props.color === "neutral" &&
     css`
@@ -70,39 +82,47 @@ export const Container = styled.View<Variant>`
     `}
     ${props.color === "orange" &&
     css`
-      background-color: ${props.theme.colors.orange["50"]};
+      background-color: ${props.theme.colors.orange[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "pink" &&
     css`
-      background-color: ${props.theme.colors.pink["50"]};
+      background-color: ${props.theme.colors.pink[props.theme.intensity.light]};
     `}
     ${props.color === "purple" &&
     css`
-      background-color: ${props.theme.colors.purple["50"]};
+      background-color: ${props.theme.colors.purple[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "rose" &&
     css`
-      background-color: ${props.theme.colors.rose["50"]};
+      background-color: ${props.theme.colors.rose[props.theme.intensity.light]};
     `}
     ${props.color === "sky" &&
     css`
-      background-color: ${props.theme.colors.sky["50"]};
+      background-color: ${props.theme.colors.sky[props.theme.intensity.light]};
     `}
     ${props.color === "slate" &&
     css`
-      background-color: ${props.theme.colors.slate["50"]};
+      background-color: ${props.theme.colors.slate[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "teal" &&
     css`
-      background-color: ${props.theme.colors.teal["50"]};
+      background-color: ${props.theme.colors.teal[props.theme.intensity.light]};
     `}
     ${props.color === "violet" &&
     css`
-      background-color: ${props.theme.colors.violet["50"]};
+      background-color: ${props.theme.colors.violet[
+        props.theme.intensity.light
+      ]};
     `}
     ${props.color === "zinc" &&
     css`
-      background-color: ${props.theme.colors.zinc["50"]};
+      background-color: ${props.theme.colors.zinc[props.theme.intensity.light]};
     `}
   `}
 `;
@@ -164,39 +184,39 @@ const DateTimeBase = styled.Text<Variant & Check>`
     `}
     ${props.color === "yellow" &&
     css`
-      color: ${props.theme.colors.yellow["500"]};
+      color: ${props.theme.colors.yellow[props.theme.intensity.dense]};
     `}
     ${props.color === "amber" &&
     css`
-      color: ${props.theme.colors.amber["500"]};
+      color: ${props.theme.colors.amber[props.theme.intensity.dense]};
     `}
     ${props.color === "blue" &&
     css`
-      color: ${props.theme.colors.blue["500"]};
+      color: ${props.theme.colors.blue[props.theme.intensity.dense]};
     `}
     ${props.color === "cyan" &&
     css`
-      color: ${props.theme.colors.cyan["500"]};
+      color: ${props.theme.colors.cyan[props.theme.intensity.dense]};
     `}
     ${props.color === "emerald" &&
     css`
-      color: ${props.theme.colors.emerald["500"]};
+      color: ${props.theme.colors.emerald[props.theme.intensity.dense]};
     `}
     ${props.color === "fuchsia" &&
     css`
-      color: ${props.theme.colors.fuchsia["500"]};
+      color: ${props.theme.colors.fuchsia[props.theme.intensity.dense]};
     `}
     ${props.color === "gray" &&
     css`
-      color: ${props.theme.colors.gray["500"]};
+      color: ${props.theme.colors.gray[props.theme.intensity.dense]};
     `}
     ${props.color === "indigo" &&
     css`
-      color: ${props.theme.colors.indigo["500"]};
+      color: ${props.theme.colors.indigo[props.theme.intensity.dense]};
     `}
     ${props.color === "lime" &&
     css`
-      color: ${props.theme.colors.lime["500"]};
+      color: ${props.theme.colors.lime[props.theme.intensity.dense]};
     `}
     ${props.color === "neutral" &&
     css`
@@ -204,39 +224,39 @@ const DateTimeBase = styled.Text<Variant & Check>`
     `}
     ${props.color === "orange" &&
     css`
-      color: ${props.theme.colors.orange["500"]};
+      color: ${props.theme.colors.orange[props.theme.intensity.dense]};
     `}
     ${props.color === "pink" &&
     css`
-      color: ${props.theme.colors.pink["500"]};
+      color: ${props.theme.colors.pink[props.theme.intensity.dense]};
     `}
     ${props.color === "purple" &&
     css`
-      color: ${props.theme.colors.purple["500"]};
+      color: ${props.theme.colors.purple[props.theme.intensity.dense]};
     `}
     ${props.color === "rose" &&
     css`
-      color: ${props.theme.colors.rose["500"]};
+      color: ${props.theme.colors.rose[props.theme.intensity.dense]};
     `}
     ${props.color === "sky" &&
     css`
-      color: ${props.theme.colors.sky["500"]};
+      color: ${props.theme.colors.sky[props.theme.intensity.dense]};
     `}
     ${props.color === "slate" &&
     css`
-      color: ${props.theme.colors.slate["500"]};
+      color: ${props.theme.colors.slate[props.theme.intensity.dense]};
     `}
     ${props.color === "teal" &&
     css`
-      color: ${props.theme.colors.teal["500"]};
+      color: ${props.theme.colors.teal[props.theme.intensity.dense]};
     `}
     ${props.color === "violet" &&
     css`
-      color: ${props.theme.colors.violet["500"]};
+      color: ${props.theme.colors.violet[props.theme.intensity.dense]};
     `}
     ${props.color === "zinc" &&
     css`
-      color: ${props.theme.colors.zinc["500"]};
+      color: ${props.theme.colors.zinc[props.theme.intensity.dense]};
     `}
   `}
 `;
@@ -259,94 +279,94 @@ export const CheckButton = styled.TouchableOpacity`
 
 const BaseCheck = styled.View<Variant>`
   border-radius: 50px;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   ${(props) => css`
-    border: 2px solid ${props.theme.background.th};
+    border: 2px solid;
 
     ${props.color === "red" &&
     css`
-      border-color: ${props.theme.colors.red["300"]};
+      border-color: ${props.theme.colors.red[props.theme.intensity.medium]};
     `}
     ${props.color === "green" &&
     css`
-      border-color: ${props.theme.colors.green["300"]};
+      border-color: ${props.theme.colors.green[props.theme.intensity.medium]};
     `}
     ${props.color === "yellow" &&
     css`
-      border-color: ${props.theme.colors.yellow["300"]};
+      border-color: ${props.theme.colors.yellow[props.theme.intensity.medium]};
     `}
     ${props.color === "amber" &&
     css`
-      border-color: ${props.theme.colors.amber["300"]};
+      border-color: ${props.theme.colors.amber[props.theme.intensity.medium]};
     `}
     ${props.color === "blue" &&
     css`
-      border-color: ${props.theme.colors.blue["300"]};
+      border-color: ${props.theme.colors.blue[props.theme.intensity.medium]};
     `}
     ${props.color === "cyan" &&
     css`
-      border-color: ${props.theme.colors.cyan["300"]};
+      border-color: ${props.theme.colors.cyan[props.theme.intensity.medium]};
     `}
     ${props.color === "emerald" &&
     css`
-      border-color: ${props.theme.colors.emerald["300"]};
+      border-color: ${props.theme.colors.emerald[props.theme.intensity.medium]};
     `}
     ${props.color === "fuchsia" &&
     css`
-      border-color: ${props.theme.colors.fuchsia["300"]};
+      border-color: ${props.theme.colors.fuchsia[props.theme.intensity.medium]};
     `}
     ${props.color === "gray" &&
     css`
-      border-color: ${props.theme.colors.gray["300"]};
+      border-color: ${props.theme.colors.gray[props.theme.intensity.medium]};
     `}
     ${props.color === "indigo" &&
     css`
-      border-color: ${props.theme.colors.indigo["300"]};
+      border-color: ${props.theme.colors.indigo[props.theme.intensity.medium]};
     `}
     ${props.color === "lime" &&
     css`
-      border-color: ${props.theme.colors.lime["300"]};
+      border-color: ${props.theme.colors.lime[props.theme.intensity.medium]};
     `}
     ${props.color === "neutral" &&
     css`
-      border-color: ${props.theme.background.th};
+      border-color: ${props.theme.colors.neutral[props.theme.intensity.medium]};
     `}
     ${props.color === "orange" &&
     css`
-      border-color: ${props.theme.colors.orange["300"]};
+      border-color: ${props.theme.colors.orange[props.theme.intensity.medium]};
     `}
     ${props.color === "pink" &&
     css`
-      border-color: ${props.theme.colors.pink["300"]};
+      border-color: ${props.theme.colors.pink[props.theme.intensity.medium]};
     `}
     ${props.color === "purple" &&
     css`
-      border-color: ${props.theme.colors.purple["300"]};
+      border-color: ${props.theme.colors.purple[props.theme.intensity.medium]};
     `}
     ${props.color === "rose" &&
     css`
-      border-color: ${props.theme.colors.rose["300"]};
+      border-color: ${props.theme.colors.rose[props.theme.intensity.medium]};
     `}
     ${props.color === "sky" &&
     css`
-      border-color: ${props.theme.colors.sky["300"]};
+      border-color: ${props.theme.colors.sky[props.theme.intensity.medium]};
     `}
     ${props.color === "slate" &&
     css`
-      border-color: ${props.theme.colors.slate["300"]};
+      border-color: ${props.theme.colors.slate[props.theme.intensity.medium]};
     `}
     ${props.color === "teal" &&
     css`
-      border-color: ${props.theme.colors.teal["300"]};
+      border-color: ${props.theme.colors.teal[props.theme.intensity.medium]};
     `}
     ${props.color === "violet" &&
     css`
-      border-color: ${props.theme.colors.violet["300"]};
+      border-color: ${props.theme.colors.violet[props.theme.intensity.medium]};
     `}
     ${props.color === "zinc" &&
     css`
-      border-color: ${props.theme.colors.zinc["300"]};
+      border-color: ${props.theme.colors.zinc[props.theme.intensity.medium]};
     `}
   `}
 `;

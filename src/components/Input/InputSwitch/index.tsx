@@ -28,7 +28,7 @@ function InputSwitch(props: InputSwitchProps) {
         buttonColor={Theme.feedback.success}
         textColor={Theme.text.sc}
         backgroundColor={Theme.background.sc}
-        borderRadius={4}
+        borderRadius={+Theme.border.radius.replace("px", "")}
         height={44}
         bold
         options={options}

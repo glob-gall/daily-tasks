@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components/native";
 
 export const CreateNewTask = styled.TouchableOpacity`
-  border-radius: 24px;
   width: 64px;
   height: 64px;
 
   align-items: center;
   justify-content: center;
+  border-radius: 12px;
   ${(props) => css`
     background-color: ${props.theme.feedback.success};
     position: absolute;

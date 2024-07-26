@@ -1,5 +1,11 @@
 import { ColorNames } from "@/styles/colors";
 import styled, { css } from "styled-components/native";
+import {
+  BaseContainer,
+  BaseInputWrapper,
+  BaseLabel,
+  BaseRequired,
+} from "../Base/style";
 
 type Variant = {
   color: ColorNames | "white";
@@ -8,34 +14,12 @@ type ItemVariant = {
   isSelected?: boolean;
 };
 
-export const Container = styled.View`
-  flex: 1;
-  ${(props) => css`
-    border-radius: ${props.theme.border.radius};
-  `}
-`;
-export const InputWrapper = styled.View`
-  height: 44px;
-  ${(props) => css`
-    border-radius: ${props.theme.border.radius};
-    background-color: ${props.theme.background.sc};
-  `}
-`;
+export const Container = styled(BaseContainer)``;
+export const InputWrapper = styled(BaseInputWrapper)``;
 
-export const Label = styled.Text`
-  font-weight: bold;
-  ${(props) => css`
-    color: ${props.theme.text.pr};
-    margin-left: ${props.theme.spacing.small};
-  `}
-`;
+export const Label = styled(BaseLabel)``;
 
-export const Required = styled.Text`
-  ${(props) => css`
-    color: ${props.theme.feedback.error};
-    font-weight: bold;
-  `}
-`;
+export const Required = styled(BaseRequired)``;
 
 export const Item = styled.View<ItemVariant>`
   display: flex;
@@ -73,7 +57,7 @@ export const ItemIcon = styled.View`
 export const ColorPreview = styled.Text<Variant>`
   width: 36px;
   height: 36px;
-  border-radius: 18px;
+  border-radius: 12px;
   text-align: center;
 
   ${(props) => css`
@@ -89,46 +73,64 @@ export const ColorPreview = styled.Text<Variant>`
   ${(props) =>
     props.color === "green" &&
     css`
-      background-color: ${props.theme.colors.green["200"]};
+      background-color: ${props.theme.colors.green[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "yellow" &&
     css`
-      background-color: ${props.theme.colors.yellow["200"]};
+      background-color: ${props.theme.colors.yellow[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "blue" &&
     css`
-      background-color: ${props.theme.colors.blue["200"]};
+      background-color: ${props.theme.colors.blue[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "indigo" &&
     css`
-      background-color: ${props.theme.colors.indigo["200"]};
+      background-color: ${props.theme.colors.indigo[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "purple" &&
     css`
-      background-color: ${props.theme.colors.purple["200"]};
+      background-color: ${props.theme.colors.purple[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "orange" &&
     css`
-      background-color: ${props.theme.colors.orange["200"]};
+      background-color: ${props.theme.colors.orange[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "fuchsia" &&
     css`
-      background-color: ${props.theme.colors.fuchsia["200"]};
+      background-color: ${props.theme.colors.fuchsia[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "pink" &&
     css`
-      background-color: ${props.theme.colors.pink["200"]};
+      background-color: ${props.theme.colors.pink[
+        props.theme.intensity.medium
+      ]};
     `}
   ${(props) =>
     props.color === "rose" &&
     css`
-      background-color: ${props.theme.colors.rose["200"]};
+      background-color: ${props.theme.colors.rose[
+        props.theme.intensity.medium
+      ]};
     `}
 `;
