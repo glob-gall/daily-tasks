@@ -1,8 +1,8 @@
-import SelectDropdown from "react-native-select-dropdown";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as S from "./styles";
 import Theme from "@/styles/theme";
 import { Color } from "@/entity/Task/dto";
+import SelectDropdown from "react-native-select-dropdown";
 
 type InputColorProps = {
   label: string;
@@ -115,7 +115,10 @@ function InputColor(props: InputColorProps) {
             );
           }}
           showsVerticalScrollIndicator={false}
-          // dropdownStyle={}
+          dropdownStyle={{
+            height: 200,
+            paddingBottom: 8,
+          }}
         />
       </S.InputWrapper>
     </S.Container>

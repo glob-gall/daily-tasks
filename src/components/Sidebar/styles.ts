@@ -34,7 +34,7 @@ export const Sidebar = styled.View`
   min-width: 30%;
   ${(props) => css`
     padding: 30% ${props.theme.spacing.default};
-    background-color: ${props.theme.background.pr};
+    background-color: ${props.theme.background.base};
   `}
 `;
 
@@ -46,7 +46,7 @@ export const SidebarButton = styled.TouchableOpacity`
 `;
 
 export const SidebarOption = styled.TouchableOpacity`
-  height: 40px;
+  height: 52px;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -54,7 +54,7 @@ export const SidebarOption = styled.TouchableOpacity`
   ${(props) => css`
     background-color: ${props.theme.background.wh};
     border-radius: ${props.theme.border.radius};
-    padding: ${props.theme.spacing.small};
+    padding: ${props.theme.spacing.medium};
     margin-top: ${props.theme.spacing.small};
   `}
 `;
@@ -64,6 +64,7 @@ export const SidebarOptionText = styled.Text`
     font-size: ${props.theme.font.default};
   `}
 `;
+
 export const SidebarOptionIcon = styled.View`
   ${(props) => css`
     margin-right: ${props.theme.spacing.medium};

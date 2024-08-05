@@ -19,10 +19,10 @@ const Theme = {
     xlarge: "38px",
   },
   background: {
-    pr: Colors.neutral["100"],
+    pr: Colors.neutral["500"],
     sc: Colors.neutral["200"],
     th: Colors.neutral["300"],
-    base: Colors.neutral["50"],
+    base: Colors.neutral["100"],
     error: Colors.red["200"],
     wh: "#FFFFFF",
     shadow: "#0005",
@@ -41,7 +41,13 @@ const Theme = {
     placeholder: Colors.neutral["400"],
   },
   border: {
-    radius: "4px",
+    radius: "8px",
+  },
+  intensity: {
+    light: "200",
+    medium: "400",
+    dense: "500",
+    max: "800",
   },
 };
 export type ThemeType = typeof Theme;

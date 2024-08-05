@@ -6,6 +6,7 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
+  font-weight: bold;
   ${(props) => css`
     font-size: ${props.theme.font.title};
     color: ${props.theme.text.pr};

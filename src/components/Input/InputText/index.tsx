@@ -1,5 +1,4 @@
 import Theme from "@/styles/theme";
-import { InputType } from "./enum/Input-type";
 import * as S from "./styles";
 import { TextInputProps } from "react-native";
 import { FieldError } from "react-hook-form";
@@ -12,7 +11,6 @@ export type InputTextProps = TextInputProps & {
   // name: TaskFormField
   label: string;
   required?: boolean;
-  type?: InputType;
   error?: FieldError;
 };
 

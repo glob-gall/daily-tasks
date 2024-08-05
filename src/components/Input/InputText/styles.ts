@@ -1,26 +1,19 @@
 import styled, { css } from "styled-components/native";
+import {
+  BaseContainer,
+  BaseErrorMsg,
+  BaseInputWrapper,
+  BaseLabel,
+  BaseRequired,
+} from "../Base/style";
 
 type Variant = {
   error?: boolean;
 };
 
-export const Container = styled.View`
-  ${(_props) => css``}
-`;
-export const Required = styled.Text`
-  ${(props) => css`
-    color: ${props.theme.feedback.error};
-    font-weight: bold;
-  `}
-`;
-
-export const Label = styled.Text`
-  font-weight: bold;
-  ${(props) => css`
-    color: ${props.theme.text.pr};
-    margin-left: ${props.theme.spacing.small};
-  `}
-`;
+export const Container = styled(BaseContainer)``;
+export const Required = styled(BaseRequired)``;
+export const Label = styled(BaseLabel)``;
 
 export const InputText = styled.TextInput`
   height: 42px;
@@ -30,12 +23,8 @@ export const InputText = styled.TextInput`
   `}
 `;
 
-export const InputTextWrapper = styled.View<Variant>`
+export const InputTextWrapper = styled(BaseInputWrapper)<Variant>`
   ${(props) => css`
-    border-radius: ${props.theme.border.radius};
-    background-color: ${props.theme.background.sc};
-    border: 2px solid ${props.theme.background.sc};
-
     ${props.error &&
     css`
       background-color: ${props.theme.background.error};
@@ -44,10 +33,4 @@ export const InputTextWrapper = styled.View<Variant>`
   `}
 `;
 
-export const ErrorMsg = styled.Text`
-  font-weight: bold;
-  ${(props) => css`
-    color: ${props.theme.feedback.error};
-    margin-left: ${props.theme.spacing.small};
-  `}
-`;
+export const ErrorMsg = styled(BaseErrorMsg)``;
