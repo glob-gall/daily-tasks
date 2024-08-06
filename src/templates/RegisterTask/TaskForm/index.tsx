@@ -18,11 +18,11 @@ export type Option = {
 
 const options: Option[] = [
   {
-    label: "Evento diario",
+    label: "Daily",
     value: "daily",
   },
   {
-    label: "Data expecifica",
+    label: "Specific Date",
     value: "event",
   },
 ];
@@ -49,7 +49,7 @@ export default function TaskForm(props: TaskFormProps) {
         render={({ field: { onChange, value } }) => (
           <InputEmoji
             required
-            label="Escolher Emoji"
+            label="Select Emoji"
             onChange={onChange}
             value={value}
           />
@@ -61,7 +61,7 @@ export default function TaskForm(props: TaskFormProps) {
           control={control}
           rules={{
             required: {
-              message: "Campo obrigatório",
+              message: "Required Field",
               value: true,
             },
           }}
@@ -70,7 +70,7 @@ export default function TaskForm(props: TaskFormProps) {
             <InputText
               error={errors.name}
               required
-              label="Nome"
+              label="Title"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -86,7 +86,7 @@ export default function TaskForm(props: TaskFormProps) {
           render={({ field: { onChange, onBlur, value } }) => (
             <InputText
               error={errors.description}
-              label="Descrição"
+              label="Description"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -119,7 +119,7 @@ export default function TaskForm(props: TaskFormProps) {
               control={control}
               rules={{
                 required: {
-                  message: "Campo obrigatório",
+                  message: "Required Field",
                   value: true,
                 },
               }}
@@ -127,7 +127,7 @@ export default function TaskForm(props: TaskFormProps) {
               render={({ field: { onChange, value } }) => (
                 <InputWeekDay
                   required
-                  label="Dias da semana"
+                  label="Weekdays"
                   onChange={onChange}
                   value={value}
                 />
@@ -140,7 +140,7 @@ export default function TaskForm(props: TaskFormProps) {
               control={control}
               name="dailyTime"
               render={({ field: { onChange } }) => (
-                <InputTime label="Horário" onChange={onChange} />
+                <InputTime label="Time" onChange={onChange} />
               )}
             />
             <S.InputRowWrapper>
@@ -148,11 +148,7 @@ export default function TaskForm(props: TaskFormProps) {
                 control={control}
                 name="dailyColor"
                 render={({ field: { onChange } }) => (
-                  <InputColor
-                    required
-                    onChange={onChange}
-                    label="Cor do card"
-                  />
+                  <InputColor required onChange={onChange} label="Card Color" />
                 )}
               />
             </S.InputRowWrapper>
@@ -165,7 +161,7 @@ export default function TaskForm(props: TaskFormProps) {
               control={control}
               name="date"
               render={({ field: { onChange } }) => (
-                <InputDate required useToday onChange={onChange} label="Data" />
+                <InputDate required useToday onChange={onChange} label="Date" />
               )}
             />
             <S.InputRowWrapper>
@@ -173,11 +169,7 @@ export default function TaskForm(props: TaskFormProps) {
                 control={control}
                 name="time"
                 render={({ field: { onChange, value } }) => (
-                  <InputTime
-                    label="Horário"
-                    value={value}
-                    onChange={onChange}
-                  />
+                  <InputTime label="Time" value={value} onChange={onChange} />
                 )}
               />
             </S.InputRowWrapper>
@@ -187,7 +179,7 @@ export default function TaskForm(props: TaskFormProps) {
               control={control}
               name="color"
               render={({ field: { onChange } }) => (
-                <InputColor required onChange={onChange} label="Cor do card" />
+                <InputColor required onChange={onChange} label="Card Color" />
               )}
             />
           </S.InputWrapper>

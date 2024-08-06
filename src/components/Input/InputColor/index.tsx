@@ -13,27 +13,27 @@ type InputColorProps = {
 
 export const colorOptions: Color[] = [
   {
-    label: "Branco",
+    label: "White",
     color: "neutral",
   },
   {
-    label: "Azul",
+    label: "Blue",
     color: "blue",
   },
   {
-    label: "Verde",
+    label: "Green",
     color: "green",
   },
   {
-    label: "Amarelo",
+    label: "Yellow",
     color: "yellow",
   },
   {
-    label: "Vermelho",
+    label: "Red",
     color: "red",
   },
   {
-    label: "Laranja",
+    label: "Orange",
     color: "orange",
   },
   {
@@ -41,7 +41,7 @@ export const colorOptions: Color[] = [
     color: "indigo",
   },
   {
-    label: "Roxo",
+    label: "Purple",
     color: "purple",
   },
   {
@@ -83,7 +83,7 @@ function InputColor(props: InputColorProps) {
                   color={selectedItem ? selectedItem.color : "neutral"}
                 />
                 <S.ItemLabel>
-                  {selectedItem ? selectedItem.label : "Selecione uma cor"}
+                  {selectedItem ? selectedItem.label : "Select a color"}
                 </S.ItemLabel>
                 {/* <Icon name={isOpened ? 'chevron-up' : 'chevron-down'} /> */}
                 <S.ItemIcon>

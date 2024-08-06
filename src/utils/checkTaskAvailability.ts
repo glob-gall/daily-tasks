@@ -5,13 +5,13 @@ export function checkTaskWeekDay(taskDay: TaskDay | undefined): boolean {
   if (!taskDay) return false;
   const today = getWeekDay();
 
-  if (today === "Domingo") return taskDay.sunday;
-  if (today === "Segunda-Feira") return taskDay.monday;
-  if (today === "Terça-Feira") return taskDay.tuesday;
-  if (today === "Quarta-Feira") return taskDay.wednesday;
-  if (today === "Quinta-Feira") return taskDay.thursday;
-  if (today === "Sexta-Feira") return taskDay.friday;
-  if (today === "Sabado") return taskDay.saturday;
+  if (today === "Sunday") return taskDay.sunday;
+  if (today === "Monday") return taskDay.monday;
+  if (today === "Tuesday") return taskDay.tuesday;
+  if (today === "Wednesday") return taskDay.wednesday;
+  if (today === "Thursday") return taskDay.thursday;
+  if (today === "Friday") return taskDay.friday;
+  if (today === "Saturday") return taskDay.saturday;
   return false;
 }
 

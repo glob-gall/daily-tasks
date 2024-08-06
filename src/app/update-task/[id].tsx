@@ -9,7 +9,7 @@ export default function RegisterTaskPage() {
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      headerTitle: () => <Header title="Editar meta" />,
+      headerTitle: () => <Header title="Update Task" />,
     });
   }, [navigation]);
 

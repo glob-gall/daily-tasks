@@ -9,7 +9,7 @@ export default function HomePage() {
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      headerTitle: () => <Header title="Lista de Metas" />,
+      headerTitle: () => <Header title="Task List" />,
     });
   }, [navigation]);
 

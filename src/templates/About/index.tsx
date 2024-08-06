@@ -10,14 +10,14 @@ import { useCallback } from "react";
 
 export default function About() {
   const openSite = useCallback(() => {
-    Linking.openURL("https://www.instagram.com/luisf.galleguillos/");
+    Linking.openURL("https://www.instagram.com/dailytasks.app/");
   }, []);
   const openInstagram = useCallback(() => {
-    Linking.openURL("https://www.instagram.com/luisf.galleguillos/");
+    Linking.openURL("https://www.instagram.com/dailytasks.app/");
     // Linking.openURL('instagram://user?username=luisf.galleguillos')
   }, []);
   const openEmail = useCallback(() => {
-    Linking.openURL("mailto:luisfelipegalleguillos@hotmail.com");
+    Linking.openURL("mailto:contact.dailytasks@gmail.com");
   }, []);
 
   return (
@@ -35,14 +35,14 @@ export default function About() {
             <S.CardIcon>
               <Instagram color={Theme.text.pr} />
             </S.CardIcon>
-            <S.CardText>Instagram</S.CardText>
+            <S.CardText>@dailytasks.app</S.CardText>
           </S.CardInfo>
 
           <S.CardInfo onPress={openEmail}>
             <S.CardIcon>
               <Mail color={Theme.text.pr} />
             </S.CardIcon>
-            <S.CardText>luisfelipegalleguillos@hotmail.com</S.CardText>
+            <S.CardText>contact.dailytasks@gmail.com</S.CardText>
           </S.CardInfo>
         </S.Container>
       </Margin>

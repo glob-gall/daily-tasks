@@ -45,49 +45,49 @@ function InputWeekDay(props: InputWeekDayProps) {
           onChange={handleSetDay}
           name="monday"
           active={value.monday}
-          label="Segunda"
-          text="S"
+          label="Monday"
+          text="M"
         />
         <DayButton
           onChange={handleSetDay}
           name="tuesday"
           active={value.tuesday}
-          label="Terça"
+          label="Tuesday"
           text="T"
         />
         <DayButton
           onChange={handleSetDay}
           name="wednesday"
           active={value.wednesday}
-          label="Quarta"
-          text="Q"
+          label="Wednesday"
+          text="W"
         />
         <DayButton
           onChange={handleSetDay}
           name="thursday"
           active={value.thursday}
-          label="Quinta"
-          text="Q"
+          label="Thursday"
+          text="T"
         />
         <DayButton
           onChange={handleSetDay}
           name="friday"
           active={value.friday}
-          label="Sexta"
-          text="S"
+          label="Friday"
+          text="F"
         />
         <DayButton
           onChange={handleSetDay}
           name="saturday"
           active={value.saturday}
-          label="Sabado"
+          label="Saturday"
           text="S"
         />
         <DayButton
           onChange={handleSetDay}
           name="sunday"
           active={value.sunday}
-          label="Domingo"
+          label="Sunday"
           text="D"
         />
       </S.InputWrapper>

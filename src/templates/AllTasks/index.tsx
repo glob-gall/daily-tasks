@@ -62,7 +62,7 @@ export default function AllTasks() {
           <InputText
             value={filter}
             onChange={handleInputChange}
-            label="filtar por titulo"
+            label="Filter By Title"
           />
           <InputWeekDay
             label=""

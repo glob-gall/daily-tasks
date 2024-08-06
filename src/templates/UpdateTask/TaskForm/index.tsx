@@ -18,11 +18,11 @@ export type Option = {
 
 const options: Option[] = [
   {
-    label: "Evento diario",
+    label: "Daily",
     value: "daily",
   },
   {
-    label: "Data expecifica",
+    label: "Specific date",
     value: "event",
   },
 ];
@@ -50,7 +50,7 @@ export default function TaskForm(props: TaskFormProps) {
         render={({ field: { onChange, value } }) => (
           <InputEmoji
             required
-            label="Escolher Emoji"
+            label="Select Emoji"
             onChange={onChange}
             value={value}
           />
@@ -62,7 +62,7 @@ export default function TaskForm(props: TaskFormProps) {
           control={control}
           rules={{
             required: {
-              message: "Campo obrigatório",
+              message: "Required Field",
               value: true,
             },
           }}
@@ -71,7 +71,7 @@ export default function TaskForm(props: TaskFormProps) {
             <InputText
               error={errors.name}
               required
-              label="Nome"
+              label="Title"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -87,7 +87,7 @@ export default function TaskForm(props: TaskFormProps) {
           render={({ field: { onChange, onBlur, value } }) => (
             <InputText
               error={errors.description}
-              label="Descrição"
+              label="Description"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -101,7 +101,7 @@ export default function TaskForm(props: TaskFormProps) {
           control={control}
           rules={{
             required: {
-              message: "Campo obrigatório",
+              message: "Required Field",
               value: true,
             },
           }}
@@ -126,7 +126,7 @@ export default function TaskForm(props: TaskFormProps) {
               control={control}
               rules={{
                 required: {
-                  message: "Campo obrigatório",
+                  message: "Required Field",
                   value: true,
                 },
               }}
@@ -134,7 +134,7 @@ export default function TaskForm(props: TaskFormProps) {
               render={({ field: { onChange, value } }) => (
                 <InputWeekDay
                   required
-                  label="Dias da semana"
+                  label="Weekdays"
                   onChange={onChange}
                   value={value}
                 />
@@ -148,7 +148,7 @@ export default function TaskForm(props: TaskFormProps) {
               name="dailyTime"
               render={({ field: { onChange, value } }) => (
                 <InputTime
-                  label="Horário"
+                  label="Time"
                   onChange={onChange}
                   initialValue={value}
                 />
@@ -162,7 +162,7 @@ export default function TaskForm(props: TaskFormProps) {
                   <InputColor
                     required
                     onChange={onChange}
-                    label="Cor do card"
+                    label="Card Color"
                     initialValue={value}
                   />
                 )}
@@ -182,7 +182,7 @@ export default function TaskForm(props: TaskFormProps) {
                   useToday
                   initialValue={task.date}
                   onChange={onChange}
-                  label="Data"
+                  label="Date"
                 />
               )}
             />
@@ -192,7 +192,7 @@ export default function TaskForm(props: TaskFormProps) {
                 name="time"
                 render={({ field: { onChange, value } }) => (
                   <InputTime
-                    label="Horário"
+                    label="Time"
                     onChange={onChange}
                     initialValue={value}
                   />
@@ -208,7 +208,7 @@ export default function TaskForm(props: TaskFormProps) {
                 <InputColor
                   required
                   onChange={onChange}
-                  label="Cor do card"
+                  label="Card Color"
                   initialValue={value}
                 />
               )}

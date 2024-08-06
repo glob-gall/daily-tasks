@@ -9,7 +9,7 @@ export default function RegisterTaskPage() {
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      headerTitle: () => <Header title="Cadastrar nova meta" />,
+      headerTitle: () => <Header title="Register New Task" />,
     });
   }, [navigation]);
 
