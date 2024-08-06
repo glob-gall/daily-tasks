@@ -1,3 +1,4 @@
+import { Animated } from "react-native";
 import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
@@ -6,11 +7,17 @@ export const Container = styled.View`
     gap: ${props.theme.spacing.small};
   `}
 `;
-export const Dot = styled.View`
-  width: 16px;
+
+type DotProps = {
+  active?: boolean;
+};
+export const Dot = styled(Animated.View)<DotProps>`
   height: 16px;
   border-radius: 11px;
+  width: 16px;
   ${(props) => css`
-    background-color: ${props.theme.background.th};
+    background-color: ${props.active
+      ? props.theme.text.sc
+      : props.theme.background.th};
   `}
 `;
