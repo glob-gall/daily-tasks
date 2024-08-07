@@ -15,37 +15,40 @@ export const ButtonContainer = styled.View`
   `}
 `;
 
-export const ButtonNext = styled.TouchableOpacity`
+export const ButtonNext = styled.View`
   height: 44px;
+  width: 66px;
   align-items: center;
   justify-content: center;
   display: flex;
 
   ${(props) => css`
-    margin: 0 ${props.theme.spacing.large};
+    /* margin: 0 ${props.theme.spacing.large}; */
     background-color: ${props.theme.feedback.success};
     border-radius: ${props.theme.border.radius};
   `}
 `;
 export const ButtonNextText = styled.Text`
-  font-weight: bold;
+  /* font-weight: bold; */
   ${(props) => css`
     color: ${props.theme.text.inverted};
+    font-size: ${props.theme.font.default};
   `}
 `;
 
-export const ButtonSkip = styled.TouchableOpacity`
+export const ButtonSkip = styled.View`
   height: 44px;
-  align-items: center;
-  justify-content: center;
-  width: 196px;
+  width: 44px;
+  /* align-items: center;
+  justify-content: center; */
+  /* width: 196px; */
 
   ${(props) => css`
-    margin: ${props.theme.spacing.medium} auto;
+    /* margin: ${props.theme.spacing.medium} auto; */
   `}
 `;
 export const ButtonSkipText = styled.Text`
   ${(props) => css`
-    color: ${props.theme.text.sc};
+    color: ${props.theme.text.pr};
   `}
 `;

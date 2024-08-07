@@ -7,10 +7,6 @@ export function WelcomeItem({ Image, subtitle, title }: CarrouselItem) {
 
   return (
     <S.Container style={{ width }}>
-      {/* <S.CarrouselImage
-        source={require(props.image)}
-        style={{ resizeMode: "contain", flex: 0.7 }}
-      /> */}
       <Image width={width} />
       <S.Info style={{ flex: 0.3 }}>
         <S.Title>{title}</S.Title>

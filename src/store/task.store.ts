@@ -117,7 +117,7 @@ const useTaskStore = create<State & Action>()(
           }
 
           const todayTasks = state.tasks.filter((task) => {
-            if (task.date) {
+            if (task.type === "event" && task.date) {
               return compareDateToTaskDate(today, task.date);
             }
             return checkTaskAvailability(task);
