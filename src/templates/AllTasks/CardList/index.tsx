@@ -11,7 +11,7 @@ function CardList(props: CardListProps) {
   if (tasks.length === 0) {
     return (
       <S.EmptyList>
-        <S.EmptyListText>Nenhuma Task cadastrada ainda</S.EmptyListText>
+        <S.EmptyListText>Empty List</S.EmptyListText>
       </S.EmptyList>
     );
   }
